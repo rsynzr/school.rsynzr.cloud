@@ -77,11 +77,11 @@ button:hover{
 const customLink = "https://cbt4pakem.wordpress.com";
 
 function bukaGoogle(){
-    window.location.href = "https://google.com";
+    window.open("https://google.com", "_blank");
 }
 
 function bukaCustom(){
-    window.location.href = customLink;
+    window.open(customLink, "_blank");
 }
 
 function redirectUser(){
@@ -91,7 +91,7 @@ function redirectUser(){
         if(!url.startsWith("http://") && !url.startsWith("https://")){
             url = "https://" + url;
         }
-        window.location.href = url;
+        window.open(url, "_blank");
     }
 }
 
