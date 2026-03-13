@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Portal</title>
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, sans-serif;
+    background:#0b1f3a;
+    color:white;
+}
+
+.portal{
+    width:650px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:180px 180px;
+    gap:18px;
+}
+
+.box{
+    background:#132b4f;
+    border-radius:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    font-size:20px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.box:hover{
+    background:#1b3a6b;
+}
+
+.big{
+    grid-column:1 / span 2;
+}
+
+input{
+    padding:10px;
+    width:70%;
+    border-radius:6px;
+    border:none;
+    margin-top:10px;
+}
+
+button{
+    margin-top:8px;
+    padding:8px 16px;
+    border:none;
+    border-radius:6px;
+    background:#2f6feb;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1f4fbf;
+}
+
+</style>
+
+<script>
+
+const customLink = "https://cbt4pakem.wordpress.com";
+
+function bukaGoogle(){
+    window.location.href = "https://google.com";
+}
+
+function bukaCustom(){
+    window.location.href = customLink;
+}
+
+function redirectUser(){
+    let url = document.getElementById("userLink").value.trim();
+
+    if(url !== ""){
+        if(!url.startsWith("http://") && !url.startsWith("https://")){
+            url = "https://" + url;
+        }
+        window.location.href = url;
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="portal">
+
+<div class="grid">
+
+<div class="box" onclick="bukaGoogle()">
+Google
+</div>
+
+<div class="box" onclick="bukaCustom()">
+Link Custom
+</div>
+
+<div class="box big">
+Redirect Link
+<input id="userLink" placeholder="Masukkan link...">
+<button onclick="redirectUser()">Go</button>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
