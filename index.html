@@ -1,78 +1,205 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-     <!--                          
-  _ __ ___ _   _ _ __  _____ __ 
- | '__/ __| | | | '_ \|_  / '__|
- | |  \__ \ |_| | | | |/ /| |   
- |_|  |___/\__, |_| |_/___|_|   
-            __/ |               
-           |___/               
-                                     -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            position: relative;
-        }
-        .box {
-            background: white;
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            max-width: 600px;
-        }
-        h1 {
-            font-size: 48px;
-            margin: 0;
-            color: #2e7d32;
-        }
-        p {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #555;
-        }
-        .badge {
-            margin-top: 25px;
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: #2e7d32;
-            color: white;
-            border-radius: 20px;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-        footer {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 14px;
-            color: #777;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School — rsynzr.cloud</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-dark: #0b1220;
+      --bg-mid: #0f1b3d;
+      --bg-light: #1a2f6b;
+      --accent: #3b82f6;
+      --accent-bright: #60a5fa;
+      --accent-glow: rgba(59,130,246,0.4);
+      --text-primary: #e8f0fe;
+      --text-secondary: #94a3b8;
+      --card-bg: rgba(15,27,61,0.6);
+      --card-border: rgba(59,130,246,0.18);
+      --card-border-hover: rgba(96,165,250,0.5);
+      --nav-bg: rgba(11,18,32,0.75);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-mid) 50%, var(--bg-light) 100%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(59,130,246,0.12);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); text-decoration: none; }
+    .nav-brand span { color: var(--accent-bright); }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.88rem; font-weight: 500; padding: 0.4rem 0.75rem; border-radius: 8px; transition: color 0.2s, background 0.2s; }
+    .nav-links a:hover { color: var(--accent-bright); background: rgba(59,130,246,0.1); }
+    .nav-links a.cta { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: var(--accent-bright); }
+    .nav-links a.cta:hover { background: rgba(59,130,246,0.28); }
+
+    .hero {
+      padding: 8rem 2rem 3rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent-bright);
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.25);
+      padding: 0.3rem 0.85rem; border-radius: 20px; margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #e8f0fe 30%, var(--accent-bright) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero p { font-size: 1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto; }
+
+    .grid {
+      max-width: 720px; margin: 0 auto; padding: 1rem 2rem 5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.75rem 2rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(96,165,250,0.35), transparent);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .card:nth-child(1) { animation: fadeUp 0.6s 0.1s ease both; }
+    .card:nth-child(2) { animation: fadeUp 0.6s 0.2s ease both; }
+    .card:nth-child(3) { animation: fadeUp 0.6s 0.3s ease both; }
+    .card:hover { transform: translateY(-5px); border-color: var(--card-border-hover); box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 0 36px rgba(59,130,246,0.18); }
+    .card:hover::before { opacity: 1; }
+
+    .card-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent-bright); margin-bottom: 0.75rem;
+    }
+    .card-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent-bright); box-shadow: 0 0 6px var(--accent-glow);
+    }
+    .card h2 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
+    .card-arrow {
+      position: absolute; bottom: 1.5rem; right: 1.75rem;
+      color: var(--accent-bright); font-size: 1.1rem; opacity: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .card:hover .card-arrow { opacity: 1; transform: translateX(4px); }
+
+    .home-link {
+      text-align: center;
+      padding: 0 2rem 5rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .home-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.75rem; border-radius: 50px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(96,165,250,0.1));
+      border: 1px solid rgba(96,165,250,0.3);
+      color: var(--accent-bright); text-decoration: none;
+      font-size: 0.9rem; font-weight: 600;
+      transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+    .home-btn:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, rgba(59,130,246,0.28), rgba(96,165,250,0.2));
+      box-shadow: 0 6px 24px rgba(59,130,246,0.3);
+    }
+
+    footer { border-top: 1px solid rgba(59,130,246,0.1); padding: 1.5rem 2rem; text-align: center; font-size: 0.82rem; color: rgba(148,163,184,0.5); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 620px) {
+      nav { padding: 0 1rem; }
+      .nav-links a:not(.cta) { display: none; }
+      .hero { padding: 7rem 1.25rem 2.5rem; }
+      .grid { padding: 1rem 1.25rem 4rem; grid-template-columns: 1fr; }
+      .home-link { padding: 0 1.25rem 4rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="box">
-        <h1>Coming Soon</h1>
-        <p>Halaman ini sedang dalam tahap pengembangan. Silakan kembali lagi nanti untuk melihat pembaruan terbaru.</p>
-        <div class="badge">Dalam Proses Pengembangan</div>
-    </div>
+  <nav>
+    <a href="https://rsynzr.cloud/" class="nav-brand">rsynzr<span>.cloud</span></a>
+    <ul class="nav-links">
+      <li><a href="signin.html">Login</a></li>
+      <li><a href="signup.html" class="cta">Sign Up</a></li>
+      <li><a href="https://rsynzr.cloud/">Home</a></li>
+      <li><a href="https://project.rsynzr.cloud/">Projects</a></li>
+      <li><a href="https://donate.rsynzr.cloud/">Donate</a></li>
+    </ul>
+  </nav>
 
-   <footer>
-    &copy; <a href="https://rsynzr.cloud">rsynzr.cloud</a> - All Rights Reserved.
-    </footer>
+  <div class="hero">
+    <div class="hero-eyebrow">school.rsynzr.cloud</div>
+    <h1>School Projects</h1>
+    <p>Kumpulan tugas dan materi sekolah yang di-deploy sebagai halaman web.</p>
+  </div>
+
+  <div class="grid">
+
+    <a href="https://school.rsynzr.cloud/ecoenzym" class="card">
+      <div class="card-tag"><span class="card-dot"></span> Website</div>
+      <h2>Eco Enzym</h2>
+      <p>Website tentang eco enzyme — manfaat, cara pembuatan, dan informasi lengkap seputar produk ramah lingkungan ini.</p>
+      <span class="card-arrow">→</span>
+    </a>
+
+    <a href="https://school.rsynzr.cloud/toponimi" class="card">
+      <div class="card-tag"><span class="card-dot"></span> Website</div>
+      <h2>Toponimi</h2>
+      <p>Website tentang toponimi — studi mengenai asal-usul dan makna nama-nama tempat serta geografi lokal.</p>
+      <span class="card-arrow">→</span>
+    </a>
+
+  </div>
+
+  <div class="home-link">
+    <a href="https://rsynzr.cloud/" class="home-btn">🏠 Kembali ke Home</a>
+  </div>
+
+  <footer>&copy; 2026 rsynzr.cloud. All rights reserved.</footer>
 
 </body>
 </html>

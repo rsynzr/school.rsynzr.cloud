@@ -1,84 +1,200 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-     <!--                          
-  _ __ ___ _   _ _ __  _____ __ 
- | '__/ __| | | | '_ \|_  / '__|
- | |  \__ \ |_| | | | |/ /| |   
- |_|  |___/\__, |_| |_/___|_|   
-            __/ |               
-           |___/               
-                                     -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Halaman Tidak Ditemukan</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            position: relative;
-        }
-        .box {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            max-width: 500px;
-        }
-        h1 {
-            font-size: 80px;
-            margin: 0;
-            color: #2e7d32;
-        }
-        h2 {
-            margin-top: 10px;
-            color: #1b5e20;
-        }
-        p {
-            margin-top: 15px;
-            color: #555;
-        }
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #2e7d32;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-        }
-        .btn:hover {
-            background-color: #1b5e20;
-        }
-        footer {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 14px;
-            color: #777;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — rsynzr.cloud</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-dark: #0b1220;
+      --bg-mid: #0f1b3d;
+      --bg-light: #1a2f6b;
+      --accent: #3b82f6;
+      --accent-bright: #60a5fa;
+      --accent-glow: rgba(59,130,246,0.4);
+      --text-primary: #e8f0fe;
+      --text-secondary: #94a3b8;
+      --card-bg: rgba(15,27,61,0.6);
+      --card-border: rgba(59,130,246,0.18);
+      --nav-bg: rgba(11,18,32,0.75);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-mid) 50%, var(--bg-light) 100%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(59,130,246,0.12);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); text-decoration: none; }
+    .nav-brand span { color: var(--accent-bright); }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.88rem; font-weight: 500; padding: 0.4rem 0.75rem; border-radius: 8px; transition: color 0.2s, background 0.2s; }
+    .nav-links a:hover { color: var(--accent-bright); background: rgba(59,130,246,0.1); }
+    .nav-links a.cta { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: var(--accent-bright); }
+    .nav-links a.cta:hover { background: rgba(59,130,246,0.28); }
+
+    .page {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.25rem 2rem;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 520px;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .code {
+      font-size: clamp(5rem, 20vw, 9rem);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      line-height: 1;
+      background: linear-gradient(135deg, rgba(96,165,250,0.3) 0%, var(--accent-bright) 50%, rgba(96,165,250,0.3) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 40px rgba(59,130,246,0.35));
+      position: relative;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 22px;
+      padding: 2.5rem 2rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4), 0 0 0 1px rgba(59,130,246,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(96,165,250,0.4), transparent);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent-bright); background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.25);
+      padding: 0.28rem 0.8rem; border-radius: 20px; margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #e8f0fe 30%, var(--accent-bright) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 0.6rem;
+    }
+
+    p {
+      font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7;
+    }
+
+    .actions {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.75rem 1.5rem; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.8), rgba(96,165,250,0.7));
+      border: 1px solid rgba(96,165,250,0.5);
+      color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59,130,246,0.35); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.75rem 1.5rem; border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;
+      transition: background 0.2s, transform 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(59,130,246,0.1); color: var(--accent-bright); transform: translateY(-2px); }
+
+    footer {
+      border-top: 1px solid rgba(59,130,246,0.1);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: rgba(148,163,184,0.5);
+    }
+    footer a { color: var(--accent-bright); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 480px) {
+      nav { padding: 0 1rem; }
+      .nav-links a:not(.cta) { display: none; }
+      .card { padding: 2rem 1.25rem; }
+      .actions { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { justify-content: center; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="box">
-        <h1>404</h1>
-        <h2>Halaman Tidak Ditemukan</h2>
-        <p>Maaf, halaman yang Anda cari tidak tersedia atau telah dipindahkan.</p>
-        <a href="/" class="btn">Kembali ke Beranda</a>
-    </div>
+  <nav>
+    <a href="https://rsynzr.cloud/" class="nav-brand">rsynzr<span>.cloud</span></a>
+    <ul class="nav-links">
+      <li><a href="signin.html">Login</a></li>
+      <li><a href="signup.html" class="cta">Sign Up</a></li>
+      <li><a href="https://rsynzr.cloud/">Home</a></li>
+      <li><a href="https://project.rsynzr.cloud/">Projects</a></li>
+      <li><a href="https://donate.rsynzr.cloud/">Donate</a></li>
+    </ul>
+  </nav>
 
-    <footer>
-        &copy; <a href="https://rsynzr.cloud">rsynzr.cloud</a> - All Rights Reserved.
-    </footer>
+  <div class="page">
+    <div class="container">
+      <div class="code">404</div>
+      <div class="card">
+        <div class="eyebrow">Page Not Found</div>
+        <h1>Halaman tidak ditemukan</h1>
+        <p>Halaman yang kamu cari tidak ada, sudah dipindah, atau mungkin URL-nya salah. Coba kembali ke halaman utama.</p>
+        <div class="actions">
+          <a href="https://rsynzr.cloud/" class="btn-primary">🏠 Kembali ke Home</a>
+          <a href="javascript:history.back()" class="btn-secondary">← Kembali</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>&copy; 2026 <a href="https://rsynzr.cloud">rsynzr.cloud</a>. All rights reserved.</footer>
 
 </body>
 </html>
