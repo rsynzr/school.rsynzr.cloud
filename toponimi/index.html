@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toponimi Bangunkerto</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --green: #16a34a;
+      --green-light: #dcfce7;
+      --green-mid: #22c55e;
+      --blue-light: #38bdf8;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #9ca3af;
+      --border: #e5e7eb;
+      --card-bg: #ffffff;
+      --page-bg: #f9fafb;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--page-bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ========== NAVBAR ========== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      user-select: none;
+      cursor: default;
+    }
+
+    .nav-brand .cloud {
+      color: var(--blue-light);
+    }
+
+    /* ========== MAIN CONTAINER ========== */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ========== SECTION TITLES ========== */
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.4rem;
+      background: var(--green);
+      border-radius: 4px;
+    }
+
+    section {
+      margin-bottom: 3.5rem;
+    }
+
+    /* ========== CARD ========== */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      padding: 1.75rem;
+    }
+
+    /* ========== FADE IN ANIMATION ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== INFOGRAFIS ========== */
+    .infografis-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .infografis-img-container {
+      width: 100%;
+      max-width: 600px;
+      cursor: zoom-in;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      position: relative;
+    }
+
+    .infografis-img-container:hover {
+      box-shadow: 0 8px 28px rgba(22, 163, 74, 0.18);
+      transform: translateY(-3px);
+    }
+
+    .infografis-img-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .zoom-hint {
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    /* ========== TOMBOL DOWNLOAD ========== */
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--green);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.7rem 1.6rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.2);
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-download:hover {
+      background: #15803d;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(22, 163, 74, 0.3);
+    }
+
+    .btn-download:active {
+      transform: translateY(0);
+    }
+
+    .btn-download svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* ========== RINGKASAN ISI ========== */
+    .ringkasan-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin: 2rem 0 1rem;
+    }
+
+    .ringkasan-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
+
+    @media (min-width: 600px) {
+      .ringkasan-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .ringkasan-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.15rem 1rem 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .ringkasan-item:hover {
+      box-shadow: 0 4px 16px rgba(22, 163, 74, 0.12);
+      transform: translateY(-2px);
+      border-color: #bbf7d0;
+    }
+
+    .ringkasan-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--green-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .ringkasan-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ringkasan-item p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ========== SUMBER ========== */
+    .sumber-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .sumber-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .sumber-card:hover {
+      box-shadow: 0 4px 16px rgba(22, 163, 74, 0.12);
+      transform: translateY(-2px);
+      border-color: #bbf7d0;
+    }
+
+    .sumber-num {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      background: var(--green-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .sumber-info {
+      flex: 1;
+    }
+
+    .sumber-info .sumber-name {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+    }
+
+    .sumber-info .sumber-url {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .sumber-arrow {
+      flex-shrink: 0;
+      color: var(--green);
+      opacity: 0.5;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .sumber-card:hover .sumber-arrow {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    /* ========== QUIZ ========== */
+    .quiz-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .quiz-question {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .quiz-question .q-text {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    .q-num {
+      display: inline-block;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 20px;
+      margin-bottom: 0.55rem;
+      border: 1px solid #bbf7d0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .option-btn {
+      background: #f9fafb;
+      border: 1.5px solid var(--border);
+      border-radius: 9px;
+      padding: 0.65rem 1rem;
+      color: var(--text-secondary);
+      font-size: 0.87rem;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.18s, border-color 0.18s, color 0.18s, transform 0.15s;
+      line-height: 1.5;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: var(--green-light);
+      border-color: #86efac;
+      color: #166534;
+      transform: translateX(3px);
+    }
+
+    .option-btn.correct {
+      background: #dcfce7;
+      border-color: var(--green);
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .option-btn.wrong {
+      background: #fef2f2;
+      border-color: #ef4444;
+      color: #b91c1c;
+    }
+
+    .option-btn.correct-highlight {
+      background: #f0fdf4;
+      border-color: #86efac;
+      color: #166534;
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .feedback-msg {
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .feedback-msg.correct-msg {
+      color: #16a34a;
+      display: block;
+    }
+
+    .feedback-msg.wrong-msg {
+      color: #dc2626;
+      display: block;
+    }
+
+    /* Score */
+    .score-display {
+      display: none;
+      text-align: center;
+      padding: 2.25rem 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    }
+
+    .score-display.show {
+      display: block;
+    }
+
+    .score-number {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--green);
+      line-height: 1.1;
+    }
+
+    .score-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .score-msg {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .btn-retry {
+      margin-top: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: transparent;
+      color: var(--green);
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.55rem 1.35rem;
+      border-radius: 50px;
+      border: 1.5px solid var(--green);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-retry:hover {
+      background: var(--green-light);
+      transform: translateY(-1px);
+    }
+
+    /* ========== MODAL ========== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      cursor: zoom-out;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      cursor: default;
+      animation: popIn 0.22s ease;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-close {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      transition: background 0.2s, transform 0.2s;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      background: #f3f4f6;
+      transform: scale(1.08);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      text-align: center;
+      padding: 1.75rem 1rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      background: #fff;
+    }
+
+    footer .cloud {
+      color: var(--blue-light);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 480px) {
+      nav { padding: 0.9rem 1.25rem; }
+      main { padding: 1.75rem 1rem 3rem; }
+      .section-title { font-size: 1.2rem; }
+      .score-number { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <span class="nav-brand">rsynzr<span class="cloud">.cloud</span></span>
+  </nav>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal" onclick="closeModal(event)">
+    <button class="modal-close" onclick="closeModalBtn()" aria-label="Tutup">&times;</button>
+    <img class="modal-img" id="modal-img" src="" alt="Infografis Besar" onclick="event.stopPropagation()" />
+  </div>
+
+  <main>
+
+    <!-- SECTION MATERI -->
+    <section class="fade-in">
+      <h2 class="section-title">Materi</h2>
+
+      <!-- A. FOTO INFOGRAFIS + B. TOMBOL DOWNLOAD -->
+      <div class="card infografis-wrapper">
+        <div class="infografis-img-container" onclick="openModal()" title="Klik untuk memperbesar">
+          <img
+            id="infografis-img"
+            src="img/infografis.png"
+            alt="Infografis Toponimi Bangunkerto"
+            onerror="this.parentElement.innerHTML='<div style=\'padding:3rem 2rem;text-align:center;color:#9ca3af;font-size:0.9rem;\'><svg width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\' style=\'margin-bottom:1rem;opacity:0.4\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg><br/>Tempatkan file gambar di <code style=\'background:#f3f4f6;padding:2px 8px;border-radius:4px;font-size:0.8rem;color:#374151;\'>img/infografis</code></div>'"
+          />
+          <span class="zoom-hint">🔍 Klik untuk perbesar</span>
+        </div>
+
+        <a href="img/infografis.png" download class="btn-download" id="download-btn">
+          <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4zm-7 4h14v-2H5v2z"/></svg>
+          Download Infografis
+        </a>
+      </div>
+
+      <!-- C. RINGKASAN ISI -->
+      <p class="ringkasan-label">Ringkasan Isi</p>
+      <div class="ringkasan-grid">
+
+        <div class="ringkasan-item">
+          <div class="ringkasan-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p>Toponimi adalah ilmu yang mempelajari nama tempat, termasuk asal-usul, arti, dan sejarahnya.</p>
+        </div>
+
+        <div class="ringkasan-item">
+          <div class="ringkasan-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M3 12h3M18 12h3M12 3v3M12 18v3"/></svg>
+          </div>
+          <p>Toponimi berfungsi untuk identifikasi tempat, komunikasi, dan pelestarian budaya.</p>
+        </div>
+
+        <div class="ringkasan-item">
+          <div class="ringkasan-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          </div>
+          <p>Bangunkerto terletak di Kapanewon Turi, Sleman, Yogyakarta.</p>
+        </div>
+
+        <div class="ringkasan-item">
+          <div class="ringkasan-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+          </div>
+          <p>Nama Bangunkerto berarti membangun menuju kemakmuran.</p>
+        </div>
+
+        <div class="ringkasan-item">
+          <div class="ringkasan-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <p>Didirikan pada 1 Januari 1947 dari gabungan beberapa kalurahan.</p>
+        </div>
+
+        <div class="ringkasan-item">
+          <div class="ringkasan-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 19V5a2 2 0 012-2h13.4a.6.6 0 01.6.6v13.114M4 19a2 2 0 002 2h14a2 2 0 002-2M4 19h14"/><line x1="8" y1="7" x2="15" y2="7"/><line x1="8" y1="11" x2="12" y2="11"/></svg>
+          </div>
+          <p>Nama wilayah di Turi memiliki makna geografis dan filosofis.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION SUMBER -->
+    <section class="fade-in">
+      <h2 class="section-title">Sumber</h2>
+      <div class="sumber-list">
+
+        <a href="https://bangunkertosid.slemankab.go.id/home/" target="_blank" rel="noopener" class="sumber-card">
+          <div class="sumber-num">1</div>
+          <div class="sumber-info">
+            <div class="sumber-name">Website resmi Kalurahan Bangunkerto</div>
+            <div class="sumber-url">bangunkertosid.slemankab.go.id</div>
+          </div>
+          <svg class="sumber-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+
+        <a href="https://maps.google.com" target="_blank" rel="noopener" class="sumber-card">
+          <div class="sumber-num">2</div>
+          <div class="sumber-info">
+            <div class="sumber-name">Google Maps (Street View Time Travel)</div>
+            <div class="sumber-url">maps.google.com</div>
+          </div>
+          <svg class="sumber-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+
+        <div class="sumber-card" style="cursor:default;">
+          <div class="sumber-num">3</div>
+          <div class="sumber-info">
+            <div class="sumber-name">Observasi langsung</div>
+            <div class="sumber-url">Pengamatan lapangan</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION QUIZ -->
+    <section class="fade-in">
+      <h2 class="section-title">Quiz</h2>
+      <div class="quiz-wrapper" id="quiz-wrapper">
+
+        <!-- Soal 1 -->
+        <div class="quiz-question" data-q="0">
+          <div class="q-num">Soal 1 / 5</div>
+          <div class="q-text">Apa yang dimaksud dengan ilmu Toponimi?</div>
+          <div class="options-grid">
+            <button class="option-btn" onclick="answer(this, 0, false)">Ilmu yang mempelajari kondisi geografis suatu wilayah</button>
+            <button class="option-btn" onclick="answer(this, 0, true)">Ilmu yang mempelajari nama tempat, termasuk asal-usul, arti, dan sejarahnya</button>
+            <button class="option-btn" onclick="answer(this, 0, false)">Ilmu yang mempelajari pergerakan penduduk</button>
+            <button class="option-btn" onclick="answer(this, 0, false)">Ilmu yang mempelajari sistem pemerintahan daerah</button>
+          </div>
+          <div class="feedback-msg" id="fb-0"></div>
+        </div>
+
+        <!-- Soal 2 -->
+        <div class="quiz-question" data-q="1">
+          <div class="q-num">Soal 2 / 5</div>
+          <div class="q-text">Di mana letak Kalurahan Bangunkerto?</div>
+          <div class="options-grid">
+            <button class="option-btn" onclick="answer(this, 1, false)">Kapanewon Pakem, Sleman, Yogyakarta</button>
+            <button class="option-btn" onclick="answer(this, 1, false)">Kapanewon Cangkringan, Sleman, Yogyakarta</button>
+            <button class="option-btn" onclick="answer(this, 1, true)">Kapanewon Turi, Sleman, Yogyakarta</button>
+            <button class="option-btn" onclick="answer(this, 1, false)">Kapanewon Ngaglik, Sleman, Yogyakarta</button>
+          </div>
+          <div class="feedback-msg" id="fb-1"></div>
+        </div>
+
+        <!-- Soal 3 -->
+        <div class="quiz-question" data-q="2">
+          <div class="q-num">Soal 3 / 5</div>
+          <div class="q-text">Apa arti dari nama "Bangunkerto"?</div>
+          <div class="options-grid">
+            <button class="option-btn" onclick="answer(this, 2, false)">Desa yang berdiri di tepi sungai</button>
+            <button class="option-btn" onclick="answer(this, 2, true)">Membangun menuju kemakmuran</button>
+            <button class="option-btn" onclick="answer(this, 2, false)">Tanah yang subur dan hijau</button>
+            <button class="option-btn" onclick="answer(this, 2, false)">Bangkitnya masyarakat yang bersatu</button>
+          </div>
+          <div class="feedback-msg" id="fb-2"></div>
+        </div>
+
+        <!-- Soal 4 -->
+        <div class="quiz-question" data-q="3">
+          <div class="q-num">Soal 4 / 5</div>
+          <div class="q-text">Kapan Kalurahan Bangunkerto didirikan?</div>
+          <div class="options-grid">
+            <button class="option-btn" onclick="answer(this, 3, false)">17 Agustus 1945</button>
+            <button class="option-btn" onclick="answer(this, 3, false)">1 Maret 1950</button>
+            <button class="option-btn" onclick="answer(this, 3, true)">1 Januari 1947</button>
+            <button class="option-btn" onclick="answer(this, 3, false)">10 November 1948</button>
+          </div>
+          <div class="feedback-msg" id="fb-3"></div>
+        </div>
+
+        <!-- Soal 5 -->
+        <div class="quiz-question" data-q="4">
+          <div class="q-num">Soal 5 / 5</div>
+          <div class="q-text">Apa salah satu fungsi utama Toponimi?</div>
+          <div class="options-grid">
+            <button class="option-btn" onclick="answer(this, 4, false)">Menentukan batas wilayah secara hukum</button>
+            <button class="option-btn" onclick="answer(this, 4, false)">Mengukur luas dan bentuk permukaan bumi</button>
+            <button class="option-btn" onclick="answer(this, 4, false)">Menyusun peta topografi digital</button>
+            <button class="option-btn" onclick="answer(this, 4, true)">Identifikasi tempat, komunikasi, dan pelestarian budaya</button>
+          </div>
+          <div class="feedback-msg" id="fb-4"></div>
+        </div>
+
+      </div>
+
+      <!-- Score display -->
+      <div class="score-display" id="score-display">
+        <div class="score-number" id="score-num">0/5</div>
+        <div class="score-label">Skor Kamu</div>
+        <div class="score-msg" id="score-msg"></div>
+        <button class="btn-retry" onclick="resetQuiz()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.09"/></svg>
+          Ulangi Quiz
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 rsynzr<span class="cloud">.cloud</span>
+  </footer>
+
+  <script>
+    // ===== FADE IN ON SCROLL =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ===== MODAL =====
+    function openModal() {
+      const src = document.getElementById('infografis-img').src;
+      document.getElementById('modal-img').src = src;
+      document.getElementById('modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(event) {
+      if (event.target === document.getElementById('modal')) {
+        _closeModal();
+      }
+    }
+
+    function closeModalBtn() {
+      _closeModal();
+    }
+
+    function _closeModal() {
+      document.getElementById('modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') _closeModal();
+    });
+
+    // ===== QUIZ =====
+    let score = 0;
+    let answered = [false, false, false, false, false];
+    const total = 5;
+
+    function answer(btn, qIndex, isCorrect) {
+      if (answered[qIndex]) return;
+      answered[qIndex] = true;
+
+      const questionEl = document.querySelector(`[data-q="${qIndex}"]`);
+      const allBtns = questionEl.querySelectorAll('.option-btn');
+      const fb = document.getElementById('fb-' + qIndex);
+
+      allBtns.forEach(b => {
+        b.disabled = true;
+        const bCorrect = b.getAttribute('onclick').includes('true');
+        if (bCorrect) b.classList.add('correct-highlight');
+      });
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        score++;
+        fb.textContent = '✓ Benar! Jawaban kamu tepat.';
+        fb.className = 'feedback-msg correct-msg';
+      } else {
+        btn.classList.add('wrong');
+        fb.textContent = '✗ Salah. Coba pelajari lagi materinya ya!';
+        fb.className = 'feedback-msg wrong-msg';
+      }
+
+      const allAnswered = answered.every(v => v);
+      if (allAnswered) {
+        setTimeout(showScore, 700);
+      }
+    }
+
+    function showScore() {
+      const scoreDisplay = document.getElementById('score-display');
+      scoreDisplay.classList.add('show');
+      document.getElementById('score-num').textContent = score + '/' + total;
+
+      let msg = '';
+      if (score === 5) {
+        msg = '🎉 Sempurna! Kamu menguasai materi ini dengan sangat baik!';
+      } else if (score >= 4) {
+        msg = '👍 Bagus sekali! Hampir sempurna!';
+      } else if (score >= 3) {
+        msg = '📚 Lumayan! Pelajari lagi materinya untuk hasil lebih baik.';
+      } else if (score >= 2) {
+        msg = '💪 Masih perlu belajar lagi, kamu pasti bisa lebih baik!';
+      } else {
+        msg = '📖 Yuk baca lagi materinya, jangan menyerah!';
+      }
+      document.getElementById('score-msg').textContent = msg;
+      scoreDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function resetQuiz() {
+      score = 0;
+      answered = [false, false, false, false, false];
+      document.getElementById('score-display').classList.remove('show');
+
+      for (let i = 0; i < total; i++) {
+        const questionEl = document.querySelector(`[data-q="${i}"]`);
+        const allBtns = questionEl.querySelectorAll('.option-btn');
+        const fb = document.getElementById('fb-' + i);
+
+        allBtns.forEach(b => {
+          b.disabled = false;
+          b.classList.remove('correct', 'wrong', 'correct-highlight');
+        });
+
+        fb.className = 'feedback-msg';
+        fb.textContent = '';
+      }
+
+      document.getElementById('quiz-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>
