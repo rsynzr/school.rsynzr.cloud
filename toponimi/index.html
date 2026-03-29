@@ -697,6 +697,7 @@
           <svg class="sumber-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </a>
 
+        <a href="https://drive.google.com/drive/folders/1s7QZwprWmCVFuZ_d7_aZpKKexH-42nJw">Sumber dokumen lain klik di sini.</a>
       </div>
     </section>
 
@@ -708,7 +709,7 @@
         <!-- Soal 1 -->
         <div class="quiz-question" data-q="0">
           <div class="q-num">Soal 1 / 5</div>
-          <div class="q-text">Apa yang dimaksud dengan ilmu Toponimi?</div>
+          <div class="q-text">Apa yang dimaksud dengan Toponimi?</div>
           <div class="options-grid">
             <button class="option-btn" onclick="answer(this, 0, false)">Ilmu yang mempelajari kondisi geografis suatu wilayah</button>
             <button class="option-btn" onclick="answer(this, 0, true)">Ilmu yang mempelajari nama tempat, termasuk asal-usul, arti, dan sejarahnya</button>
@@ -852,11 +853,11 @@
       if (isCorrect) {
         btn.classList.add('correct');
         score++;
-        fb.textContent = '✓ Benar! Jawaban kamu tepat.';
+        fb.textContent = '✓ Yap, jawabanmu benar.';
         fb.className = 'feedback-msg correct-msg';
       } else {
         btn.classList.add('wrong');
-        fb.textContent = '✗ Salah. Coba pelajari lagi materinya ya!';
+        fb.textContent = '✗ Salah.';
         fb.className = 'feedback-msg wrong-msg';
       }
 
@@ -873,15 +874,15 @@
 
       let msg = '';
       if (score === 5) {
-        msg = '🎉 Sempurna! Kamu menguasai materi ini dengan sangat baik!';
+        msg = '🎉 Daaaaaaan yap. selamat, kamu benar semua.';
       } else if (score >= 4) {
-        msg = '👍 Bagus sekali! Hampir sempurna!';
+        msg = '👍 Mantap.';
       } else if (score >= 3) {
-        msg = '📚 Lumayan! Pelajari lagi materinya untuk hasil lebih baik.';
+        msg = '📚 Lumayan.';
       } else if (score >= 2) {
-        msg = '💪 Masih perlu belajar lagi, kamu pasti bisa lebih baik!';
+        msg = '💪 Ok lah.';
       } else {
-        msg = '📖 Yuk baca lagi materinya, jangan menyerah!';
+        msg = '📖 Baca lagi materinya, lalu coba lagi.';
       }
       document.getElementById('score-msg').textContent = msg;
       scoreDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
