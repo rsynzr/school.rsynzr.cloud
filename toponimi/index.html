@@ -11,7 +11,7 @@
                                      -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Toponimi Bangunkerto</title>
+  <title>Toponimi Kalurahan Bangunkerto</title>
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -44,7 +44,6 @@
       line-height: 1.7;
     }
 
-    /* ========== NAVBAR ========== */
     nav {
       position: sticky;
       top: 0;
@@ -69,14 +68,12 @@
       color: var(--blue-light);
     }
 
-    /* ========== MAIN CONTAINER ========== */
     main {
       max-width: 900px;
       margin: 0 auto;
       padding: 2.5rem 1.5rem 4rem;
     }
 
-    /* ========== SECTION TITLES ========== */
     .section-title {
       font-size: 1.4rem;
       font-weight: 700;
@@ -100,7 +97,6 @@
       margin-bottom: 3.5rem;
     }
 
-    /* ========== CARD ========== */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -109,7 +105,6 @@
       padding: 1.75rem;
     }
 
-    /* ========== FADE IN ANIMATION ========== */
     .fade-in {
       opacity: 0;
       transform: translateY(24px);
@@ -121,7 +116,6 @@
       transform: translateY(0);
     }
 
-    /* ========== INFOGRAFIS ========== */
     .infografis-wrapper {
       display: flex;
       flex-direction: column;
@@ -166,7 +160,6 @@
       pointer-events: none;
     }
 
-    /* ========== TOMBOL DOWNLOAD ========== */
     .btn-download {
       display: inline-flex;
       align-items: center;
@@ -201,7 +194,6 @@
       fill: currentColor;
     }
 
-    /* ========== RINGKASAN ISI ========== */
     .ringkasan-label {
       font-size: 0.85rem;
       font-weight: 600;
@@ -556,7 +548,6 @@
       transform: scale(1.08);
     }
 
-    /* ========== FOOTER ========== */
     footer {
       text-align: center;
       padding: 1.75rem 1rem;
@@ -570,7 +561,6 @@
       color: var(--blue-light);
     }
 
-    /* ========== RESPONSIVE ========== */
     @media (max-width: 480px) {
       nav { padding: 0.9rem 1.25rem; }
       main { padding: 1.75rem 1rem 3rem; }
@@ -581,12 +571,10 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav>
     <span class="nav-brand">rsynzr<span class="cloud">.cloud</span></span>
   </nav>
 
-  <!-- MODAL -->
   <div class="modal-overlay" id="modal" onclick="closeModal(event)">
     <button class="modal-close" onclick="closeModalBtn()" aria-label="Tutup">&times;</button>
     <img class="modal-img" id="modal-img" src="" alt="Infografis Besar" onclick="event.stopPropagation()" />
@@ -594,11 +582,9 @@
 
   <main>
 
-    <!-- SECTION MATERI -->
     <section class="fade-in">
       <h2 class="section-title">Materi</h2>
 
-      <!-- A. FOTO INFOGRAFIS + B. TOMBOL DOWNLOAD -->
       <div class="card infografis-wrapper">
         <div class="infografis-img-container" onclick="openModal()" title="Klik untuk memperbesar">
           <img
@@ -607,7 +593,7 @@
             alt="Infografis Toponimi Bangunkerto"
             onerror="this.parentElement.innerHTML='<div style=\'padding:3rem 2rem;text-align:center;color:#9ca3af;font-size:0.9rem;\'><svg width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\' style=\'margin-bottom:1rem;opacity:0.4\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg><br/>Tempatkan file gambar di <code style=\'background:#f3f4f6;padding:2px 8px;border-radius:4px;font-size:0.8rem;color:#374151;\'>img/infografis</code></div>'"
           />
-          <span class="zoom-hint">🔍 Klik untuk perbesar</span>
+          <span class="zoom-hint">🔍 Klik untuk zoom</span>
         </div>
 
         <a href="../img/infografis.png" download class="btn-download" id="download-btn">
@@ -616,7 +602,6 @@
         </a>
       </div>
 
-      <!-- C. RINGKASAN ISI -->
       <p class="ringkasan-label">Ringkasan Isi</p>
       <div class="ringkasan-grid">
 
@@ -665,7 +650,6 @@
       </div>
     </section>
 
-    <!-- SECTION SUMBER -->
     <section class="fade-in">
       <h2 class="section-title">Sumber</h2>
       <div class="sumber-list">
@@ -701,12 +685,10 @@
       </div>
     </section>
 
-    <!-- SECTION QUIZ -->
     <section class="fade-in">
       <h2 class="section-title">Quiz</h2>
       <div class="quiz-wrapper" id="quiz-wrapper">
 
-        <!-- Soal 1 -->
         <div class="quiz-question" data-q="0">
           <div class="q-num">Soal 1 / 5</div>
           <div class="q-text">Apa yang dimaksud dengan Toponimi?</div>
@@ -719,7 +701,6 @@
           <div class="feedback-msg" id="fb-0"></div>
         </div>
 
-        <!-- Soal 2 -->
         <div class="quiz-question" data-q="1">
           <div class="q-num">Soal 2 / 5</div>
           <div class="q-text">Di mana letak Kalurahan Bangunkerto?</div>
@@ -732,7 +713,6 @@
           <div class="feedback-msg" id="fb-1"></div>
         </div>
 
-        <!-- Soal 3 -->
         <div class="quiz-question" data-q="2">
           <div class="q-num">Soal 3 / 5</div>
           <div class="q-text">Apa arti dari nama "Bangunkerto"?</div>
@@ -745,7 +725,6 @@
           <div class="feedback-msg" id="fb-2"></div>
         </div>
 
-        <!-- Soal 4 -->
         <div class="quiz-question" data-q="3">
           <div class="q-num">Soal 4 / 5</div>
           <div class="q-text">Kapan Kalurahan Bangunkerto didirikan?</div>
@@ -758,7 +737,6 @@
           <div class="feedback-msg" id="fb-3"></div>
         </div>
 
-        <!-- Soal 5 -->
         <div class="quiz-question" data-q="4">
           <div class="q-num">Soal 5 / 5</div>
           <div class="q-text">Apa salah satu fungsi utama Toponimi?</div>
@@ -773,7 +751,6 @@
 
       </div>
 
-      <!-- Score display -->
       <div class="score-display" id="score-display">
         <div class="score-number" id="score-num">0/5</div>
         <div class="score-label">Skor Kamu</div>
@@ -787,13 +764,12 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     &copy; 2026 rsynzr<span class="cloud">.cloud</span>
   </footer>
 
   <script>
-    // ===== FADE IN ON SCROLL =====
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -804,7 +780,6 @@
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // ===== MODAL =====
     function openModal() {
       const src = document.getElementById('infografis-img').src;
       document.getElementById('modal-img').src = src;
@@ -831,7 +806,6 @@
       if (e.key === 'Escape') _closeModal();
     });
 
-    // ===== QUIZ =====
     let score = 0;
     let answered = [false, false, false, false, false];
     const total = 5;
