@@ -1312,6 +1312,28 @@ body::after {
     gap: 24px;
   }
 }
+
+.isi-kutipan {
+      position: relative;
+      text-align: center;
+    }
+
+    .isi-kutipan::before {
+      content: "“";
+      position: absolute;
+      left: -15px;
+      top: -10px;
+      opacity: 0.3;
+    }
+
+    .isi-kutipan::after {
+      content: "”";
+      position: absolute;
+      right: -15px;
+      bottom: -10px;
+      opacity: 0.3;
+    }
+
 </style>
 </head>
 
@@ -1650,12 +1672,13 @@ body::after {
      ======================== -->
 <section class="bagian-quote muncul-scroll" id="kutipan">
   <div class="kutipan-besar">
-    <span class="tanda-kutip">"</span>
+    
     <p class="isi-kutipan">
       Education is the most powerful weapon which you can use to change the world.
     </p>
-    <span class="tanda-kutip">"</span>
+
     <p class="nama-kutipan">— Nelson Mandela</p>
+
   </div>
 </section>
 
