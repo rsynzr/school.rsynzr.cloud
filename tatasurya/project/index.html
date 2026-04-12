@@ -1779,6 +1779,8 @@ function toggleFakta(el) {
 // ========================
 // QUIZ DATA
 // ========================
+const penjelasanBox = document.getElementById('penjelasanBox');
+
 const daftarSoal = [
   // LEVEL 1 - FASE BULAN (dasar)
   {
@@ -1925,6 +1927,7 @@ function renderSoal() {
   `;
 
   sudahJawab = false;
+  penjelasanBox.innerText = "";
 }
 
 function pilihJawaban(el, indexDipilih, indexBenar) {
@@ -1953,6 +1956,7 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
     const komentar = komentarBenar[Math.floor(Math.random() * komentarBenar.length)];
     feedback.textContent = '✓ ' + komentar;
     feedback.className = 'notif-feedback positif tampil';
+    
   } else {
     // salah
     jumlahSalah++;
@@ -1973,6 +1977,18 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
 
   // tampilkan tombol lanjut
   tombolLanjut.classList.add('tampil');
+  const soal = soalTampil[indexSoal];
+
+// tampilkan penjelasan
+penjelasanBox.innerText = soal.penjelasan;
+
+// warna sesuai hasil
+if (indexDipilih === indexBenar) {
+  penjelasanBox.style.color = "#6ee7b7";
+} else {
+  penjelasanBox.style.color = "#f87171";
+}
+
 }
 
 function soalBerikutnya() {
