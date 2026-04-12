@@ -639,6 +639,8 @@ body::after {
   border-top: 1px solid rgba(255,255,255,0.05);
   background: rgba(0,0,0,0.2);
   gap: 16px;
+  position: relative;
+  z-index: 10;
 }
 
 .sim-btn {
@@ -1514,13 +1516,14 @@ body::after {
   max-width: 580px;
   margin: 0 auto 20px;
   position: relative;
-  height: 120px;
+  height: 160px;
+  overflow: hidden;
 }
 
 .sim-orbit-diagram svg {
   width: 100%;
   height: 100%;
-  overflow: visible;
+  overflow: hidden;
 }
 
 /* Bulan kecil di bawah nama fase */
@@ -1572,7 +1575,7 @@ body::after {
 <nav class="navigasi">
   <a href="#" class="logo-nav">
     <span></span>
-    MISI BULAN
+    FASE BULAN
   </a>
   <ul class="menu-nav">
     <li><a href="#orbit">Orbit</a></li>
@@ -2039,11 +2042,11 @@ body::after {
     </div>
 
     <!-- Visual diagram pasang surut -->
-    <div class="muncul-scroll" style="margin-top:36px; background:var(--hitam-2); border:1px solid rgba(255,255,255,0.07); border-radius:var(--radius); overflow:hidden;">
+    <div class="muncul-scroll" style="margin-top:36px; background:var(--hitam-2); border:1px solid rgba(255,255,255,0.07); border-radius:var(--radius); overflow:visible;">
       <div style="padding:20px 24px 8px; border-bottom:1px solid rgba(255,255,255,0.05);">
         <span style="font-family:'Space Mono',monospace; font-size:0.72rem; color:var(--biru); letter-spacing:0.1em; text-transform:uppercase;">Diagram Perbandingan</span>
       </div>
-      <div style="padding:24px; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div style="padding:24px; display:grid; grid-template-columns:1fr 1fr; gap:20px; min-width:0;">
 
         <!-- Spring Tide -->
         <div>
@@ -2218,53 +2221,14 @@ body::after {
   <div class="wadah">
     <div class="garis-pemisah"></div>
     <h2 class="judul-seksi muncul-scroll">Quiz Antariksa 🛸</h2>
-    <p class="muncul-scroll" style="color:var(--abu); font-size:0.9rem; margin-top:-12px; margin-bottom:28px;">Uji pengetahuanmu tentang luar angkasa!</p>
 
-    <div class="header-quiz">
-      <div class="panel-skor">
-        <div class="tampilan-skor">
-          <span class="label-skor">Skor</span>
-          <span class="angka-skor" id="angka-skor">0</span>
-        </div>
-        <div class="tampilan-skor">
-          <span class="label-skor">Benar</span>
-          <span class="angka-skor" id="angka-benar" style="color:#6ee7b7;">0</span>
-        </div>
-        <div class="tampilan-skor">
-          <span class="label-skor">Salah</span>
-          <span class="angka-skor" id="angka-salah" style="color:#f87171;">0</span>
-        </div>
-      </div>
-      <div class="badge-level">
-        <span class="nama-level" id="nama-level">🌱 Pemula</span>
-        <span class="label-level" id="label-level">Level 1</span>
-      </div>
+    <!-- Layar mulai -->
+    <div id="layar-mulai">
+      <button onclick="mulaiQuiz()">🚀 Mulai Quiz</button>
     </div>
 
-    <!-- Timer -->
-    <div class="quiz-timer-wrapper">
-      <div class="quiz-timer-box">
-        <span class="timer-label">Waktu</span>
-        <span class="timer-angka" id="timer-angka">20</span>
-        <span style="font-size:0.7rem; color:var(--abu);">detik</span>
-      </div>
-      <div class="timer-bar-mini">
-        <div class="timer-bar-isi" id="timer-bar-isi"></div>
-      </div>
-    </div>
-
-    <div class="bar-progress">
-      <div class="isi-progress" id="isi-progress"></div>
-    </div>
-
-    <div class="area-soal" id="area-soal"></div>
-
-    <div class="kotak-hasil" id="kotak-hasil">
-      <span class="badge-akhir" id="badge-akhir">🌱</span>
-      <div class="skor-besar" id="skor-besar">0</div>
-      <div class="nama-badge" id="nama-badge">Pemula</div>
-      <p class="deskripsi-hasil" id="deskripsi-hasil">Placeholder deskripsi hasil.</p>
-      <button class="tombol-ulang" onclick="mulaiUlang()">↺ Main Lagi</button>
+    <div id="area-quiz-main" style="display:none;">
+      <div class="area-soal" id="area-soal"></div>
     </div>
   </div>
 </section>
@@ -2573,8 +2537,8 @@ function generateOrbitSVG(tipe, indexFase) {
   const sudutMap = [180, 225, 270, 315, 0, 45, 90, 135]; // derajat, 180 = kiri (antara mat-bumi) = bulan baru
   const sudut = sudutMap[indexFase];
   const rad = (sudut * Math.PI) / 180;
-  const rx = 200, ry = 38; // radius orbit elips (perspektif)
-  const cx = 300, cy = 60; // pusat orbit (posisi bumi)
+  const rx = 160, ry = 60;
+  const cx = 290, cy = 75;
 
   const bx = cx + rx * Math.cos(rad);
   const by = cy + ry * Math.sin(rad);
@@ -2618,7 +2582,7 @@ function generateOrbitSVG(tipe, indexFase) {
   }
 
   return `
-  <svg viewBox="0 80 580 -30" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+  <svg viewBox="0 0 510 160" xmlns="http://www.w3.org/2000/svg" style="overflow:hidden">
     <defs>
       <radialGradient id="ogSun" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stop-color="#fffbe6"/>
@@ -2651,10 +2615,6 @@ function generateOrbitSVG(tipe, indexFase) {
 
     <!-- bumi -->
     <circle cx="${cx}" cy="${cy}" r="22" fill="url(#ogEarth)"/>
-    <ellipse cx="${cx + 6}" cy="${cy - 6}" rx="7" ry="5"
-      fill="rgba(74,180,74,0.4)" transform="rotate(-10,${cx+6},${cy-6})"/>
-    <circle cx="${cx}" cy="${cy}" r="25" fill="none"
-      stroke="rgba(100,160,255,0.12)" stroke-width="3"/>
     <text x="${cx}" y="${cy + 38}" text-anchor="middle"
       fill="rgba(100,180,255,0.5)" font-size="8" font-family="Space Mono,monospace">BUMI</text>
 
@@ -2989,26 +2949,27 @@ function tampilHasil() {
   kotak.classList.add('tampil');
 }
 
-function mulaiUlang() {
+function ulangQuiz() {
   clearInterval(timerInterval);
-  indexSoal = 0; skor = 0; jumlahBenar = 0; jumlahSalah = 0;
-  levelSekarang = 1; sudahJawab = false;
-
-  document.getElementById('angka-skor').textContent = '0';
-  document.getElementById('angka-benar').textContent = '0';
-  document.getElementById('angka-salah').textContent = '0';
-  document.getElementById('nama-level').textContent = '🌱 Pemula';
-  document.getElementById('label-level').textContent = 'Level 1';
-  document.getElementById('isi-progress').style.width = '0%';
-  document.getElementById('kotak-hasil').classList.remove('tampil');
-  document.getElementById('area-soal').style.display = '';
-  document.querySelector('.quiz-timer-wrapper').style.display = '';
+  indexSoal = 0;
+  skor = 0;
+  jumlahBenar = 0;
+  jumlahSalah = 0;
+  levelSekarang = 1;
+  sudahJawab = false;
 
   renderSoal();
 }
 
-// mulai quiz
-renderSoal();
+function mulaiUlang() {
+  ulangQuiz();
+}
+
+function mulaiQuiz() {
+  document.getElementById('layar-mulai').style.display = 'none';
+  document.getElementById('area-quiz-main').style.display = '';
+  renderSoal();
+}
 
 
 // Console easter egg
