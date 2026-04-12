@@ -1342,8 +1342,20 @@ body::after {
   letter-spacing: 1px;
 }
 
-.penjelasan {
+.penjelasan-box {
+  margin-top: 12px;
+  padding: 12px;
+  background: #1b2447;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: #cbd5e1;
   display: none;
+  animation: muncul 0.3s ease;
+}
+
+@keyframes muncul {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 </style>
@@ -1736,7 +1748,7 @@ body::after {
      ======================== -->
 <script>
 // ========================
-// SCROLL OBSERVER — fade in elemen
+// SCROLL OBSERVER
 // ========================
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -1750,13 +1762,12 @@ document.querySelectorAll('.muncul-scroll').forEach(el => observer.observe(el));
 
 
 // ========================
-// FUN FACT — toggle
+// FUN FACT
 // ========================
 function toggleFakta(el) {
   const jawaban = el.querySelector('.jawaban-fakta');
   const sudahTerbuka = el.classList.contains('terbuka');
 
-  // tutup semua dulu
   document.querySelectorAll('.kotak-fakta.terbuka').forEach(k => {
     k.classList.remove('terbuka');
     k.querySelector('.jawaban-fakta').classList.remove('terbuka');
@@ -1775,6 +1786,9 @@ function toggleFakta(el) {
 const penjelasanBox = document.getElementById('penjelasanBox');
 
 const daftarSoal = [
+  // ========================
+  // LEVEL 1 - FASE BULAN
+  // ========================
   {
     level: 1,
     soal: "Apa penyebab utama terjadinya fase Bulan?",
@@ -1790,8 +1804,8 @@ const daftarSoal = [
 
   {
     level: 1,
-    soal: "Fase Bulan saat tidak terlihat dari Bumi disebut?",
-    pilihan: ["Purnama", "Baru", "Sabit", "Kuartal"],
+    soal: "Fase Bulan saat Bulan tidak terlihat dari Bumi disebut?",
+    pilihan: ["Purnama", "Bulan Baru", "Sabit", "Kuartal"],
     benar: 1,
     penjelasan: "Pada fase Bulan baru, sisi Bulan yang menghadap Bumi tidak terkena cahaya Matahari sehingga Bulan tidak terlihat."
   },
@@ -1799,11 +1813,14 @@ const daftarSoal = [
   {
     level: 1,
     soal: "Fase Bulan yang tampak bulat penuh disebut?",
-    pilihan: ["Baru", "Sabit", "Purnama", "Kuartal"],
+    pilihan: ["Bulan Baru", "Sabit", "Purnama", "Kuartal"],
     benar: 2,
     penjelasan: "Pada fase purnama, seluruh sisi Bulan yang menghadap Bumi terkena cahaya Matahari sehingga terlihat bulat penuh."
   },
 
+  // ========================
+  // LEVEL 2 - GERHANA
+  // ========================
   {
     level: 2,
     soal: "Gerhana Matahari terjadi ketika posisi Matahari, Bulan, dan Bumi adalah?",
@@ -1819,8 +1836,8 @@ const daftarSoal = [
 
   {
     level: 2,
-    soal: "Gerhana Bulan hanya dapat terjadi pada fase?",
-    pilihan: ["Sabit", "Kuartal", "Purnama", "Baru"],
+    soal: "Gerhana Bulan hanya dapat terjadi pada fase apa?",
+    pilihan: ["Sabit", "Kuartal", "Purnama", "Bulan Baru"],
     benar: 2,
     penjelasan: "Gerhana Bulan terjadi saat fase purnama karena Bumi berada di antara Matahari dan Bulan."
   },
@@ -1830,7 +1847,7 @@ const daftarSoal = [
     soal: "Mengapa gerhana tidak terjadi setiap bulan?",
     pilihan: [
       "Karena Bulan terlalu kecil",
-      "Karena orbit Bulan miring sehingga tidak selalu sejajar",
+      "Karena orbit Bulan miring terhadap Bumi",
       "Karena Matahari berpindah tempat",
       "Karena Bumi berhenti berputar"
     ],
@@ -1838,6 +1855,9 @@ const daftarSoal = [
     penjelasan: "Orbit Bulan miring sekitar 5 derajat sehingga Bulan tidak selalu segaris dengan Matahari dan Bumi."
   },
 
+  // ========================
+  // LEVEL 3 - PASANG SURUT
+  // ========================
   {
     level: 3,
     soal: "Apa penyebab utama terjadinya pasang surut air laut?",
@@ -1854,36 +1874,25 @@ const daftarSoal = [
   {
     level: 3,
     soal: "Pasang maksimum (pasang purnama) terjadi saat fase Bulan?",
-    pilihan: ["Sabit", "Kuartal", "Baru dan Purnama", "Setiap hari"],
+    pilihan: ["Sabit", "Kuartal", "Bulan Baru dan Purnama", "Setiap hari"],
     benar: 2,
-    penjelasan: "Saat Bulan baru dan purnama, gaya gravitasi Bulan dan Matahari saling memperkuat sehingga pasang lebih tinggi."
+    penjelasan: "Saat Bulan baru dan purnama, gaya gravitasi Bulan dan Matahari saling memperkuat sehingga menghasilkan pasang lebih tinggi."
   },
 
   {
     level: 3,
-    soal: "Mengapa saat Bulan baru dan purnama pasang air laut lebih tinggi?",
+    soal: "Mengapa pasang air laut lebih tinggi saat Bulan baru dan purnama?",
     pilihan: [
       "Karena Bulan lebih dekat ke Bumi",
-      "Karena gaya gravitasi Matahari dan Bulan saling memperkuat",
+      "Karena gaya gravitasi Matahari dan Bulan bekerja bersama",
       "Karena air laut bertambah",
       "Karena angin lebih kuat"
     ],
     benar: 1,
-    penjelasan: "Pada posisi sejajar, gaya gravitasi Matahari dan Bulan bekerja bersama sehingga menghasilkan pasang maksimum."
+    penjelasan: "Pada posisi sejajar, gaya gravitasi Matahari dan Bulan saling memperkuat sehingga terjadi pasang maksimum."
   }
 ];
 
-// komentar random setelah jawab
-const komentarBenar = [
-  "Mantap! 🎉", "Tepat sekali!", "Luar biasa!", "Ayo terus! 💪",
-  "Jenius!", "Bener banget!", "Gas gas gas! 🚀"
-];
-const komentarSalah = [
-  "Yah, salah nih 😅", "Hampir!", "Coba ingat lagi~", "Jangan menyerah!",
-  "Next soal pasti bisa!", "Hmm, bukan itu 🤔", "Makanya baca dulu 📚"
-];
-
-// state quiz
 let indexSoal = 0;
 let skor = 0;
 let jumlahBenar = 0;
@@ -1894,16 +1903,18 @@ let sudahJawab = false;
 // urutan soal (acak per level)
 const soalTampil = [...daftarSoal];
 
+
+// ========================
+// RENDER SOAL
+// ========================
 function renderSoal() {
   const area = document.getElementById('area-soal');
   const soal = soalTampil[indexSoal];
   if (!soal) return;
 
-  // update progress
   const persen = (indexSoal / soalTampil.length) * 100;
   document.getElementById('isi-progress').style.width = persen + '%';
 
-  // cek naik level
   const levelBaru = soal.level;
   if (levelBaru > levelSekarang) {
     levelSekarang = levelBaru;
@@ -1912,6 +1923,7 @@ function renderSoal() {
   }
 
   const huruf = ['A', 'B', 'C', 'D'];
+
   const pilihanHTML = soal.pilihan.map((p, i) => `
     <button class="tombol-jawab" onclick="pilihJawaban(this, ${i}, ${soal.benar})">
       <span class="huruf-pilihan">${huruf[i]}</span>
@@ -1932,33 +1944,39 @@ function renderSoal() {
   `;
 
   sudahJawab = false;
-  
-  penjelasanBox.style.display = "none";
-  penjelasanBox.innerText = "";
+
+  if (penjelasanBox) {
+    penjelasanBox.style.display = "none";
+    penjelasanBox.innerText = "";
+  }
 }
 
+
+// ========================
+// JAWAB (FIX UTAMA ERROR ADA DI SINI)
+// ========================
 function pilihJawaban(el, indexDipilih, indexBenar) {
   if (sudahJawab) return;
   sudahJawab = true;
+
+  const soal = soalTampil[indexSoal]; // ✔ HARUS DI ATAS
 
   const kartu = document.getElementById('kartu-aktif');
   const feedback = document.getElementById('feedback-soal');
   const tombolLanjut = document.getElementById('tombol-lanjut');
   const semuaTombol = kartu.querySelectorAll('.tombol-jawab');
 
-  // disable semua tombol
   semuaTombol.forEach(t => t.disabled = true);
-
-  // tandai jawaban yang benar, mana pun yang dipilih
   semuaTombol[indexBenar].classList.add('jawaban-benar');
 
-  penjelasanBox.style.display = "block";
-  penjelasanBox.innerText = soal.penjelasan;
+  if (penjelasanBox) {
+    penjelasanBox.style.display = "block";
+    penjelasanBox.innerText = soal.penjelasan || "";
+  }
 
   if (indexDipilih === indexBenar) {
-    // benar
     jumlahBenar++;
-    skor += levelSekarang * 10; // skor naik sesuai level
+    skor += levelSekarang * 10;
 
     kartu.classList.add('benar');
     setTimeout(() => kartu.classList.remove('benar'), 1200);
@@ -1966,9 +1984,10 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
     const komentar = komentarBenar[Math.floor(Math.random() * komentarBenar.length)];
     feedback.textContent = '✓ ' + komentar;
     feedback.className = 'notif-feedback positif tampil';
-    
+
+    if (penjelasanBox) penjelasanBox.style.color = "#6ee7b7";
+
   } else {
-    // salah
     jumlahSalah++;
     el.classList.add('jawaban-salah');
 
@@ -1978,142 +1997,45 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
     const komentar = komentarSalah[Math.floor(Math.random() * komentarSalah.length)];
     feedback.textContent = '✗ ' + komentar;
     feedback.className = 'notif-feedback negatif tampil';
+
+    if (penjelasanBox) penjelasanBox.style.color = "#f87171";
   }
 
-  // update skor display
   document.getElementById('angka-skor').textContent = skor;
   document.getElementById('angka-benar').textContent = jumlahBenar;
   document.getElementById('angka-salah').textContent = jumlahSalah;
 
-  // tampilkan tombol lanjut
   tombolLanjut.classList.add('tampil');
-  const soal = soalTampil[indexSoal];
-
-// tampilkan penjelasan
-penjelasanBox.innerText = soal.penjelasan;
-
-// warna sesuai hasil
-if (indexDipilih === indexBenar) {
-  penjelasanBox.style.color = "#6ee7b7";
-} else {
-  penjelasanBox.style.color = "#f87171";
 }
 
-}
 
+// ========================
+// NEXT
+// ========================
 function soalBerikutnya() {
   indexSoal++;
+
   if (indexSoal >= soalTampil.length) {
     tampilHasil();
     return;
   }
 
-  // animasi geser keluar
   const kartu = document.getElementById('kartu-aktif');
   kartu.classList.add('geser-keluar');
 
   setTimeout(() => {
-    penjelasanBox.innerText = "";
     renderSoal();
   }, 350);
 }
 
-function updateBadgeLevel() {
-  const badge = document.getElementById('nama-level');
-  const label = document.getElementById('label-level');
 
-  const namaLevel = {
-    1: '🌱 Pemula',
-    2: '🌙 Penjelajah',
-    3: '🚀 Ahli Bulan'
-  };
-
-  badge.textContent = namaLevel[levelSekarang] || '🌱 Pemula';
-  label.textContent = 'Level ' + levelSekarang;
-}
-
-function tampilNotifLevel(level) {
-  const notif = document.getElementById('notif-level');
-  const ikon = document.getElementById('notif-ikon');
-  const judul = document.getElementById('notif-judul');
-  const isi = document.getElementById('notif-isi');
-
-  const data = {
-    2: { ikon: '🌙', judul: 'Level 2 — Penjelajah!', isi: 'Soal makin susah nih, siap?' },
-    3: { ikon: '🚀', judul: 'Level 3 — Ahli Bulan!', isi: 'Final level! Buktikan kemampuanmu!' }
-  };
-
-  if (data[level]) {
-    ikon.textContent = data[level].ikon;
-    judul.textContent = data[level].judul;
-    isi.textContent = data[level].isi;
-
-    notif.classList.add('muncul');
-    setTimeout(() => notif.classList.remove('muncul'), 3500);
-  }
-}
-
-function tampilHasil() {
-  // sembunyikan area soal
-  document.getElementById('area-soal').style.display = 'none';
-  document.getElementById('isi-progress').style.width = '100%';
-
-  // hitung badge
-  const persenBenar = jumlahBenar / soalTampil.length;
-  let badge, namaBadge, deskripsi;
-
-  if (persenBenar >= 0.78) {
-    badge = '🚀';
-    namaBadge = 'Ahli Bulan';
-    deskripsi = 'Luar biasa! Kamu menguasai hampir semua materi. NASA pasti butuh orang seperti kamu 🛸';
-  } else if (persenBenar >= 0.5) {
-    badge = '🌙';
-    namaBadge = 'Penjelajah Antariksa';
-    deskripsi = 'Bagus! Pengetahuanmu cukup hebat. Masih ada ruang untuk belajar lebih jauh ✨';
-  } else {
-    badge = '🌱';
-    namaBadge = 'Pemula Berbakat';
-    deskripsi = 'Awal yang baik! Baca lebih banyak tentang antariksa dan coba lagi ya 🌟';
-  }
-
-  const kotak = document.getElementById('kotak-hasil');
-  document.getElementById('badge-akhir').textContent = badge;
-  document.getElementById('skor-besar').textContent = skor;
-  document.getElementById('nama-badge').textContent = badge + ' ' + namaBadge;
-  document.getElementById('deskripsi-hasil').textContent = deskripsi;
-  kotak.classList.add('tampil');
-}
-
-function mulaiUlang() {
-  indexSoal = 0;
-  skor = 0;
-  jumlahBenar = 0;
-  jumlahSalah = 0;
-  levelSekarang = 1;
-  sudahJawab = false;
-
-  document.getElementById('angka-skor').textContent = '0';
-  document.getElementById('angka-benar').textContent = '0';
-  document.getElementById('angka-salah').textContent = '0';
-  document.getElementById('nama-level').textContent = '🌱 Pemula';
-  document.getElementById('label-level').textContent = 'Level 1';
-  document.getElementById('isi-progress').style.width = '0%';
-  document.getElementById('kotak-hasil').classList.remove('tampil');
-  document.getElementById('area-soal').style.display = '';
-
-  renderSoal();
-}
-
-// mulai quiz langsung
+// ========================
+// START
+// ========================
 renderSoal();
 
-console.log("%c⚠️ STOP!", "color:red; font-size:50px; font-weight:bold;");
-
-console.log("%cArea ini untuk proyek edukasi sekolah.", "color:yellow; font-size:16px;");
-
-console.log("%cJangan ubah-ubah tanpa izin 😏", "color:#6ee7b7; font-size:14px;");
-
-// ASCII ART
+console.log("%c⚠️ STOP!", "color:red;font-size:50px;font-weight:bold;");
+console.log("Area edukasi");
 console.log(`
   _ __ ___ _   _ _ __  _____ __ 
  | '__/ __| | | | '_ \\|_  / '__|
