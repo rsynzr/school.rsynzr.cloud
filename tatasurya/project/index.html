@@ -427,7 +427,8 @@ body::after {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #d4d0c8, #9a9690 50%, #7a7670);
+  object-fit: cover;
+  display: block;
   box-shadow: 0 0 10px rgba(212,208,200,0.2), inset -4px -4px 8px rgba(0,0,0,0.35);
   animation: bulan-counter 6s linear infinite;
 }
@@ -1680,7 +1681,7 @@ body::after {
     <div class="garis-orbit"></div>
     <div class="planet-bumi"></div>
     <div class="pembungkus-orbit">
-      <div class="planet-bulan"></div>
+      <img class="planet-bulan" src="kisongan" alt="Bulan">
     </div>
   </div>
 
@@ -2698,32 +2699,10 @@ function simGoto(idx) {
   }, 200);
 }
 
-function simGoto(idx) {
-  if (idx === simIndex) return;
-  const arah = idx > simIndex ? 1 : -1;
-
-  const canvas = document.getElementById('sim-moon-canvas');
-  const orbit = document.getElementById('sim-orbit-diagram');
-  const nama = document.getElementById('sim-nama-fase');
-  const desc = document.getElementById('sim-deskripsi');
-
-  [canvas, orbit, nama, desc].forEach(el => {
-    if (!el) return;
-    el.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-    el.style.opacity = '0';
-    el.style.transform = arah > 0 ? 'translateX(20px)' : 'translateX(-20px)';
-  });
-
-  setTimeout(() => {
-    simIndex = idx;
-    renderSimulator();
-    [canvas, orbit, nama, desc].forEach(el => {
-      if (!el) return;
-      el.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-      el.style.opacity = '1';
-      el.style.transform = 'translateX(0)';
-    });
-  }, 200);
+function simNav(step) {
+  const nextIndex = simIndex + step;
+  if (nextIndex < 0 || nextIndex >= faseBulan.length) return;
+  simGoto(nextIndex);
 }
 
 // init simulator
