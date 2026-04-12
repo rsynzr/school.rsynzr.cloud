@@ -1692,13 +1692,13 @@ body::after {
     <h2 class="judul-seksi muncul-scroll">Kesimpulan</h2>
     <div class="kotak-kesimpulan muncul-scroll">
       <p>
-        Bulan bukan sekadar benda langit yang menghias malam — ia adalah saksi bisu dari miliaran tahun sejarah alam semesta. Orbitnya yang stabil mempengaruhi pasang surut lautan, mengatur iklim bumi, dan bahkan memberikan inspirasi bagi peradaban manusia selama ribuan tahun.
+        ...
       </p>
       <p>
-        Eksplorasi luar angkasa yang dimulai puluhan tahun lalu bukan hanya pencapaian teknologi, tapi juga cerminan dari rasa ingin tahu yang tak pernah padam. Dan perjalanan itu belum selesai — justru baru dimulai.
+       ...
       </p>
       <p>
-        Semoga pameran ini bisa memantik semangat untuk terus belajar dan bermimpi. Siapa tahu, salah satu dari kita yang akan menjadi bagian dari generasi yang pertama kali menginjakkan kaki di Mars. 🚀
+        ...
       </p>
     </div>
   </div>
@@ -1767,62 +1767,89 @@ function toggleFakta(el) {
 // QUIZ DATA
 // ========================
 const daftarSoal = [
-  // level 1 - gampang
+  // LEVEL 1 - FASE BULAN (dasar)
   {
     level: 1,
-    soal: "Berapa jarak rata-rata antara Bumi dan Bulan?",
-    pilihan: ["384.000 km", "150.000 km", "1.200.000 km", "50.000 km"],
+    soal: "Apa penyebab utama terjadinya fase Bulan?",
+    pilihan: [
+      "Perubahan posisi Bulan terhadap Bumi dan Matahari",
+      "Perubahan ukuran Bulan",
+      "Perubahan warna Bulan",
+      "Perubahan suhu Bulan"
+    ],
     benar: 0
   },
   {
     level: 1,
-    soal: "Berapa lama Bulan mengorbit Bumi satu kali penuh?",
-    pilihan: ["7 hari", "14 hari", "27,3 hari", "365 hari"],
-    benar: 2
+    soal: "Fase Bulan saat tidak terlihat dari Bumi disebut?",
+    pilihan: ["Purnama", "Baru", "Sabit", "Kuartal"],
+    benar: 1
   },
   {
     level: 1,
-    soal: "Siapa astronot pertama yang berjalan di Bulan?",
-    pilihan: ["Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "Michael Collins"],
+    soal: "Fase Bulan yang tampak bulat penuh disebut?",
+    pilihan: ["Baru", "Sabit", "Purnama", "Kuartal"],
     benar: 2
   },
-  // level 2 - sedang
+
+  // LEVEL 2 - GERHANA (lanjutan posisi)
   {
     level: 2,
-    soal: "Apa nama program luar angkasa yang membawa manusia ke Bulan pada 1969?",
-    pilihan: ["Program Gemini", "Program Apollo", "Program Mercury", "Program Artemis"],
+    soal: "Gerhana Matahari terjadi ketika posisi Matahari, Bulan, dan Bumi adalah?",
+    pilihan: [
+      "Matahari - Bumi - Bulan",
+      "Matahari - Bulan - Bumi",
+      "Bumi - Matahari - Bulan",
+      "Bulan - Bumi - Matahari"
+    ],
     benar: 1
   },
   {
     level: 2,
-    soal: "Fenomena apa yang terjadi ketika Bumi berada di antara Matahari dan Bulan?",
-    pilihan: ["Gerhana Matahari Total", "Gerhana Bulan", "Supermoon", "Bulan Sabit"],
-    benar: 1
+    soal: "Gerhana Bulan hanya dapat terjadi pada fase?",
+    pilihan: ["Sabit", "Kuartal", "Purnama", "Baru"],
+    benar: 2
   },
   {
     level: 2,
-    soal: "Gravitasi di Bulan adalah berapa kali gravitasi di Bumi?",
-    pilihan: ["1/2", "1/3", "1/6", "1/10"],
-    benar: 2
+    soal: "Mengapa gerhana tidak terjadi setiap bulan?",
+    pilihan: [
+      "Karena Bulan terlalu kecil",
+      "Karena orbit Bulan miring sehingga tidak selalu sejajar",
+      "Karena Matahari berpindah tempat",
+      "Karena Bumi berhenti berputar"
+    ],
+    benar: 1
   },
-  // level 3 - susah
+
+  // LEVEL 3 - PASANG SURUT (puncak konsep 🔥)
   {
     level: 3,
-    soal: "Sisi jauh Bulan pertama kali difoto oleh wahana antariksa milik negara mana?",
-    pilihan: ["Amerika Serikat", "China", "Uni Soviet", "India"],
-    benar: 2
-  },
-  {
-    level: 3,
-    soal: "Berapa banyak astronot yang sudah berjalan di permukaan Bulan hingga tahun 2024?",
-    pilihan: ["6 orang", "12 orang", "18 orang", "24 orang"],
+    soal: "Apa penyebab utama terjadinya pasang surut air laut?",
+    pilihan: [
+      "Angin laut",
+      "Gaya gravitasi Bulan terhadap Bumi",
+      "Suhu air laut",
+      "Arus laut"
+    ],
     benar: 1
   },
   {
     level: 3,
-    soal: "Program apa yang direncanakan NASA untuk membawa manusia kembali ke Bulan?",
-    pilihan: ["Program Apollo II", "Program Orion", "Program Artemis", "Program Constellation"],
+    soal: "Pasang maksimum (pasang purnama) terjadi saat fase Bulan?",
+    pilihan: ["Sabit", "Kuartal", "Baru dan Purnama", "Setiap hari"],
     benar: 2
+  },
+  {
+    level: 3,
+    soal: "Mengapa saat Bulan baru dan purnama pasang air laut lebih tinggi?",
+    pilihan: [
+      "Karena Bulan lebih dekat",
+      "Karena gaya gravitasi Matahari dan Bulan saling memperkuat",
+      "Karena air laut bertambah",
+      "Karena angin lebih kuat"
+    ],
+    benar: 1
   }
 ];
 
