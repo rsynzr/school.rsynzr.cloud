@@ -2671,41 +2671,41 @@ renderSimulator();
 // QUIZ DATA
 // ========================
 const daftarSoal = [
-  { level:1, soal:"Apa penyebab utama terjadinya fase Bulan?", pilihan:["Perubahan posisi Bulan terhadap Bumi dan Matahari","Perubahan ukuran Bulan","Perubahan warna Bulan","Perubahan suhu Bulan"], benar:0 },
-  { level:1, soal:"Fase Bulan saat tidak terlihat dari Bumi disebut?", pilihan:["Purnama","Bulan Baru","Sabit","Kuartal"], benar:1 },
-  { level:1, soal:"Fase Bulan yang tampak bulat penuh disebut?", pilihan:["Bulan Baru","Sabit","Purnama","Kuartal"], benar:2 },
-  { level:1, soal:"Mengapa Bulan selalu tampak sisi yang sama dari Bumi?", pilihan:["Karena Bulan tidak berputar","Karena rotasi dan orbitnya sinkron","Karena Matahari mengunci Bulan","Karena atmosfer Bumi"], benar:1 },
-  { level:1, soal:"Fase saat Bulan berada di antara Matahari dan Bumi disebut?", pilihan:["Purnama","Kuartal Ketiga","Bulan Baru","Cembung"], benar:2 },
-  { level:2, soal:"Gerhana Matahari total terjadi ketika posisi?", pilihan:["Matahari - Bulan - Bumi","Bumi - Bulan - Matahari","Matahari - Bumi - Bulan","Bulan - Bumi - Matahari"], benar:0 },
-  { level:2, soal:"Gerhana Bulan hanya terjadi pada fase?", pilihan:["Sabit","Kuartal","Purnama","Bulan Baru"], benar:2 },
-  { level:2, soal:"Mengapa gerhana tidak terjadi setiap bulan?", pilihan:["Karena orbit Bulan miring","Karena Bulan terlalu kecil","Karena Matahari terlalu jauh","Karena Bumi tidak berputar"], benar:0 },
-  { level:2, soal:"Bagian bayangan paling gelap dalam gerhana disebut?", pilihan:["Penumbra","Umbra","Corona","Atmosfer"], benar:1 },
-  { level:2, soal:"Penumbra adalah?", pilihan:["Bayangan paling gelap","Bayangan sebagian","Cahaya tipis di sekitar Matahari","Bayangan Bumi pada Bulan"], benar:1 },
-  { level:3, soal:"Pasang purnama terjadi karena?", pilihan:["Bumi, Bulan, dan Matahari sejajar","Bulan berhenti bergerak","Matahari terselimuti awan","Gravitasi Mars"], benar:0 },
-  { level:3, soal:"Pasang perbani biasanya terjadi saat fase?", pilihan:["Kuartal Pertama dan Kuartal Ketiga","Bulan Baru dan Purnama","Hanya Purnama","Hanya Baru"], benar:0 },
-  { level:3, soal:"Berapa lama Bulan mengelilingi Bumi sekali?", pilihan:["7 hari","14 hari","27,3 hari","365 hari"], benar:2 },
-  { level:3, soal:"Jarak rata-rata Bulan ke Bumi sekitar?", pilihan:["38.000 km","384.400 km","1.000.000 km","4.300.000 km"], benar:1 },
-  { level:3, soal:"Setelah Purnama, fase Bulan berikutnya adalah?", pilihan:["Waxing Gibbous","Waning Gibbous","First Quarter","New Moon"], benar:1 },
-  { level:4, soal:"Waxing Gibbous adalah fase Bulan yang?", pilihan:["Lebih dari setengah terang sebelum Purnama","Kurang dari setengah terang setelah Purnama","Bulan Baru","Kuartal Ketiga"], benar:0 },
-  { level:4, soal:"Apa yang paling memengaruhi pasang surut air laut?", pilihan:["Gravitasi Bulan dan Matahari","Suhu air laut","Kecepatan angin","Arah arus"], benar:0 },
-  { level:4, soal:"Bulan baru berarti bagian Bulan yang terlihat dari Bumi?", pilihan:["Hampir tidak terlihat","Sepenuhnya terang","Sebagian terang","Menghilang karena awan"], benar:0 },
-  { level:4, soal:"Orbit Bulan miring sekitar berapa derajat terhadap orbit Bumi?", pilihan:["Sekitar 5 derajat","Sekitar 15 derajat","Sekitar 25 derajat","Sekitar 45 derajat"], benar:0 },
-  { level:4, soal:"Mengapa Bulan tampak bersinar di malam hari?", pilihan:["Karena cahaya Matahari dipantulkan","Karena Bulan menghasilkan cahaya sendiri","Karena lampu kota","Karena atmosfer Bumi"], benar:0 },
-  { level:5, soal:"Gerhana Matahari cincin terjadi saat?", pilihan:["Bulan lebih jauh sehingga bayangannya kecil","Bulan lebih dekat","Bumi berada di antara","Matahari diredam awan"], benar:0 },
-  { level:5, soal:"Fase saat setengah sisi kiri Bulan terlihat terang disebut?", pilihan:["Kuartal Ketiga","Kuartal Pertama","Sabit Kiri","Purnama"], benar:0 },
-  { level:5, soal:"Bulan merah saat gerhana Bulan terjadi karena?", pilihan:["Cahaya Matahari dibelokkan oleh atmosfer Bumi","Bulan terbakar","Matahari berubah warna","Awan merah di atmosfer"], benar:0 },
-  { level:5, soal:"Fase Bulan yang tampak setengah terang di sisi kanan disebut?", pilihan:["Kuartal Pertama","Kuartal Ketiga","Sabit","Purnama"], benar:0 },
-  { level:5, soal:"Bulan tidak memiliki udara karena?", pilihan:["Gravitasi Bulan terlalu lemah","Terlalu dekat ke Matahari","Adanya gelombang medan magnet","Karena Bulan berada di bayangan Bumi"], benar:0 },
-  { level:6, soal:"Gerhana Matahari sebagian terjadi ketika?", pilihan:["Hanya sebagian Matahari tertutup Bulan","Semua Matahari tertutup Bulan","Bulan di sisi lain Bumi","Bumi tidak berputar"], benar:0 },
-  { level:6, soal:"Satelit alami Bumi adalah?", pilihan:["Bulan","Venus","Mars","Saturnus"], benar:0 },
-  { level:6, soal:"Kalender lunar menggunakan fase Bulan untuk?", pilihan:["Menentukan tanggal dan hari penting","Mengarahkan satelit","Memprediksi cuaca","Menentukan musim"], benar:0 },
-  { level:6, soal:"Apa yang membuat Bulan tampak cerah meskipun tidak menghasilkan cahaya sendiri?", pilihan:["Refleksi cahaya Matahari","Cahaya dari bintang","Radiasi kosmik","Lampu kota"], benar:0 },
-  { level:6, soal:"Mengapa observasi Bulan penting untuk bangsa Indonesia?", pilihan:["Untuk ilmu pengetahuan dan budaya","Untuk mencari rumah baru","Untuk membuat jalan tol","Untuk meramal cuaca"], benar:0 },
-  { level:7, soal:"Pengetahuan astronomi membantu Indonesia dengan cara?", pilihan:["Memperkuat teknologi dan pendidikan","Mengubah cuaca","Membuat Bulan lebih dekat","Memperbanyak hari libur"], benar:0 },
-  { level:7, soal:"Studi Bulan membantu budaya Indonesia dalam?", pilihan:["Penentuan kalender dan pelayaran tradisional","Membuat makanan tradisional","Mendatangkan wisatawan asing","Mempercepat lalu lintas"], benar:0 },
-  { level:7, soal:"Gerhana Matahari total disebut juga?", pilihan:["Gerhana Matahari Total","Gerhana Matahari Sebagian","Gerhana Bulan","Gerhana Mini"], benar:0 },
-  { level:7, soal:"Hubungan fase Bulan dan pasang surut laut adalah?", pilihan:["Keduanya dipengaruhi oleh posisi Bulan, Bumi, dan Matahari","Keduanya akibat angin","Keduanya karena awan","Keduanya karena arus laut"], benar:0 },
-  { level:7, soal:"Belajar astronomi penting untuk Indonesia karena?", pilihan:["Masa depan ilmu pengetahuan bangsa","Hanya untuk hiburan","Agar Bulan tidak hilang","Untuk membuat roket sendiri"], benar:0 }
+  { level:1, soal:"Apa penyebab utama terjadinya fase Bulan?", pilihan:["Perubahan posisi Bulan terhadap Bumi dan Matahari","Perubahan ukuran Bulan","Perubahan warna Bulan","Perubahan suhu Bulan"], benar:0, penjelasan:"Fase Bulan terjadi karena posisi Bulan berubah relatif terhadap Bumi dan Matahari, sehingga bagian yang terkena cahaya berbeda." },
+  { level:1, soal:"Fase Bulan saat tidak terlihat dari Bumi disebut?", pilihan:["Purnama","Bulan Baru","Sabit","Kuartal"], benar:1, penjelasan:"Bulan Baru terjadi ketika Bulan berada di antara Matahari dan Bumi, sehingga sisi terang tidak terlihat dari Bumi." },
+  { level:1, soal:"Fase Bulan yang tampak bulat penuh disebut?", pilihan:["Bulan Baru","Sabit","Purnama","Kuartal"], benar:2, penjelasan:"Purnama terjadi saat Bumi berada di antara Matahari dan Bulan, sehingga seluruh permukaan yang terang terlihat dari Bumi." },
+  { level:1, soal:"Mengapa Bulan selalu tampak sisi yang sama dari Bumi?", pilihan:["Karena Bulan tidak berputar","Karena rotasi dan orbitnya sinkron","Karena Matahari mengunci Bulan","Karena atmosfer Bumi"], benar:1, penjelasan:"Bulan berotasi pada porosnya dengan periode yang sama dengan mengorbit Bumi, sehingga sisi yang sama selalu menghadap Bumi." },
+  { level:1, soal:"Fase saat Bulan berada di antara Matahari dan Bumi disebut?", pilihan:["Purnama","Kuartal Ketiga","Bulan Baru","Cembung"], benar:2, penjelasan:"Ketika Bulan berada di antara Matahari dan Bumi, posisi ini menyebabkan Bulan baru tidak terlihat dari Bumi." },
+  { level:2, soal:"Gerhana Matahari total terjadi ketika posisi?", pilihan:["Matahari - Bulan - Bumi","Bumi - Bulan - Matahari","Matahari - Bumi - Bulan","Bulan - Bumi - Matahari"], benar:0, penjelasan:"Pada gerhana Matahari total, Bulan berada tepat di antara Matahari dan Bumi sehingga bayangannya menutupi Matahari." },
+  { level:2, soal:"Gerhana Bulan hanya terjadi pada fase?", pilihan:["Sabit","Kuartal","Purnama","Bulan Baru"], benar:2, penjelasan:"Gerhana Bulan hanya dapat terjadi saat Purnama karena Bulan harus berada di sisi seberang Bumi dari Matahari." },
+  { level:2, soal:"Mengapa gerhana tidak terjadi setiap bulan?", pilihan:["Karena orbit Bulan miring","Karena Bulan terlalu kecil","Karena Matahari terlalu jauh","Karena Bumi tidak berputar"], benar:0, penjelasan:"Orbit Bulan miring sekitar 5 derajat terhadap orbit Bumi, sehingga bayangan tidak selalu jatuh tepat pada Bumi atau Bulan." },
+  { level:2, soal:"Bagian bayangan paling gelap dalam gerhana disebut?", pilihan:["Penumbra","Umbra","Corona","Atmosfer"], benar:1, penjelasan:"Umbra adalah bayangan pusat yang paling gelap, di mana cahaya Matahari sepenuhnya terhalang." },
+  { level:2, soal:"Penumbra adalah?", pilihan:["Bayangan paling gelap","Bayangan sebagian","Cahaya tipis di sekitar Matahari","Bayangan Bumi pada Bulan"], benar:1, penjelasan:"Penumbra adalah bayangan sebagian saat hanya sebagian cahaya Matahari tertutup selama gerhana." },
+  { level:3, soal:"Pasang purnama terjadi karena?", pilihan:["Bumi, Bulan, dan Matahari sejajar","Bulan berhenti bergerak","Matahari terselimuti awan","Gravitasi Mars"], benar:0, penjelasan:"Pasang purnama terjadi ketika Bulan dan Matahari berada pada garis lurus dengan Bumi, memperkuat gaya gravitasi yang menarik air laut." },
+  { level:3, soal:"Pasang perbani biasanya terjadi saat fase?", pilihan:["Kuartal Pertama dan Kuartal Ketiga","Bulan Baru dan Purnama","Hanya Purnama","Hanya Baru"], benar:0, penjelasan:"Pasang perbani terjadi saat gaya gravitasi Bulan dan Matahari saling tegak lurus, biasanya saat Kuartal Pertama atau Ketiga." },
+  { level:3, soal:"Berapa lama Bulan mengelilingi Bumi sekali?", pilihan:["7 hari","14 hari","27,3 hari","365 hari"], benar:2, penjelasan:"Bulan membutuhkan sekitar 27,3 hari untuk menyelesaikan satu orbit penuh mengelilingi Bumi." },
+  { level:3, soal:"Jarak rata-rata Bulan ke Bumi sekitar?", pilihan:["38.000 km","384.400 km","1.000.000 km","4.300.000 km"], benar:1, penjelasan:"Jarak rata-rata antara Bumi dan Bulan adalah sekitar 384.400 kilometer." },
+  { level:3, soal:"Setelah Purnama, fase Bulan berikutnya adalah?", pilihan:["Waxing Gibbous","Waning Gibbous","First Quarter","New Moon"], benar:1, penjelasan:"Setelah Purnama, Bulan memasuki fase Waning Gibbous saat cahaya yang terlihat mulai berkurang." },
+  { level:4, soal:"Waxing Gibbous adalah fase Bulan yang?", pilihan:["Lebih dari setengah terang sebelum Purnama","Kurang dari setengah terang setelah Purnama","Bulan Baru","Kuartal Ketiga"], benar:0, penjelasan:"Waxing Gibbous terjadi ketika Bulan lebih dari setengah terang dan semakin mendekati Purnama." },
+  { level:4, soal:"Apa yang paling memengaruhi pasang surut air laut?", pilihan:["Gravitasi Bulan dan Matahari","Suhu air laut","Kecepatan angin","Arah arus"], benar:0, penjelasan:"Gravitasi Bulan dan Matahari adalah faktor utama yang menyebabkan pasang surut air laut di Bumi." },
+  { level:4, soal:"Bulan baru berarti bagian Bulan yang terlihat dari Bumi?", pilihan:["Hampir tidak terlihat","Sepenuhnya terang","Sebagian terang","Menghilang karena awan"], benar:0, penjelasan:"Saat Bulan Baru, sisi Bulan yang menghadap Bumi tidak mendapat cahaya langsung dari Matahari, sehingga hampir tidak terlihat." },
+  { level:4, soal:"Orbit Bulan miring sekitar berapa derajat terhadap orbit Bumi?", pilihan:["Sekitar 5 derajat","Sekitar 15 derajat","Sekitar 25 derajat","Sekitar 45 derajat"], benar:0, penjelasan:"Orbit Bulan miring sekitar 5 derajat terhadap orbit Bumi, yang menyebabkan gerhana tidak terjadi setiap bulan." },
+  { level:4, soal:"Mengapa Bulan tampak bersinar di malam hari?", pilihan:["Karena cahaya Matahari dipantulkan","Karena Bulan menghasilkan cahaya sendiri","Karena lampu kota","Karena atmosfer Bumi"], benar:0, penjelasan:"Bulan tidak menghasilkan cahaya sendiri; ia bersinar karena memantulkan cahaya Matahari." },
+  { level:5, soal:"Gerhana Matahari cincin terjadi saat?", pilihan:["Bulan lebih jauh sehingga bayangannya kecil","Bulan lebih dekat","Bumi berada di antara","Matahari diredam awan"], benar:0, penjelasan:"Gerhana cincin terjadi saat Bulan berada agak jauh, sehingga tidak sepenuhnya menutupi Matahari dan membentuk cincin cahaya." },
+  { level:5, soal:"Fase saat setengah sisi kiri Bulan terlihat terang disebut?", pilihan:["Kuartal Ketiga","Kuartal Pertama","Sabit Kiri","Purnama"], benar:0, penjelasan:"Kuartal Ketiga terjadi ketika sisi kiri Bulan terlihat terang dan sisi kanan mulai meredup." },
+  { level:5, soal:"Bulan merah saat gerhana Bulan terjadi karena?", pilihan:["Cahaya Matahari dibelokkan oleh atmosfer Bumi","Bulan terbakar","Matahari berubah warna","Awan merah di atmosfer"], benar:0, penjelasan:"Cahaya Matahari yang melewati atmosfer Bumi dibiaskan dan memantul ke Bulan, yang membuatnya terlihat kemerahan." },
+  { level:5, soal:"Fase Bulan yang tampak setengah terang di sisi kanan disebut?", pilihan:["Kuartal Pertama","Kuartal Ketiga","Sabit","Purnama"], benar:0, penjelasan:"Kuartal Pertama adalah fase saat setengah sisi kanan Bulan tampak terang dari Bumi." },
+  { level:5, soal:"Bulan tidak memiliki udara karena?", pilihan:["Gravitasi Bulan terlalu lemah","Terlalu dekat ke Matahari","Adanya gelombang medan magnet","Karena Bulan berada di bayangan Bumi"], benar:0, penjelasan:"Gravitasi Bulan jauh lebih lemah dari Bumi sehingga tidak dapat mempertahankan atmosfer tebal." },
+  { level:6, soal:"Gerhana Matahari sebagian terjadi ketika?", pilihan:["Hanya sebagian Matahari tertutup Bulan","Semua Matahari tertutup Bulan","Bulan di sisi lain Bumi","Bumi tidak berputar"], benar:0, penjelasan:"Gerhana sebagian terjadi saat hanya sebagian cakram Matahari tertutup oleh Bulan." },
+  { level:6, soal:"Satelit alami Bumi adalah?", pilihan:["Bulan","Venus","Mars","Saturnus"], benar:0, penjelasan:"Bulan adalah satelit alami Bumi yang mengorbit di sekitarnya tanpa bantuan buatan manusia." },
+  { level:6, soal:"Kalender lunar menggunakan fase Bulan untuk?", pilihan:["Menentukan tanggal dan hari penting","Mengarahkan satelit","Memprediksi cuaca","Menentukan musim"], benar:0, penjelasan:"Kalender lunar menghitung bulan berdasarkan siklus fase Bulan untuk menentukan tanggal penting." },
+  { level:6, soal:"Apa yang membuat Bulan tampak cerah meskipun tidak menghasilkan cahaya sendiri?", pilihan:["Refleksi cahaya Matahari","Cahaya dari bintang","Radiasi kosmik","Lampu kota"], benar:0, penjelasan:"Bulan tampak cerah karena permukaannya memantulkan cahaya Matahari ke arah Bumi." },
+  { level:6, soal:"Mengapa observasi Bulan penting untuk bangsa Indonesia?", pilihan:["Untuk ilmu pengetahuan dan budaya","Untuk mencari rumah baru","Untuk membuat jalan tol","Untuk meramal cuaca"], benar:0, penjelasan:"Observasi Bulan membantu ilmu pengetahuan, budaya tradisional, dan perkembangan pendidikan sains di Indonesia." },
+  { level:7, soal:"Pengetahuan astronomi membantu Indonesia dengan cara?", pilihan:["Memperkuat teknologi dan pendidikan","Mengubah cuaca","Membuat Bulan lebih dekat","Memperbanyak hari libur"], benar:0, penjelasan:"Astronomi meningkatkan teknologi, pendidikan, dan kemampuan riset generasi muda Indonesia." },
+  { level:7, soal:"Studi Bulan membantu budaya Indonesia dalam?", pilihan:["Penentuan kalender dan pelayaran tradisional","Membuat makanan tradisional","Mendatangkan wisatawan asing","Mempercepat lalu lintas"], benar:0, penjelasan:"Studi Bulan mendukung kalender tradisional dan navigasi laut yang penting bagi budaya pelayaran Indonesia." },
+  { level:7, soal:"Gerhana Matahari total disebut juga?", pilihan:["Gerhana Matahari Total","Gerhana Matahari Sebagian","Gerhana Bulan","Gerhana Mini"], benar:0, penjelasan:"Gerhana Matahari total adalah istilah untuk saat Bulan sepenuhnya menutupi Matahari, membuat siang menjadi gelap sementara." },
+  { level:7, soal:"Hubungan fase Bulan dan pasang surut laut adalah?", pilihan:["Keduanya dipengaruhi oleh posisi Bulan, Bumi, dan Matahari","Keduanya akibat angin","Keduanya karena awan","Keduanya karena arus laut"], benar:0, penjelasan:"Fase Bulan dan pasang surut berkaitan karena posisi Bulan dan Matahari mempengaruhi gaya gravitasi pada air laut." },
+  { level:7, soal:"Belajar astronomi penting untuk Indonesia karena?", pilihan:["Masa depan ilmu pengetahuan bangsa","Hanya untuk hiburan","Agar Bulan tidak hilang","Untuk membuat roket sendiri"], benar:0, penjelasan:"Astronomi penting untuk pembangunan ilmu pengetahuan, teknologi, dan masa depan bangsa Indonesia." }
 ];
 
 const komentarBenar = ["Mantap! Negeri ini membutuhkanmu! 🇮🇩","Hebat! Kamu seperti ilmuwan muda Indonesia","Bagus! Terus jadi generasi bintang","Jawaban tepat, semangat untuk Nusantara!","Sip! Terus belajar demi negeri","👏 Mantap, kamu memberi harapan untuk Indonesia","Keren! Pengetahuanmu membuat bangga bangsa"];
@@ -2786,6 +2786,7 @@ function renderSoal() {
       <p class="teks-soal">${soal.soal}</p>
       <div class="daftar-pilihan">${pilihanHTML}</div>
       <div class="notif-feedback" id="feedback-soal"></div>
+      <div class="teks-penjelasan" id="penjelasan-soal" style="display:none;"></div>
       <button class="tombol-lanjut" id="tombol-lanjut" onclick="soalBerikutnya()">Soal Berikutnya →</button>
     </div>
   `;
@@ -2808,6 +2809,8 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
     semuaTombol[indexBenar].classList.add('jawaban-benar');
   }
 
+  const soal = daftarSoal[urutanSoal[indexSoal]] || {};
+
   if (indexDipilih === indexBenar) {
     jumlahBenar++;
     skor += levelSekarang * 10;
@@ -2824,6 +2827,12 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
     const komentar = komentarSalah[Math.floor(Math.random() * komentarSalah.length)];
     feedback.textContent = '✗ ' + komentar;
     feedback.className = 'notif-feedback negatif tampil';
+  }
+
+  const penjelasanEl = document.getElementById('penjelasan-soal');
+  if (penjelasanEl) {
+    penjelasanEl.innerHTML = `<p>${soal.penjelasan || 'Penjelasan akan muncul di sini setelah kamu menjawab soal.'}</p>`;
+    penjelasanEl.style.display = 'block';
   }
 
   const angkaSkor = document.getElementById('angka-skor');
