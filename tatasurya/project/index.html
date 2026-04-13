@@ -400,10 +400,8 @@ body::after {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: var(--earth);
-  box-shadow:
-    inset -6px -6px 14px rgba(0,0,0,0.18),
-    0 0 18px rgba(59,130,246,0.18);
+  background: radial-gradient(circle at 30% 30%, #60A5FA, #2563EB 65%);
+  box-shadow: 0 0 20px rgba(59,130,246,0.2);
   position: relative;
   z-index: 2;
   flex-shrink: 0;
@@ -776,12 +774,14 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible; /* allow sun glow and highlights to extend cleanly */
+  padding: 16px;
 }
 
 .gerhana-visual svg {
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
 
 .gerhana-card-info {
@@ -812,9 +812,21 @@ body::after {
 
 .grid-fakta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
   gap: 18px;
   margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+  .grid-fakta {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-fakta {
+    grid-template-columns: 1fr;
+  }
 }
 
 .kotak-fakta {
@@ -2506,31 +2518,36 @@ function renderSimDots() {
 }
 
 function generateMoonSVG(tipe) {
-  const moonBase = '#B0B0B0';
-  const moonLit = '#FFFBDF';
+  const moonBase = '#1a1a24';
+  const moonLit = '#fffce0';
 
   let svgContent = `
     <defs>
-      <radialGradient id="litGrad" cx="30%" cy="30%" r="80%">
+      <radialGradient id="litGrad" cx="40%" cy="35%" r="65%">
         <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
         <stop offset="35%" stop-color="#fff7c5" stop-opacity="0.95"/>
-        <stop offset="100%" stop-color="#f0e7a0" stop-opacity="0.65"/>
+        <stop offset="70%" stop-color="#f9f1b5" stop-opacity="0.65"/>
+        <stop offset="100%" stop-color="#f4e89a" stop-opacity="0.25"/>
       </radialGradient>
       <filter id="moonGlow">
-        <feGaussianBlur stdDeviation="3.5" result="blur"/>
+        <feGaussianBlur stdDeviation="4" result="blur"/>
         <feMerge>
           <feMergeNode in="blur"/>
           <feMergeNode in="SourceGraphic"/>
         </feMerge>
       </filter>
+      <filter id="moonShadow">
+        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.2"/>
+      </filter>
     </defs>
-    <circle cx="100" cy="100" r="90" fill="${moonBase}"/>
+    <circle cx="100" cy="100" r="90" fill="${moonBase}" filter="url(#moonShadow)"/>
   `;
 
   if (tipe === 'new') {
     svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>`;
+    svgContent += `<circle cx="130" cy="100" r="40" fill="rgba(255,255,255,0.12)"/>`;
   } else if (tipe === 'full') {
-    svgContent += `<circle cx="100" cy="100" r="90" fill="${moonLit}" fill-opacity="0.9" filter="url(#moonGlow)"/>`;
+    svgContent += `<circle cx="100" cy="100" r="90" fill="${moonLit}" filter="url(#moonGlow)"/>`;
   } else {
     let clipPath = '';
     if (tipe === 'waxing_crescent') {
@@ -2549,9 +2566,10 @@ function generateMoonSVG(tipe) {
 
     svgContent += `<defs><clipPath id="moonClip">${clipPath}</clipPath></defs>`;
     svgContent += `<circle cx="100" cy="100" r="90" fill="url(#litGrad)" clip-path="url(#moonClip)" filter="url(#moonGlow)"/>`;
+    svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>`;
   }
 
-  svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>`;
+  svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>`;
   return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">${svgContent}</svg>`;
 }
 
@@ -2991,10 +3009,19 @@ function mulaiQuiz() {
   renderSoal();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function setupQuizEvents() {
   const startBtn = document.getElementById('mulai-quiz-btn');
-  if (startBtn) startBtn.addEventListener('click', mulaiQuiz);
-});
+  if (!startBtn) return;
+  startBtn.type = 'button';
+  startBtn.addEventListener('click', mulaiQuiz);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupQuizEvents);
+} else {
+  setupQuizEvents();
+}
+
 
 // Console easter egg
 console.log("%c⚠️ STOP!", "color:red; font-size:50px; font-weight:bold;");
