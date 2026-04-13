@@ -1130,65 +1130,6 @@ body::after {
 .badge-level .nama-level { font-weight: 600; }
 .badge-level .label-level { font-size: 0.65rem; color: var(--abu); text-transform: uppercase; letter-spacing: 0.1em; }
 
-/* Timer */
-.quiz-timer-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.quiz-timer-box {
-  background: var(--hitam-2);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 10px;
-  padding: 8px 16px;
-  font-family: 'Space Mono', monospace;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.quiz-timer-box .timer-label {
-  font-size: 0.65rem;
-  color: var(--abu);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.quiz-timer-box .timer-angka {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--putih);
-  min-width: 28px;
-  text-align: center;
-  transition: color 0.3s;
-}
-
-.quiz-timer-box .timer-angka.bahaya { color: #f87171; animation: kedip-timer 0.5s ease infinite; }
-
-@keyframes kedip-timer {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-.timer-bar-mini {
-  flex: 1;
-  height: 4px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.timer-bar-isi {
-  height: 100%;
-  background: linear-gradient(to right, #6ee7b7, var(--biru));
-  border-radius: 99px;
-  transition: width 1s linear, background 0.5s;
-}
-
-.timer-bar-isi.bahaya { background: linear-gradient(to right, #f87171, #ff4444); }
-
 .bar-progress {
   height: 4px;
   background: rgba(255,255,255,0.06);
@@ -2730,22 +2671,45 @@ renderSimulator();
 // QUIZ DATA
 // ========================
 const daftarSoal = [
-  { level:1, soal:"Apakah kamu sudah siap", pilihan:["Siap"], benar:0 },
   { level:1, soal:"Apa penyebab utama terjadinya fase Bulan?", pilihan:["Perubahan posisi Bulan terhadap Bumi dan Matahari","Perubahan ukuran Bulan","Perubahan warna Bulan","Perubahan suhu Bulan"], benar:0 },
-  { level:1, soal:"Fase Bulan saat tidak terlihat dari Bumi disebut?", pilihan:["Purnama","Baru","Sabit","Kuartal"], benar:1 },
-  { level:1, soal:"Fase Bulan yang tampak bulat penuh disebut?", pilihan:["Baru","Sabit","Purnama","Kuartal"], benar:2 },
-  { level:2, soal:"Gerhana Matahari terjadi ketika posisi Matahari, Bulan, dan Bumi adalah?", pilihan:["Matahari - Bumi - Bulan","Matahari - Bulan - Bumi","Bumi - Matahari - Bulan","Bulan - Bumi - Matahari"], benar:1 },
-  { level:2, soal:"Gerhana Bulan hanya dapat terjadi pada fase?", pilihan:["Sabit","Kuartal","Purnama","Baru"], benar:2 },
-  { level:2, soal:"Mengapa gerhana tidak terjadi setiap bulan?", pilihan:["Karena Bulan terlalu kecil","Karena orbit Bulan miring sehingga tidak selalu sejajar","Karena Matahari berpindah tempat","Karena Bumi berhenti berputar"], benar:1 },
-  { level:3, soal:"Apa penyebab utama terjadinya pasang surut air laut?", pilihan:["Angin laut","Gaya gravitasi Bulan terhadap Bumi","Suhu air laut","Arus laut"], benar:1 },
-  { level:3, soal:"Pasang maksimum (pasang purnama) terjadi saat fase Bulan?", pilihan:["Sabit","Kuartal","Baru dan Purnama","Setiap hari"], benar:2 },
-  { level:3, soal:"Mengapa saat Bulan baru dan purnama pasang air laut lebih tinggi?", pilihan:["Karena Bulan lebih dekat","Karena gaya gravitasi Matahari dan Bulan saling memperkuat","Karena air laut bertambah","Karena angin lebih kuat"], benar:1 }
+  { level:1, soal:"Fase Bulan saat tidak terlihat dari Bumi disebut?", pilihan:["Purnama","Bulan Baru","Sabit","Kuartal"], benar:1 },
+  { level:1, soal:"Fase Bulan yang tampak bulat penuh disebut?", pilihan:["Bulan Baru","Sabit","Purnama","Kuartal"], benar:2 },
+  { level:1, soal:"Mengapa Bulan selalu tampak sisi yang sama dari Bumi?", pilihan:["Karena Bulan tidak berputar","Karena rotasi dan orbitnya sinkron","Karena Matahari mengunci Bulan","Karena atmosfer Bumi"], benar:1 },
+  { level:1, soal:"Fase saat Bulan berada di antara Matahari dan Bumi disebut?", pilihan:["Purnama","Kuartal Ketiga","Bulan Baru","Cembung"], benar:2 },
+  { level:2, soal:"Gerhana Matahari total terjadi ketika posisi?", pilihan:["Matahari - Bulan - Bumi","Bumi - Bulan - Matahari","Matahari - Bumi - Bulan","Bulan - Bumi - Matahari"], benar:0 },
+  { level:2, soal:"Gerhana Bulan hanya terjadi pada fase?", pilihan:["Sabit","Kuartal","Purnama","Bulan Baru"], benar:2 },
+  { level:2, soal:"Mengapa gerhana tidak terjadi setiap bulan?", pilihan:["Karena orbit Bulan miring","Karena Bulan terlalu kecil","Karena Matahari terlalu jauh","Karena Bumi tidak berputar"], benar:0 },
+  { level:2, soal:"Bagian bayangan paling gelap dalam gerhana disebut?", pilihan:["Penumbra","Umbra","Corona","Atmosfer"], benar:1 },
+  { level:2, soal:"Penumbra adalah?", pilihan:["Bayangan paling gelap","Bayangan sebagian","Cahaya tipis di sekitar Matahari","Bayangan Bumi pada Bulan"], benar:1 },
+  { level:3, soal:"Pasang purnama terjadi karena?", pilihan:["Bumi, Bulan, dan Matahari sejajar","Bulan berhenti bergerak","Matahari terselimuti awan","Gravitasi Mars"], benar:0 },
+  { level:3, soal:"Pasang perbani biasanya terjadi saat fase?", pilihan:["Kuartal Pertama dan Kuartal Ketiga","Bulan Baru dan Purnama","Hanya Purnama","Hanya Baru"], benar:0 },
+  { level:3, soal:"Berapa lama Bulan mengelilingi Bumi sekali?", pilihan:["7 hari","14 hari","27,3 hari","365 hari"], benar:2 },
+  { level:3, soal:"Jarak rata-rata Bulan ke Bumi sekitar?", pilihan:["38.000 km","384.400 km","1.000.000 km","4.300.000 km"], benar:1 },
+  { level:3, soal:"Setelah Purnama, fase Bulan berikutnya adalah?", pilihan:["Waxing Gibbous","Waning Gibbous","First Quarter","New Moon"], benar:1 },
+  { level:4, soal:"Waxing Gibbous adalah fase Bulan yang?", pilihan:["Lebih dari setengah terang sebelum Purnama","Kurang dari setengah terang setelah Purnama","Bulan Baru","Kuartal Ketiga"], benar:0 },
+  { level:4, soal:"Apa yang paling memengaruhi pasang surut air laut?", pilihan:["Gravitasi Bulan dan Matahari","Suhu air laut","Kecepatan angin","Arah arus"], benar:0 },
+  { level:4, soal:"Bulan baru berarti bagian Bulan yang terlihat dari Bumi?", pilihan:["Hampir tidak terlihat","Sepenuhnya terang","Sebagian terang","Menghilang karena awan"], benar:0 },
+  { level:4, soal:"Orbit Bulan miring sekitar berapa derajat terhadap orbit Bumi?", pilihan:["Sekitar 5 derajat","Sekitar 15 derajat","Sekitar 25 derajat","Sekitar 45 derajat"], benar:0 },
+  { level:4, soal:"Mengapa Bulan tampak bersinar di malam hari?", pilihan:["Karena cahaya Matahari dipantulkan","Karena Bulan menghasilkan cahaya sendiri","Karena lampu kota","Karena atmosfer Bumi"], benar:0 },
+  { level:5, soal:"Gerhana Matahari cincin terjadi saat?", pilihan:["Bulan lebih jauh sehingga bayangannya kecil","Bulan lebih dekat","Bumi berada di antara","Matahari diredam awan"], benar:0 },
+  { level:5, soal:"Fase saat setengah sisi kiri Bulan terlihat terang disebut?", pilihan:["Kuartal Ketiga","Kuartal Pertama","Sabit Kiri","Purnama"], benar:0 },
+  { level:5, soal:"Bulan merah saat gerhana Bulan terjadi karena?", pilihan:["Cahaya Matahari dibelokkan oleh atmosfer Bumi","Bulan terbakar","Matahari berubah warna","Awan merah di atmosfer"], benar:0 },
+  { level:5, soal:"Fase Bulan yang tampak setengah terang di sisi kanan disebut?", pilihan:["Kuartal Pertama","Kuartal Ketiga","Sabit","Purnama"], benar:0 },
+  { level:5, soal:"Bulan tidak memiliki udara karena?", pilihan:["Gravitasi Bulan terlalu lemah","Terlalu dekat ke Matahari","Adanya gelombang medan magnet","Karena Bulan berada di bayangan Bumi"], benar:0 },
+  { level:6, soal:"Gerhana Matahari sebagian terjadi ketika?", pilihan:["Hanya sebagian Matahari tertutup Bulan","Semua Matahari tertutup Bulan","Bulan di sisi lain Bumi","Bumi tidak berputar"], benar:0 },
+  { level:6, soal:"Satelit alami Bumi adalah?", pilihan:["Bulan","Venus","Mars","Saturnus"], benar:0 },
+  { level:6, soal:"Kalender lunar menggunakan fase Bulan untuk?", pilihan:["Menentukan tanggal dan hari penting","Mengarahkan satelit","Memprediksi cuaca","Menentukan musim"], benar:0 },
+  { level:6, soal:"Apa yang membuat Bulan tampak cerah meskipun tidak menghasilkan cahaya sendiri?", pilihan:["Refleksi cahaya Matahari","Cahaya dari bintang","Radiasi kosmik","Lampu kota"], benar:0 },
+  { level:6, soal:"Mengapa observasi Bulan penting untuk bangsa Indonesia?", pilihan:["Untuk ilmu pengetahuan dan budaya","Untuk mencari rumah baru","Untuk membuat jalan tol","Untuk meramal cuaca"], benar:0 },
+  { level:7, soal:"Pengetahuan astronomi membantu Indonesia dengan cara?", pilihan:["Memperkuat teknologi dan pendidikan","Mengubah cuaca","Membuat Bulan lebih dekat","Memperbanyak hari libur"], benar:0 },
+  { level:7, soal:"Studi Bulan membantu budaya Indonesia dalam?", pilihan:["Penentuan kalender dan pelayaran tradisional","Membuat makanan tradisional","Mendatangkan wisatawan asing","Mempercepat lalu lintas"], benar:0 },
+  { level:7, soal:"Gerhana Matahari total disebut juga?", pilihan:["Gerhana Matahari Total","Gerhana Matahari Sebagian","Gerhana Bulan","Gerhana Mini"], benar:0 },
+  { level:7, soal:"Hubungan fase Bulan dan pasang surut laut adalah?", pilihan:["Keduanya dipengaruhi oleh posisi Bulan, Bumi, dan Matahari","Keduanya akibat angin","Keduanya karena awan","Keduanya karena arus laut"], benar:0 },
+  { level:7, soal:"Belajar astronomi penting untuk Indonesia karena?", pilihan:["Masa depan ilmu pengetahuan bangsa","Hanya untuk hiburan","Agar Bulan tidak hilang","Untuk membuat roket sendiri"], benar:0 }
 ];
 
-const komentarBenar = ["Mantap! 🎉","Tepat sekali!","Luar biasa!","Ayo terus! 💪","Jenius!","Bener banget!","Gas gas gas! 🚀"];
-const komentarSalah = ["Yah, salah nih 😅","Hampir!","Coba ingat lagi~","Jangan menyerah!","Next soal pasti bisa!","Hmm, bukan itu 🤔","Makanya baca dulu 📚"];
-
-const WAKTU_PER_SOAL = 20; // detik
+const komentarBenar = ["Mantap! Negeri ini membutuhkanmu! 🇮🇩","Hebat! Kamu seperti ilmuwan muda Indonesia","Bagus! Terus jadi generasi bintang","Jawaban tepat, semangat untuk Nusantara!","Sip! Terus belajar demi negeri","👏 Mantap, kamu memberi harapan untuk Indonesia","Keren! Pengetahuanmu membuat bangga bangsa"];
+const komentarSalah = ["Jangan menyerah, ayo coba lagi!","Wah hampir benar, ayo ingat lagi","Yuk, tambah wawasan antariksa Indonesia","Coba ulangi, masa depan kita butuh kamu","Tetap semangat! Negeri ini menunggu pengetahuanmu","Belajar lagi ya, Indonesia butuh generasi cerdas","Ayo lanjut, masih banyak pertanyaan seru!"];
 
 let indexSoal = 0;
 let skor = 0;
@@ -2753,74 +2717,27 @@ let jumlahBenar = 0;
 let jumlahSalah = 0;
 let levelSekarang = 1;
 let sudahJawab = false;
-let timerInterval = null;
-let waktuSisa = WAKTU_PER_SOAL;
+let urutanSoal = [];
 
-function startTimer() {
-  clearInterval(timerInterval);
-  waktuSisa = WAKTU_PER_SOAL;
-  updateTimerUI();
+const levelNames = {
+  1: 'Pemula',
+  2: 'Penjelajah',
+  3: 'Pencari',
+  4: 'Peneliti',
+  5: 'Penjaga',
+  6: 'Bintang',
+  7: 'Generasi Emas Nusantara'
+};
 
-  timerInterval = setInterval(() => {
-    waktuSisa--;
-    updateTimerUI();
-
-    if (waktuSisa <= 0) {
-      clearInterval(timerInterval);
-      if (!sudahJawab) {
-        // waktu habis = salah, kemudian lanjut otomatis
-        sudahJawab = true;
-        jumlahSalah++;
-        const kartu = document.getElementById('kartu-aktif');
-        const feedback = document.getElementById('feedback-soal');
-        const soal = daftarSoal[indexSoal] || {};
-
-        if (kartu) {
-          const semuaTombol = kartu.querySelectorAll('.tombol-jawab');
-          semuaTombol.forEach(t => t.disabled = true);
-          if (typeof soal.benar === 'number' && semuaTombol[soal.benar]) {
-            semuaTombol[soal.benar].classList.add('jawaban-benar');
-          }
-          kartu.classList.add('guncang');
-          setTimeout(() => kartu.classList.remove('guncang'), 500);
-        }
-
-        if (feedback) {
-          feedback.textContent = '⏱ Waktu habis! Jawaban yang benar sudah ditandai.';
-          feedback.className = 'notif-feedback negatif tampil';
-        }
-
-        const angkaSalah = document.getElementById('angka-salah');
-        if (angkaSalah) angkaSalah.textContent = jumlahSalah;
-
-        setTimeout(() => {
-          if (indexSoal >= daftarSoal.length - 1) {
-            tampilHasil();
-          } else {
-            soalBerikutnya();
-          }
-        }, 900);
-      }
-    }
-  }, 1000);
-}
-
-function updateTimerUI() {
-  const el = document.getElementById('timer-angka');
-  const bar = document.getElementById('timer-bar-isi');
-  if (!el || !bar) return;
-
-  el.textContent = waktuSisa;
-  const persen = (waktuSisa / WAKTU_PER_SOAL) * 100;
-  bar.style.width = persen + '%';
-
-  if (waktuSisa <= 5) {
-    el.classList.add('bahaya');
-    bar.classList.add('bahaya');
-  } else {
-    el.classList.remove('bahaya');
-    bar.classList.remove('bahaya');
-  }
+function acakSoal() {
+  const semuaLevel = [...new Set(daftarSoal.map(q => q.level))].sort((a,b) => a - b);
+  urutanSoal = semuaLevel.flatMap(level => {
+    return daftarSoal
+      .map((q, idx) => ({ level: q.level, idx }))
+      .filter(item => item.level === level)
+      .sort(() => Math.random() - 0.5)
+      .map(item => item.idx);
+  });
 }
 
 function renderSoal() {
@@ -2838,10 +2755,15 @@ function renderSoal() {
     return;
   }
 
-  const soal = daftarSoal[indexSoal];
+  if (urutanSoal.length !== daftarSoal.length) acakSoal();
+  const soalIndex = urutanSoal[indexSoal] ?? 0;
+  const soal = daftarSoal[soalIndex];
   if (!soal) return;
 
-  const persen = (indexSoal / daftarSoal.length) * 100;
+  const levelIndices = urutanSoal.filter(idx => daftarSoal[idx].level === soal.level);
+  const nomorDalamLevel = levelIndices.indexOf(soalIndex) + 1;
+  const totalDalamLevel = levelIndices.length;
+  const persen = ((indexSoal + 1) / daftarSoal.length) * 100;
   progressBar.style.width = persen + '%';
 
   const levelBaru = soal.level;
@@ -2860,7 +2782,7 @@ function renderSoal() {
 
   area.innerHTML = `
     <div class="kartu-soal geser-masuk" id="kartu-aktif">
-      <div class="nomor-soal">Soal ${indexSoal+1} / ${daftarSoal.length} — Level ${soal.level}</div>
+      <div class="nomor-soal">Soal ${nomorDalamLevel} / ${totalDalamLevel} — Level ${soal.level} (${levelNames[soal.level] || 'Pemula'})</div>
       <p class="teks-soal">${soal.soal}</p>
       <div class="daftar-pilihan">${pilihanHTML}</div>
       <div class="notif-feedback" id="feedback-soal"></div>
@@ -2875,7 +2797,6 @@ function renderSoal() {
 function pilihJawaban(el, indexDipilih, indexBenar) {
   if (sudahJawab) return;
   sudahJawab = true;
-  clearInterval(timerInterval);
 
   const kartu = document.getElementById('kartu-aktif');
   const feedback = document.getElementById('feedback-soal');
@@ -2918,14 +2839,26 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
 
 function soalBerikutnya() {
   indexSoal++;
-  if (indexSoal >= daftarSoal.length) { tampilHasil(); return; }
+  if (indexSoal >= daftarSoal.length) {
+    acakSoal();
+    indexSoal = 0;
+    levelSekarang = 1;
+  }
   const kartu = document.getElementById('kartu-aktif');
   if (kartu) kartu.classList.add('geser-keluar');
   setTimeout(() => renderSoal(), 350);
 }
 
 function updateBadgeLevel() {
-  const namaLevel = {1:'🌱 Pemula', 2:'🌙 Penjelajah', 3:'🚀 Ahli Bulan'};
+  const namaLevel = {
+    1:'🌱 Pemula',
+    2:'🌙 Penjelajah',
+    3:'✨ Pencari',
+    4:'💡 Pengetahu',
+    5:'🌟 Penjaga',
+    6:'🚀 Bintang',
+    7:'🇮🇩 Nusantara'
+  };
   document.getElementById('nama-level').textContent = namaLevel[levelSekarang] || '🌱 Pemula';
   document.getElementById('label-level').textContent = 'Level ' + levelSekarang;
 }
@@ -2933,8 +2866,12 @@ function updateBadgeLevel() {
 function tampilNotifLevel(level) {
   const notif = document.getElementById('notif-level');
   const data = {
-    2: {ikon:'🌙', judul:'Level 2 — Penjelajah!', isi:'Soal makin susah nih, siap?'},
-    3: {ikon:'🚀', judul:'Level 3 — Ahli Bulan!', isi:'Final level! Buktikan kemampuanmu!'}
+    2: {ikon:'🌙', judul:'Level 2 — Penjelajah!', isi:'Soal makin menantang, terus semangat untuk Indonesia!'},
+    3: {ikon:'✨', judul:'Level 3 — Pencari!', isi:'Makin dalam ilmunya, terus wakili bangsa dengan bangga!'},
+    4: {ikon:'💡', judul:'Level 4 — Pengetahu!', isi:'Ilmu makin luas, terus asah untuk generasi Indonesia!'},
+    5: {ikon:'🌟', judul:'Level 5 — Penjaga!', isi:'Kamu semakin siap menjadi penjaga pengetahuan bangsa!'},
+    6: {ikon:'🚀', judul:'Level 6 — Bintang!', isi:'Kinerja hebat! Bintang muda Indonesia bersinar terang!'},
+    7: {ikon:'🇮🇩', judul:'Level 7 — Nusantara!', isi:'Puncak level! Tunjukkan kekuatan sains untuk negeri tercinta!'}
   };
   if (data[level]) {
     document.getElementById('notif-ikon').textContent = data[level].ikon;
@@ -2946,7 +2883,6 @@ function tampilNotifLevel(level) {
 }
 
 function tampilHasil() {
-  clearInterval(timerInterval);
   const areaSoal = document.getElementById('area-soal');
   const progress = document.getElementById('isi-progress');
   if (areaSoal) areaSoal.style.display = 'none';
@@ -2957,13 +2893,13 @@ function tampilHasil() {
 
   if (persenBenar >= 0.78) {
     badge = '🚀'; namaBadge = 'Ahli Bulan';
-    deskripsi = 'Luar biasa! Kamu menguasai hampir semua materi. NASA pasti butuh orang seperti kamu 🛸';
+    deskripsi = 'Luar biasa! Kamu menguasai hampir semua materi. Negeri ini membutuhkanmu untuk masa depan ilmu pengetahuan.';
   } else if (persenBenar >= 0.5) {
     badge = '🌙'; namaBadge = 'Penjelajah Antariksa';
-    deskripsi = 'Bagus! Pengetahuanmu cukup hebat. Masih ada ruang untuk belajar lebih jauh ✨';
+    deskripsi = 'Bagus! Pengetahuanmu cukup hebat. Teruslah belajar demi generasi Indonesia.';
   } else {
     badge = '🌱'; namaBadge = 'Pemula Berbakat';
-    deskripsi = 'Awal yang baik! Baca lebih banyak tentang antariksa dan coba lagi ya 🌟';
+    deskripsi = 'Awal yang baik! Pelajari lagi, karena bangsa ini butuh generasi pengetahuan yang kuat.';
   }
 
   const kotak = document.getElementById('kotak-hasil');
@@ -2979,13 +2915,13 @@ function tampilHasil() {
 }
 
 function ulangQuiz() {
-  clearInterval(timerInterval);
   indexSoal = 0;
   skor = 0;
   jumlahBenar = 0;
   jumlahSalah = 0;
   levelSekarang = 1;
   sudahJawab = false;
+  acakSoal();
 
   renderSoal();
 }
@@ -2997,6 +2933,8 @@ function mulaiUlang() {
 function mulaiQuiz() {
   document.getElementById('layar-mulai').style.display = 'none';
   document.getElementById('area-quiz-main').style.display = '';
+  indexSoal = 0;
+  acakSoal();
   renderSoal();
 }
 
