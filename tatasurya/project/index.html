@@ -2225,6 +2225,10 @@ body::after {
             <span class="angka-skor" id="angka-skor">0</span>
           </div>
           <div class="tampilan-skor">
+            <span class="label-skor">Rekor</span>
+            <span class="angka-skor" id="best-skor">0</span>
+          </div>
+          <div class="tampilan-skor">
             <span class="label-skor">Benar</span>
             <span class="angka-benar" id="angka-benar">0</span>
           </div>
@@ -2245,6 +2249,8 @@ body::after {
       <div class="kotak-hasil" id="kotak-hasil">
         <span class="badge-akhir" id="badge-akhir">🚀</span>
         <div class="skor-besar" id="skor-besar">0</div>
+        <div class="label-skor">Rekor</div>
+        <div class="angka-skor" id="rekor-skor">0</div>
         <div class="nama-badge" id="nama-badge">Pemula</div>
         <div class="deskripsi-hasil" id="deskripsi-hasil">Kamu telah menyelesaikan quiz.</div>
         <button class="tombol-ulang" onclick="ulangQuiz()">Coba Lagi</button>
@@ -2711,6 +2717,40 @@ const daftarSoal = [
 const komentarBenar = ["Mantap! Negeri ini membutuhkanmu! 🇮🇩","Hebat! Kamu seperti ilmuwan muda Indonesia","Bagus! Terus jadi generasi bintang","Jawaban tepat, semangat untuk Nusantara!","Sip! Terus belajar demi negeri","👏 Mantap, kamu memberi harapan untuk Indonesia","Keren! Pengetahuanmu membuat bangga bangsa"];
 const komentarSalah = ["Jangan menyerah, ayo coba lagi!","Wah hampir benar, ayo ingat lagi","Yuk, tambah wawasan antariksa Indonesia","Coba ulangi, masa depan kita butuh kamu","Tetap semangat! Negeri ini menunggu pengetahuanmu","Belajar lagi ya, Indonesia butuh generasi cerdas","Ayo lanjut, masih banyak pertanyaan seru!"];
 
+const STORAGE_KEY_BEST_SCORE = 'rsynzr_quiz_best_score';
+let bestScore = 0;
+
+function getBestScore() {
+  try {
+    const value = localStorage.getItem(STORAGE_KEY_BEST_SCORE);
+    return value ? Number(value) : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function saveBestScore(score) {
+  const currentBest = getBestScore();
+  if (score > currentBest) {
+    try {
+      localStorage.setItem(STORAGE_KEY_BEST_SCORE, score);
+    } catch {
+      // ignore storage failures
+    }
+    bestScore = score;
+    updateBestScoreUI();
+    return true;
+  }
+  return false;
+}
+
+function updateBestScoreUI() {
+  const bestEl = document.getElementById('best-skor');
+  if (bestEl) bestEl.textContent = bestScore;
+  const resultEl = document.getElementById('rekor-skor');
+  if (resultEl) resultEl.textContent = bestScore;
+}
+
 let indexSoal = 0;
 let skor = 0;
 let jumlahBenar = 0;
@@ -2920,6 +2960,10 @@ function tampilHasil() {
   if (skorBesar) skorBesar.textContent = skor;
   if (namaBadgeEl) namaBadgeEl.textContent = badge + ' ' + namaBadge;
   if (deskripsiHasil) deskripsiHasil.textContent = deskripsi;
+
+  saveBestScore(skor);
+  updateBestScoreUI();
+
   if (kotak) kotak.classList.add('tampil');
 }
 
@@ -2952,6 +2996,8 @@ function setupQuizEvents() {
   const areaQuizMain = document.getElementById('area-quiz-main');
   if (layarMulai) layarMulai.style.display = 'none';
   if (areaQuizMain) areaQuizMain.style.display = '';
+  bestScore = getBestScore();
+  updateBestScoreUI();
   renderSoal();
 }
 
