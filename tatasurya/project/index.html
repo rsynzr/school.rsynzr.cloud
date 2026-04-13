@@ -151,8 +151,27 @@ body::after {
   background: var(--biru);
   border-radius: 50%;
   display: block;
-  box-shadow: 0 0 8px var(--biru);
+  box-shadow: none;
   animation: kedip-dot 2s ease-in-out infinite;
+}
+
+.logo-school {
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  object-fit: contain;
+}
+
+.menu-nav a {
+  color: var(--putih);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.menu-nav a:hover {
+  color: var(--biru);
 }
 
 @keyframes kedip-dot {
@@ -1588,6 +1607,7 @@ body::after {
 <nav class="navigasi">
   <a href="#" class="logo-nav">
     <span></span>
+    <img src="" alt="Logo Sekolah" class="logo-school">
     FASE BULAN
   </a>
   <div class="nav-actions">
