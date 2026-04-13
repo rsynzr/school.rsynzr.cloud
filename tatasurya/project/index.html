@@ -812,8 +812,8 @@ body::after {
 
 .grid-fakta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
   margin-top: 32px;
 }
 
@@ -2008,17 +2008,11 @@ body::after {
             <!-- Umbra -->
             <polygon points="76,109 76,141 240,148 240,102" fill="rgba(0,0,30,0.55)"/>
 
-            <!-- Bulan di tengah -->
+            <!-- Bulan berada di antara Matahari dan Bumi -->
             <circle cx="195" cy="125" r="20" fill="#B0B0B0"/>
-            <!-- korona matahari terlihat -->
-            <circle cx="195" cy="125" r="28" fill="none" stroke="rgba(255,200,50,0.25)" stroke-width="6" filter="url(#glowCorona)"/>
-            <circle cx="195" cy="125" r="24" fill="none" stroke="rgba(255,200,50,0.15)" stroke-width="3"/>
 
             <!-- Bumi di kanan (menerima bayangan) -->
             <circle cx="340" cy="125" r="32" fill="url(#gradBumi2)"/>
-
-            <!-- titik bayangan umbra di bumi -->
-            <circle cx="325" cy="120" r="6" fill="rgba(0,0,0,0.5)"/>
 
             <!-- Label -->
             <text x="52" y="170" text-anchor="middle" fill="rgba(255,200,100,0.6)" font-size="9" font-family="Space Mono, monospace">MATAHARI</text>
@@ -2160,7 +2154,7 @@ body::after {
         <span class="ikon-fakta">🌕</span>
         <p class="pertanyaan-fakta">Kenapa kita selalu lihat sisi yang sama dari bulan?</p>
         <div class="jawaban-fakta">
-          <p class="teks-jawaban">Bulan mengalami "rotasi sinkron" — waktu rotasinya sama persis dengan waktu orbitnya mengelilingi bumi (sekitar 27 hari). Makanya kita selalu lihat muka yang sama. Sisi jauh bulan baru terlihat pertama kali tahun 1959 lewat foto dari Luna 3 milik Uni Soviet.</p>
+          <p class="teks-jawaban">Bulan mengalami "rotasi sinkron" — waktu rotasinya sama persis dengan waktu orbitnya mengelilingi Bumi. Makanya kita selalu melihat muka yang sama, dan sisi jauh bulan baru terlihat pertama kali lewat misi Luna 3.</p>
         </div>
         <span class="ikon-panah">▼</span>
       </div>
@@ -2170,7 +2164,7 @@ body::after {
         <span class="ikon-fakta">🌊</span>
         <p class="pertanyaan-fakta">Apa hubungan bulan dengan pasang surut air laut?</p>
         <div class="jawaban-fakta">
-          <p class="teks-jawaban">Gravitasi bulan menarik air laut — bagian bumi yang paling dekat dengan bulan mengalami pasang. Ada dua pasang dan dua surut setiap harinya. Saat bulan purnama atau bulan baru, tarikan matahari dan bulan menyatu, menghasilkan "spring tide" yang lebih ekstrem.</p>
+          <p class="teks-jawaban">Gravitasi bulan menarik air laut sehingga bagian Bumi terdekat mengalami tarikan paling kuat. Saat bulan baru atau purnama, gaya Matahari dan Bulan saling memperkuat sehingga pasang jadi lebih tinggi.</p>
         </div>
         <span class="ikon-panah">▼</span>
       </div>
@@ -2180,7 +2174,37 @@ body::after {
         <span class="ikon-fakta">👣</span>
         <p class="pertanyaan-fakta">Jejak kaki di bulan masih ada sampai sekarang?</p>
         <div class="jawaban-fakta">
-          <p class="teks-jawaban">Ya! Karena di bulan tidak ada angin atau air, jejak kaki astronot Apollo akan tetap ada selama jutaan tahun. Satu-satunya yang bisa menghapusnya adalah tumbukan meteorit kecil yang perlahan mengikis permukaan.</p>
+          <p class="teks-jawaban">Ya, karena bulan tidak memiliki angin atau air. Jejak kaki astronot Apollo diperkirakan bisa tetap terlihat selama jutaan tahun kecuali jika terkena meteorit.</p>
+        </div>
+        <span class="ikon-panah">▼</span>
+      </div>
+
+      <div class="kotak-fakta muncul-scroll" onclick="toggleFakta(this)">
+        <div class="hint"><span>↓ klik</span></div>
+        <span class="ikon-fakta">🌒</span>
+        <p class="pertanyaan-fakta">Mengapa bulan terlihat merah saat gerhana bulan?</p>
+        <div class="jawaban-fakta">
+          <p class="teks-jawaban">Saat cahaya Matahari melewati atmosfer Bumi, hanya gelombang panjang merah yang dibelokkan ke bayangan Bumi. Itulah yang membuat bulan tampak merah darah selama gerhana bulan total.</p>
+        </div>
+        <span class="ikon-panah">▼</span>
+      </div>
+
+      <div class="kotak-fakta muncul-scroll" onclick="toggleFakta(this)">
+        <div class="hint"><span>↓ klik</span></div>
+        <span class="ikon-fakta">🌗</span>
+        <p class="pertanyaan-fakta">Apa itu bulan biru (blue moon)?</p>
+        <div class="jawaban-fakta">
+          <p class="teks-jawaban">Blue moon adalah istilah untuk purnama kedua dalam satu bulan kalender. Ini bukan karena bulan berubah warna, tetapi karena terjadi dua purnama dalam satu bulan yang panjang.</p>
+        </div>
+        <span class="ikon-panah">▼</span>
+      </div>
+
+      <div class="kotak-fakta muncul-scroll" onclick="toggleFakta(this)">
+        <div class="hint"><span>↓ klik</span></div>
+        <span class="ikon-fakta">🌙</span>
+        <p class="pertanyaan-fakta">Mengapa bulan masih bersinar setelah matahari terbenam?</p>
+        <div class="jawaban-fakta">
+          <p class="teks-jawaban">Bulan memantulkan cahaya Matahari. Setelah matahari terbenam, cahaya yang dipantulkan oleh bulan masih bisa sampai ke mata kita, sehingga bulan tetap terlihat terang di langit malam.</p>
         </div>
         <span class="ikon-panah">▼</span>
       </div>
@@ -2483,14 +2507,30 @@ function renderSimDots() {
 
 function generateMoonSVG(tipe) {
   const moonBase = '#B0B0B0';
-  const moonLit = '#E5E5E5';
+  const moonLit = '#FFFBDF';
 
-  let svgContent = `<circle cx="100" cy="100" r="90" fill="${moonBase}"/>`;
+  let svgContent = `
+    <defs>
+      <radialGradient id="litGrad" cx="30%" cy="30%" r="80%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+        <stop offset="35%" stop-color="#fff7c5" stop-opacity="0.95"/>
+        <stop offset="100%" stop-color="#f0e7a0" stop-opacity="0.65"/>
+      </radialGradient>
+      <filter id="moonGlow">
+        <feGaussianBlur stdDeviation="3.5" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <circle cx="100" cy="100" r="90" fill="${moonBase}"/>
+  `;
 
   if (tipe === 'new') {
     svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>`;
   } else if (tipe === 'full') {
-    svgContent += `<circle cx="100" cy="100" r="90" fill="${moonLit}" fill-opacity="0.16"/>`;
+    svgContent += `<circle cx="100" cy="100" r="90" fill="${moonLit}" fill-opacity="0.9" filter="url(#moonGlow)"/>`;
   } else {
     let clipPath = '';
     if (tipe === 'waxing_crescent') {
@@ -2508,11 +2548,10 @@ function generateMoonSVG(tipe) {
     }
 
     svgContent += `<defs><clipPath id="moonClip">${clipPath}</clipPath></defs>`;
-    svgContent += `<circle cx="100" cy="100" r="90" fill="${moonLit}" clip-path="url(#moonClip)"/>`;
+    svgContent += `<circle cx="100" cy="100" r="90" fill="url(#litGrad)" clip-path="url(#moonClip)" filter="url(#moonGlow)"/>`;
   }
 
   svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>`;
-
   return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">${svgContent}</svg>`;
 }
 
@@ -2560,7 +2599,7 @@ function generateOrbitSVG(tipe, indexFase) {
   }
 
   return `
-  <svg viewBox="0 0 510 160" xmlns="http://www.w3.org/2000/svg" style="overflow:hidden">
+  <svg viewBox="0 0 510 160" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
     <defs>
       <radialGradient id="ogSun" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stop-color="#fffbe6"/>
@@ -2727,12 +2766,14 @@ function startTimer() {
         const kartu = document.getElementById('kartu-aktif');
         const feedback = document.getElementById('feedback-soal');
         const tombolLanjut = document.getElementById('tombol-lanjut');
-        const soal = daftarSoal[indexSoal];
+        const soal = daftarSoal[indexSoal] || {};
 
         if (kartu) {
           const semuaTombol = kartu.querySelectorAll('.tombol-jawab');
           semuaTombol.forEach(t => t.disabled = true);
-          semuaTombol[soal.benar].classList.add('jawaban-benar');
+          if (typeof soal.benar === 'number' && semuaTombol[soal.benar]) {
+            semuaTombol[soal.benar].classList.add('jawaban-benar');
+          }
           kartu.classList.add('guncang');
           setTimeout(() => kartu.classList.remove('guncang'), 500);
         }
@@ -2742,7 +2783,8 @@ function startTimer() {
           feedback.className = 'notif-feedback negatif tampil';
         }
 
-        document.getElementById('angka-salah').textContent = jumlahSalah;
+        const angkaSalah = document.getElementById('angka-salah');
+        if (angkaSalah) angkaSalah.textContent = jumlahSalah;
         if (tombolLanjut) tombolLanjut.classList.add('tampil');
       }
     }
@@ -2769,11 +2811,26 @@ function updateTimerUI() {
 
 function renderSoal() {
   const area = document.getElementById('area-soal');
+  const progressBar = document.getElementById('isi-progress');
+  const timerWrapper = document.querySelector('.quiz-timer-wrapper');
+  if (!area || !progressBar) return;
+
+  if (!Array.isArray(daftarSoal) || daftarSoal.length === 0) {
+    area.innerHTML = `
+      <div class="kartu-soal">
+        <p class="teks-soal">Quiz sedang tidak tersedia saat ini. Silakan muat ulang halaman atau coba lagi nanti.</p>
+      </div>
+    `;
+    progressBar.style.width = '0%';
+    if (timerWrapper) timerWrapper.style.display = 'none';
+    return;
+  }
+
   const soal = daftarSoal[indexSoal];
   if (!soal) return;
 
   const persen = (indexSoal / daftarSoal.length) * 100;
-  document.getElementById('isi-progress').style.width = persen + '%';
+  progressBar.style.width = persen + '%';
 
   const levelBaru = soal.level;
   if (levelBaru > levelSekarang) {
@@ -2811,10 +2868,13 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
   const kartu = document.getElementById('kartu-aktif');
   const feedback = document.getElementById('feedback-soal');
   const tombolLanjut = document.getElementById('tombol-lanjut');
-  const semuaTombol = kartu.querySelectorAll('.tombol-jawab');
+  if (!kartu || !feedback || !tombolLanjut) return;
 
+  const semuaTombol = kartu.querySelectorAll('.tombol-jawab');
   semuaTombol.forEach(t => t.disabled = true);
-  semuaTombol[indexBenar].classList.add('jawaban-benar');
+  if (typeof indexBenar === 'number' && semuaTombol[indexBenar]) {
+    semuaTombol[indexBenar].classList.add('jawaban-benar');
+  }
 
   if (indexDipilih === indexBenar) {
     jumlahBenar++;
@@ -2826,7 +2886,7 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
     feedback.className = 'notif-feedback positif tampil';
   } else {
     jumlahSalah++;
-    el.classList.add('jawaban-salah');
+    if (el) el.classList.add('jawaban-salah');
     kartu.classList.add('guncang');
     setTimeout(() => kartu.classList.remove('guncang'), 500);
     const komentar = komentarSalah[Math.floor(Math.random() * komentarSalah.length)];
@@ -2834,9 +2894,12 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
     feedback.className = 'notif-feedback negatif tampil';
   }
 
-  document.getElementById('angka-skor').textContent = skor;
-  document.getElementById('angka-benar').textContent = jumlahBenar;
-  document.getElementById('angka-salah').textContent = jumlahSalah;
+  const angkaSkor = document.getElementById('angka-skor');
+  const angkaBenar = document.getElementById('angka-benar');
+  const angkaSalah = document.getElementById('angka-salah');
+  if (angkaSkor) angkaSkor.textContent = skor;
+  if (angkaBenar) angkaBenar.textContent = jumlahBenar;
+  if (angkaSalah) angkaSalah.textContent = jumlahSalah;
   tombolLanjut.classList.add('tampil');
 }
 
@@ -2844,7 +2907,7 @@ function soalBerikutnya() {
   indexSoal++;
   if (indexSoal >= daftarSoal.length) { tampilHasil(); return; }
   const kartu = document.getElementById('kartu-aktif');
-  kartu.classList.add('geser-keluar');
+  if (kartu) kartu.classList.add('geser-keluar');
   setTimeout(() => renderSoal(), 350);
 }
 
@@ -2871,11 +2934,14 @@ function tampilNotifLevel(level) {
 
 function tampilHasil() {
   clearInterval(timerInterval);
-  document.getElementById('area-soal').style.display = 'none';
-  document.getElementById('isi-progress').style.width = '100%';
+  const areaSoal = document.getElementById('area-soal');
+  const progress = document.getElementById('isi-progress');
+  if (areaSoal) areaSoal.style.display = 'none';
+  if (progress) progress.style.width = '100%';
 
   // sembunyikan timer
-  document.querySelector('.quiz-timer-wrapper').style.display = 'none';
+  const timerWrapper = document.querySelector('.quiz-timer-wrapper');
+  if (timerWrapper) timerWrapper.style.display = 'none';
 
   const persenBenar = jumlahBenar / daftarSoal.length;
   let badge, namaBadge, deskripsi;
@@ -2892,11 +2958,15 @@ function tampilHasil() {
   }
 
   const kotak = document.getElementById('kotak-hasil');
-  document.getElementById('badge-akhir').textContent = badge;
-  document.getElementById('skor-besar').textContent = skor;
-  document.getElementById('nama-badge').textContent = badge + ' ' + namaBadge;
-  document.getElementById('deskripsi-hasil').textContent = deskripsi;
-  kotak.classList.add('tampil');
+  const badgeAkhir = document.getElementById('badge-akhir');
+  const skorBesar = document.getElementById('skor-besar');
+  const namaBadgeEl = document.getElementById('nama-badge');
+  const deskripsiHasil = document.getElementById('deskripsi-hasil');
+  if (badgeAkhir) badgeAkhir.textContent = badge;
+  if (skorBesar) skorBesar.textContent = skor;
+  if (namaBadgeEl) namaBadgeEl.textContent = badge + ' ' + namaBadge;
+  if (deskripsiHasil) deskripsiHasil.textContent = deskripsi;
+  if (kotak) kotak.classList.add('tampil');
 }
 
 function ulangQuiz() {
