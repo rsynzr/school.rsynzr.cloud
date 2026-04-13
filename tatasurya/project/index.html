@@ -384,25 +384,13 @@ body::after {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #4a9eff, #1a4a8a 50%, #0d2a5a);
+  background: #3B82F6;
   box-shadow:
-    0 0 0 2px rgba(74,158,255,0.2),
-    0 0 30px rgba(74,158,255,0.15),
-    inset -8px -8px 20px rgba(0,0,0,0.4);
+    inset -6px -6px 14px rgba(0,0,0,0.18),
+    0 0 18px rgba(59,130,246,0.18);
   position: relative;
   z-index: 2;
   flex-shrink: 0;
-}
-
-.planet-bumi::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background:
-    radial-gradient(ellipse 30% 20% at 60% 40%, rgba(74,180,74,0.5) 0%, transparent 70%),
-    radial-gradient(ellipse 20% 15% at 30% 60%, rgba(74,180,74,0.4) 0%, transparent 70%),
-    radial-gradient(ellipse 15% 10% at 70% 65%, rgba(74,180,74,0.3) 0%, transparent 70%);
 }
 
 .pembungkus-orbit {
@@ -427,9 +415,10 @@ body::after {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  object-fit: cover;
-  display: block;
-  box-shadow: 0 0 10px rgba(212,208,200,0.2), inset -4px -4px 8px rgba(0,0,0,0.35);
+  background: #B0B0B0;
+  box-shadow:
+    inset -4px -4px 8px rgba(0,0,0,0.12),
+    0 0 8px rgba(176,176,176,0.18);
   animation: bulan-counter 6s linear infinite;
 }
 
@@ -441,13 +430,9 @@ body::after {
 .planet-bulan::before {
   content: '';
   position: absolute;
-  width: 5px;
-  height: 5px;
+  inset: 0;
   border-radius: 50%;
-  background: rgba(0,0,0,0.2);
-  top: 6px;
-  left: 8px;
-  box-shadow: 4px 4px 0 -1px rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
 }
 
 .label-orbit {
@@ -1012,6 +997,35 @@ body::after {
   padding: 80px 0;
   position: relative;
   z-index: 1;
+}
+
+#layar-mulai {
+  min-height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#layar-mulai button {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  border: none;
+  color: #fff;
+  padding: 16px 28px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(59,130,246,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#layar-mulai button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 32px rgba(59,130,246,0.3);
+}
+
+#area-quiz-main {
+  display: none;
 }
 
 .header-quiz {
@@ -1681,7 +1695,7 @@ body::after {
     <div class="garis-orbit"></div>
     <div class="planet-bumi"></div>
     <div class="pembungkus-orbit">
-      <img class="planet-bulan" src="kisongan" alt="Bulan">
+      <div class="planet-bulan" aria-label="Bulan"></div>
     </div>
   </div>
 
@@ -1856,15 +1870,9 @@ body::after {
                 <stop offset="50%" stop-color="#ffcc44"/>
                 <stop offset="100%" stop-color="#ff9900" stop-opacity="0.8"/>
               </radialGradient>
-              <radialGradient id="gradBumi" cx="40%" cy="35%" r="60%">
-                <stop offset="0%" stop-color="#4a9eff"/>
-                <stop offset="50%" stop-color="#1a4a8a"/>
-                <stop offset="100%" stop-color="#0d2a5a"/>
-              </radialGradient>
-              <radialGradient id="gradBulan" cx="35%" cy="30%" r="65%">
-                <stop offset="0%" stop-color="#ff6633"/>
-                <stop offset="40%" stop-color="#cc3300"/>
-                <stop offset="100%" stop-color="#660000"/>
+              <radialGradient id="gradBumi" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#60A5FA"/>
+                <stop offset="100%" stop-color="#3B82F6"/>
               </radialGradient>
               <filter id="glowMat">
                 <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -1887,19 +1895,9 @@ body::after {
 
             <!-- Bumi di tengah -->
             <circle cx="200" cy="125" r="34" fill="url(#gradBumi)"/>
-            <!-- daratan bumi -->
-            <ellipse cx="213" cy="115" rx="10" ry="7" fill="rgba(74,180,74,0.45)" transform="rotate(-10,213,115)"/>
-            <ellipse cx="195" cy="130" rx="7" ry="5" fill="rgba(74,180,74,0.35)" transform="rotate(15,195,130)"/>
-            <!-- atmosfer bumi -->
-            <circle cx="200" cy="125" r="37" fill="none" stroke="rgba(100,160,255,0.15)" stroke-width="4"/>
 
-            <!-- Bulan di kanan (dalam umbra, merah karena pembiasan) -->
-            <circle cx="330" cy="125" r="18" fill="url(#gradBulan)"/>
-            <!-- efek merah -->
-            <circle cx="330" cy="125" r="18" fill="rgba(255,50,0,0.15)"/>
-            <!-- kawah -->
-            <circle cx="324" cy="120" r="2.5" fill="rgba(0,0,0,0.2)"/>
-            <circle cx="334" cy="128" r="1.5" fill="rgba(0,0,0,0.15)"/>
+            <!-- Bulan di kanan -->
+            <circle cx="330" cy="125" r="18" fill="#B0B0B0"/>
 
             <!-- Label -->
             <text x="52" y="170" text-anchor="middle" fill="rgba(255,200,100,0.6)" font-size="9" font-family="Space Mono, monospace">MATAHARI</text>
@@ -1933,18 +1931,11 @@ body::after {
             <defs>
               <radialGradient id="gradMat2" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stop-color="#fffbe6"/>
-                <stop offset="50%" stop-color="#ffcc44"/>
                 <stop offset="100%" stop-color="#ff9900" stop-opacity="0.8"/>
               </radialGradient>
-              <radialGradient id="gradBumi2" cx="40%" cy="35%" r="60%">
-                <stop offset="0%" stop-color="#4a9eff"/>
-                <stop offset="50%" stop-color="#1a4a8a"/>
-                <stop offset="100%" stop-color="#0d2a5a"/>
-              </radialGradient>
-              <radialGradient id="gradBulan2" cx="35%" cy="30%" r="65%">
-                <stop offset="0%" stop-color="#d4d0c8"/>
-                <stop offset="50%" stop-color="#9a9690"/>
-                <stop offset="100%" stop-color="#7a7670"/>
+              <radialGradient id="gradBumi2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#60A5FA"/>
+                <stop offset="100%" stop-color="#3B82F6"/>
               </radialGradient>
               <filter id="glowMat2">
                 <feGaussianBlur stdDeviation="5" result="blur"/>
@@ -1969,19 +1960,14 @@ body::after {
             <!-- Umbra -->
             <polygon points="76,109 76,141 240,148 240,102" fill="rgba(0,0,30,0.55)"/>
 
-            <!-- Bulan di tengah (menutupi matahari) -->
-            <circle cx="195" cy="125" r="20" fill="url(#gradBulan2)"/>
-            <!-- efek gelap karena bayangan -->
-            <circle cx="195" cy="125" r="20" fill="rgba(0,0,0,0.4)"/>
+            <!-- Bulan di tengah -->
+            <circle cx="195" cy="125" r="20" fill="#B0B0B0"/>
             <!-- korona matahari terlihat -->
             <circle cx="195" cy="125" r="28" fill="none" stroke="rgba(255,200,50,0.25)" stroke-width="6" filter="url(#glowCorona)"/>
             <circle cx="195" cy="125" r="24" fill="none" stroke="rgba(255,200,50,0.15)" stroke-width="3"/>
 
             <!-- Bumi di kanan (menerima bayangan) -->
             <circle cx="340" cy="125" r="32" fill="url(#gradBumi2)"/>
-            <ellipse cx="352" cy="116" rx="9" ry="6" fill="rgba(74,180,74,0.45)" transform="rotate(-10,352,116)"/>
-            <ellipse cx="335" cy="131" rx="6" ry="5" fill="rgba(74,180,74,0.35)" transform="rotate(15,335,131)"/>
-            <circle cx="340" cy="125" r="35" fill="none" stroke="rgba(100,160,255,0.12)" stroke-width="4"/>
 
             <!-- titik bayangan umbra di bumi -->
             <circle cx="325" cy="120" r="6" fill="rgba(0,0,0,0.5)"/>
@@ -2058,26 +2044,16 @@ body::after {
                 <stop offset="0%" stop-color="#fffbe6"/>
                 <stop offset="100%" stop-color="#ffaa00"/>
               </radialGradient>
-              <radialGradient id="psMoon" cx="35%" cy="30%" r="65%">
-                <stop offset="0%" stop-color="#e8e4dc"/>
-                <stop offset="100%" stop-color="#9a9690"/>
-              </radialGradient>
-              <radialGradient id="psEarth" cx="40%" cy="35%" r="60%">
-                <stop offset="0%" stop-color="#4a9eff"/>
-                <stop offset="50%" stop-color="#1a4a8a"/>
-                <stop offset="100%" stop-color="#0d2a5a"/>
-              </radialGradient>
             </defs>
             <!-- Matahari -->
             <circle cx="22" cy="55" r="16" fill="url(#psSun)" filter="url(#ogGlowS)"/>
             <!-- Bumi -->
-            <circle cx="130" cy="55" r="22" fill="url(#psEarth)"/>
-            <ellipse cx="137" cy="48" rx="7" ry="5" fill="rgba(74,180,74,0.4)" transform="rotate(-10,137,48)"/>
+            <circle cx="130" cy="55" r="22" fill="#3B82F6"/>
             <!-- Pasang (tonjolan air) kiri dan kanan -->
-            <ellipse cx="108" cy="55" rx="9" ry="7" fill="rgba(74,158,255,0.35)" stroke="rgba(74,158,255,0.5)" stroke-width="1"/>
-            <ellipse cx="152" cy="55" rx="9" ry="7" fill="rgba(74,158,255,0.35)" stroke="rgba(74,158,255,0.5)" stroke-width="1"/>
+            <ellipse cx="108" cy="55" rx="9" ry="7" fill="rgba(59,130,246,0.22)" stroke="rgba(59,130,246,0.35)" stroke-width="1"/>
+            <ellipse cx="152" cy="55" rx="9" ry="7" fill="rgba(59,130,246,0.22)" stroke="rgba(59,130,246,0.35)" stroke-width="1"/>
             <!-- Bulan -->
-            <circle cx="222" cy="55" r="13" fill="url(#psMoon)"/>
+            <circle cx="222" cy="55" r="13" fill="#B0B0B0"/>
             <!-- Garis sejajar -->
             <line x1="22" y1="55" x2="222" y2="55" stroke="rgba(255,200,0,0.15)" stroke-width="1" stroke-dasharray="3 3"/>
             <!-- Panah gravitasi -->
@@ -2096,26 +2072,16 @@ body::after {
                 <stop offset="0%" stop-color="#fffbe6"/>
                 <stop offset="100%" stop-color="#ffaa00"/>
               </radialGradient>
-              <radialGradient id="ntMoon" cx="35%" cy="30%" r="65%">
-                <stop offset="0%" stop-color="#e8e4dc"/>
-                <stop offset="100%" stop-color="#9a9690"/>
-              </radialGradient>
-              <radialGradient id="ntEarth" cx="40%" cy="35%" r="60%">
-                <stop offset="0%" stop-color="#4a9eff"/>
-                <stop offset="50%" stop-color="#1a4a8a"/>
-                <stop offset="100%" stop-color="#0d2a5a"/>
-              </radialGradient>
             </defs>
             <!-- Matahari kiri -->
             <circle cx="22" cy="55" r="16" fill="url(#ntSun)"/>
             <!-- Bumi tengah -->
-            <circle cx="130" cy="55" r="22" fill="url(#ntEarth)"/>
-            <ellipse cx="137" cy="48" rx="7" ry="5" fill="rgba(74,180,74,0.4)" transform="rotate(-10,137,48)"/>
+            <circle cx="130" cy="55" r="22" fill="#3B82F6"/>
             <!-- Pasang lebih kecil (atas bawah) -->
-            <ellipse cx="130" cy="33" rx="7" ry="5" fill="rgba(74,158,255,0.25)" stroke="rgba(74,158,255,0.35)" stroke-width="1"/>
-            <ellipse cx="130" cy="77" rx="7" ry="5" fill="rgba(74,158,255,0.25)" stroke="rgba(74,158,255,0.35)" stroke-width="1"/>
+            <ellipse cx="130" cy="33" rx="7" ry="5" fill="rgba(59,130,246,0.18)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <ellipse cx="130" cy="77" rx="7" ry="5" fill="rgba(59,130,246,0.18)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
             <!-- Bulan atas (90 derajat) -->
-            <circle cx="130" cy="12" r="11" fill="url(#ntMoon)"/>
+            <circle cx="130" cy="12" r="11" fill="#B0B0B0"/>
             <!-- Garis sudut 90° -->
             <line x1="22" y1="55" x2="200" y2="55" stroke="rgba(255,200,0,0.12)" stroke-width="1" stroke-dasharray="3 3"/>
             <line x1="130" y1="55" x2="130" y2="12" stroke="rgba(200,195,170,0.12)" stroke-width="1" stroke-dasharray="3 3"/>
@@ -2225,11 +2191,50 @@ body::after {
 
     <!-- Layar mulai -->
     <div id="layar-mulai">
-      <button onclick="mulaiQuiz()">🚀 Mulai Quiz</button>
+      <button id="mulai-quiz-btn" onclick="mulaiQuiz()">🚀 Mulai Quiz</button>
     </div>
 
-    <div id="area-quiz-main" style="display:none;">
+    <div id="area-quiz-main">
+      <div class="header-quiz">
+        <div class="panel-skor">
+          <div class="tampilan-skor">
+            <span class="label-skor">Skor</span>
+            <span class="angka-skor" id="angka-skor">0</span>
+          </div>
+          <div class="tampilan-skor">
+            <span class="label-skor">Benar</span>
+            <span class="angka-benar" id="angka-benar">0</span>
+          </div>
+          <div class="tampilan-skor">
+            <span class="label-skor">Salah</span>
+            <span class="angka-salah" id="angka-salah">0</span>
+          </div>
+        </div>
+        <div class="badge-level">
+          <span class="nama-level" id="nama-level">🌱 Pemula</span>
+          <span class="label-level" id="label-level">Level 1</span>
+        </div>
+      </div>
+      <div class="quiz-timer-wrapper">
+        <div class="quiz-timer-box">
+          <span class="timer-label">Waktu</span>
+          <span class="timer-angka" id="timer-angka">20</span>
+        </div>
+        <div class="timer-bar-mini">
+          <div class="timer-bar-isi" id="timer-bar-isi"></div>
+        </div>
+      </div>
+      <div class="bar-progress">
+        <div class="isi-progress" id="isi-progress"></div>
+      </div>
       <div class="area-soal" id="area-soal"></div>
+      <div class="kotak-hasil" id="kotak-hasil">
+        <span class="badge-akhir" id="badge-akhir">🚀</span>
+        <div class="skor-besar" id="skor-besar">0</div>
+        <div class="nama-badge" id="nama-badge">Pemula</div>
+        <div class="deskripsi-hasil" id="deskripsi-hasil">Kamu telah menyelesaikan quiz.</div>
+        <button class="tombol-ulang" onclick="ulangQuiz()">Coba Lagi</button>
+      </div>
     </div>
   </div>
 </section>
@@ -2428,114 +2433,43 @@ function renderSimDots() {
   `).join('');
 }
 
-function generateMoonSVG(tipe, illuminasi) {
-  // warna dasar
-  const moonLight = '#d8d4cc';
-  const moonDark = '#1a1a2a';
-  const moonMid = '#8a8680';
+function generateMoonSVG(tipe) {
+  const moonBase = '#B0B0B0';
+  const moonLit = '#E5E5E5';
 
-  let svgContent = '';
+  let svgContent = `<circle cx="100" cy="100" r="90" fill="${moonBase}"/>`;
 
-  // base circle (gelap)
-  svgContent += `<circle cx="100" cy="100" r="90" fill="${moonDark}"/>`;
-
-  // kawah-kawah
-  const kawah = [
-    {x:75, y:70, r:8, op:0.18},
-    {x:115, y:85, r:5, op:0.12},
-    {x:90, y:120, r:6, op:0.15},
-    {x:130, y:110, r:9, op:0.1},
-    {x:65, y:105, r:4, op:0.13},
-    {x:110, y:140, r:5, op:0.1},
-    {x:80, y:145, r:3, op:0.12},
-    {x:135, y:70, r:4, op:0.1},
-  ];
-
-  if (tipe === 'full') {
-    // PURNAMA — full bright circle with texture
-    svgContent += `
-      <defs>
-        <radialGradient id="mgFull" cx="40%" cy="35%" r="70%">
-          <stop offset="0%" stop-color="#f0ece0"/>
-          <stop offset="60%" stop-color="${moonLight}"/>
-          <stop offset="100%" stop-color="${moonMid}"/>
-        </radialGradient>
-      </defs>
-      <circle cx="100" cy="100" r="90" fill="url(#mgFull)"/>
-    `;
-    kawah.forEach(k => {
-      svgContent += `<circle cx="${k.x}" cy="${k.y}" r="${k.r}" fill="rgba(0,0,0,${k.op})"/>`;
-    });
-    // glow
-    svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(220,210,180,0.15)" stroke-width="8"/>`;
-
-  } else if (tipe === 'new') {
-    // BULAN BARU — hampir full dark, sedikit outline
-    svgContent += `<circle cx="100" cy="100" r="90" fill="${moonDark}"/>`;
-    svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(100,100,150,0.25)" stroke-width="1.5"/>`;
-    kawah.forEach(k => {
-      svgContent += `<circle cx="${k.x}" cy="${k.y}" r="${k.r}" fill="rgba(255,255,255,0.04)"/>`;
-    });
-
+  if (tipe === 'new') {
+    svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>`;
+  } else if (tipe === 'full') {
+    svgContent += `<circle cx="100" cy="100" r="90" fill="${moonLit}" fill-opacity="0.16"/>`;
   } else {
-    // FASE LAINNYA — menggunakan clip path untuk bentuk sabit/kuartal/cembung
-    const cx = 100, cy = 100, r = 90;
     let clipPath = '';
-    let lit = '';
-
     if (tipe === 'waxing_crescent') {
-      // sabit kanan kecil
-      clipPath = `<clipPath id="moonClip"><path d="M 100,10 A 90,90 0 0,1 100,190 A 65,90 0 0,0 100,10 Z"/></clipPath>`;
-      lit = `<circle cx="100" cy="100" r="90" fill="${moonMid}" clip-path="url(#moonClip)"/>`;
+      clipPath = `<path d="M100,10 A90,90 0 0,1 100,190 A55,90 0 0,0 100,10 Z"/>`;
     } else if (tipe === 'first_quarter') {
-      // setengah kanan
-      clipPath = `<clipPath id="moonClip"><rect x="100" y="10" width="90" height="180"/></clipPath>`;
-      lit = `<circle cx="100" cy="100" r="90" fill="${moonLight}" clip-path="url(#moonClip)"/>`;
+      clipPath = `<rect x="100" y="10" width="90" height="180"/>`;
     } else if (tipe === 'waxing_gibbous') {
-      // cembung kanan
-      clipPath = `<clipPath id="moonClip"><path d="M 100,10 A 90,90 0 0,1 100,190 A 30,90 0 0,0 100,10 Z"/></clipPath>`;
-      lit = `<circle cx="100" cy="100" r="90" fill="${moonLight}" clip-path="url(#moonClip)"/>`;
+      clipPath = `<path d="M100,10 A90,90 0 0,1 100,190 A30,90 0 0,0 100,10 Z"/>`;
     } else if (tipe === 'waning_gibbous') {
-      // cembung kiri
-      clipPath = `<clipPath id="moonClip"><path d="M 100,10 A 90,90 0 0,0 100,190 A 30,90 0 0,1 100,10 Z"/></clipPath>`;
-      lit = `<circle cx="100" cy="100" r="90" fill="${moonLight}" clip-path="url(#moonClip)"/>`;
+      clipPath = `<path d="M100,10 A90,90 0 0,0 100,190 A30,90 0 0,1 100,10 Z"/>`;
     } else if (tipe === 'last_quarter') {
-      // setengah kiri
-      clipPath = `<clipPath id="moonClip"><rect x="10" y="10" width="90" height="180"/></clipPath>`;
-      lit = `<circle cx="100" cy="100" r="90" fill="${moonLight}" clip-path="url(#moonClip)"/>`;
+      clipPath = `<rect x="10" y="10" width="90" height="180"/>`;
     } else if (tipe === 'waning_crescent') {
-      // sabit kiri kecil
-      clipPath = `<clipPath id="moonClip"><path d="M 100,10 A 90,90 0 0,0 100,190 A 65,90 0 0,1 100,10 Z"/></clipPath>`;
-      lit = `<circle cx="100" cy="100" r="90" fill="${moonMid}" clip-path="url(#moonClip)"/>`;
+      clipPath = `<path d="M100,10 A90,90 0 0,0 100,190 A55,90 0 0,1 100,10 Z"/>`;
     }
 
-    svgContent += `<defs>${clipPath}</defs>`;
-    svgContent += lit;
-
-    // kawah di area terang
-    kawah.forEach(k => {
-      svgContent += `<circle cx="${k.x}" cy="${k.y}" r="${k.r}" fill="rgba(0,0,0,0.12)" clip-path="url(#moonClip)"/>`;
-    });
+    svgContent += `<defs><clipPath id="moonClip">${clipPath}</clipPath></defs>`;
+    svgContent += `<circle cx="100" cy="100" r="90" fill="${moonLit}" clip-path="url(#moonClip)"/>`;
   }
 
-  // gradient overlay untuk kedalaman
-  svgContent += `
-    <defs>
-      <radialGradient id="mgOverlay" cx="35%" cy="30%" r="70%">
-        <stop offset="0%" stop-color="rgba(255,255,255,0.06)"/>
-        <stop offset="100%" stop-color="rgba(0,0,0,0.15)"/>
-      </radialGradient>
-    </defs>
-    <circle cx="100" cy="100" r="90" fill="url(#mgOverlay)"/>
-  `;
+  svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>`;
 
   return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">${svgContent}</svg>`;
 }
 
 function generateOrbitSVG(tipe, indexFase) {
-  // posisi bulan mengelilingi bumi berdasarkan index fase (0-7)
-  // sudut mulai dari atas (antara bumi dan matahari) searah jarum jam
-  const sudutMap = [180, 225, 270, 315, 0, 45, 90, 135]; // derajat, 180 = kiri (antara mat-bumi) = bulan baru
+  const sudutMap = [180, 225, 270, 315, 0, 45, 90, 135];
   const sudut = sudutMap[indexFase];
   const rad = (sudut * Math.PI) / 180;
   const rx = 160, ry = 60;
@@ -2543,23 +2477,18 @@ function generateOrbitSVG(tipe, indexFase) {
 
   const bx = cx + rx * Math.cos(rad);
   const by = cy + ry * Math.sin(rad);
+  const diDepan = Math.cos(rad) < 0;
 
-  // bayangan di belakang bulan (sebelum atau sesudah bumi relatif matahari)
-  const diDepan = Math.cos(rad) < 0; // bulan di sisi matahari
-
-  // bulan mini inline dalam orbit SVG
   const moonR = 13;
-  const moonLight = '#d8d4cc';
-  const moonDark = '#1a1a2a';
+  const moonBase = '#B0B0B0';
+  const moonLit = '#E5E5E5';
   let moonFill = '';
 
   if (tipe === 'full') {
-    moonFill = `<circle cx="${bx}" cy="${by}" r="${moonR}" fill="${moonLight}"/>`;
+    moonFill = `<circle cx="${bx}" cy="${by}" r="${moonR}" fill="${moonLit}"/>`;
   } else if (tipe === 'new') {
-    moonFill = `<circle cx="${bx}" cy="${by}" r="${moonR}" fill="${moonDark}"/>
-      <circle cx="${bx}" cy="${by}" r="${moonR}" fill="none" stroke="rgba(150,150,180,0.3)" stroke-width="1"/>`;
+    moonFill = `<circle cx="${bx}" cy="${by}" r="${moonR}" fill="${moonBase}"/>`;
   } else {
-    // sabit/kuartal/cembung — pakai clip
     const clipId = 'oc' + indexFase;
     let clipShape = '';
     if (tipe === 'waxing_crescent')
@@ -2577,8 +2506,8 @@ function generateOrbitSVG(tipe, indexFase) {
 
     moonFill = `
       <defs><clipPath id="${clipId}">${clipShape}</clipPath></defs>
-      <circle cx="${bx}" cy="${by}" r="${moonR}" fill="${moonDark}"/>
-      <circle cx="${bx}" cy="${by}" r="${moonR}" fill="${moonLight}" clip-path="url(#${clipId})"/>
+      <circle cx="${bx}" cy="${by}" r="${moonR}" fill="${moonBase}"/>
+      <circle cx="${bx}" cy="${by}" r="${moonR}" fill="${moonLit}" clip-path="url(#${clipId})"/>
     `;
   }
 
@@ -2590,10 +2519,9 @@ function generateOrbitSVG(tipe, indexFase) {
         <stop offset="50%" stop-color="#ffcc44"/>
         <stop offset="100%" stop-color="#ff9900" stop-opacity="0.8"/>
       </radialGradient>
-      <radialGradient id="ogEarth" cx="40%" cy="35%" r="60%">
-        <stop offset="0%" stop-color="#4a9eff"/>
-        <stop offset="50%" stop-color="#1a4a8a"/>
-        <stop offset="100%" stop-color="#0d2a5a"/>
+      <radialGradient id="ogEarth" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#60A5FA"/>
+        <stop offset="100%" stop-color="#3B82F6"/>
       </radialGradient>
       <filter id="ogGlowS"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
       <filter id="ogGlowM"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -2611,22 +2539,17 @@ function generateOrbitSVG(tipe, indexFase) {
     <text x="52" y="${cy + 44}" text-anchor="middle"
       fill="rgba(255,200,100,0.5)" font-size="8" font-family="Space Mono,monospace">MATAHARI</text>
 
-    <!-- bulan (di belakang bumi jika diDepan) -->
     ${diDepan ? '' : `<g filter="url(#ogGlowM)">${moonFill}</g>`}
 
-    <!-- bumi -->
     <circle cx="${cx}" cy="${cy}" r="22" fill="url(#ogEarth)"/>
     <text x="${cx}" y="${cy + 38}" text-anchor="middle"
       fill="rgba(100,180,255,0.5)" font-size="8" font-family="Space Mono,monospace">BUMI</text>
 
-    <!-- bulan (di depan bumi) -->
     ${diDepan ? `<g filter="url(#ogGlowM)">${moonFill}</g>` : ''}
 
-    <!-- label bulan -->
     <text x="${bx}" y="${by + moonR + 13}" text-anchor="middle"
       fill="rgba(200,195,170,0.55)" font-size="8" font-family="Space Mono,monospace">BULAN</text>
 
-    <!-- garis dari bumi ke bulan -->
     <line x1="${cx}" y1="${cy}" x2="${bx}" y2="${by}"
       stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="2 3"/>
   </svg>`;
@@ -2950,6 +2873,10 @@ function mulaiQuiz() {
   renderSoal();
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const startBtn = document.getElementById('mulai-quiz-btn');
+  if (startBtn) startBtn.addEventListener('click', mulaiQuiz);
+});
 
 // Console easter egg
 console.log("%c⚠️ STOP!", "color:red; font-size:50px; font-weight:bold;");
