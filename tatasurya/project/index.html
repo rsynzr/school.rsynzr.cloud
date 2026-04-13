@@ -39,6 +39,11 @@
   --biru-redup: #1a2a5e;
   --glow-biru: rgba(74, 124, 255, 0.25);
   --glow-ungu: rgba(139, 92, 246, 0.2);
+  --earth: #3B82F6;
+  --earth-deep: #2563eb;
+  --moon: #B0B0B0;
+  --moon-soft: #E5E5E5;
+  --text-muted: rgba(255,255,255,0.72);
   --radius: 14px;
 }
 
@@ -315,7 +320,7 @@ body::after {
 
 .grid-konten {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
   margin-top: 40px;
 }
@@ -365,8 +370,10 @@ body::after {
 
 .arena-orbit {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: min(320px, 85vw);
+  height: min(320px, 85vw);
+  max-width: 320px;
+  max-height: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -374,32 +381,32 @@ body::after {
 
 .garis-orbit {
   position: absolute;
-  width: 260px;
-  height: 260px;
+  width: 85%;
+  height: 85%;
   border-radius: 50%;
   border: 1px dashed rgba(255,255,255,0.08);
+}
+
+.pembungkus-orbit {
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  border-radius: 50%;
+  animation: orbit-muter 6s linear infinite;
+  transform-origin: center center;
 }
 
 .planet-bumi {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: #3B82F6;
+  background: var(--earth);
   box-shadow:
     inset -6px -6px 14px rgba(0,0,0,0.18),
     0 0 18px rgba(59,130,246,0.18);
   position: relative;
   z-index: 2;
   flex-shrink: 0;
-}
-
-.pembungkus-orbit {
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  animation: orbit-muter 6s linear infinite;
-  transform-origin: center center;
 }
 
 @keyframes orbit-muter {
@@ -415,7 +422,7 @@ body::after {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #B0B0B0;
+  background: var(--moon);
   box-shadow:
     inset -4px -4px 8px rgba(0,0,0,0.12),
     0 0 8px rgba(176,176,176,0.18);
@@ -433,6 +440,40 @@ body::after {
   inset: 0;
   border-radius: 50%;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+.diagram-comparison {
+  margin-top: 36px;
+  background: var(--hitam-2);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.diagram-comparison .diagram-header {
+  padding: 20px 24px 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.diagram-row {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  min-width: 0;
+}
+
+.diagram-row svg {
+  width: 100%;
+  height: auto;
+}
+
+.diagram-row p {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--putih);
+  margin-bottom: 12px;
+  text-align: center;
 }
 
 .label-orbit {
@@ -469,7 +510,7 @@ body::after {
 
 .fase-grid-penjelasan {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
   margin-top: 36px;
 }
@@ -569,8 +610,10 @@ body::after {
 
 /* canvas SVG bulan */
 .sim-moon-canvas {
-  width: 200px;
-  height: 200px;
+  width: min(220px, 76vw);
+  height: min(220px, 76vw);
+  max-width: 220px;
+  max-height: 220px;
   margin: 0 auto 28px;
   position: relative;
 }
@@ -708,7 +751,7 @@ body::after {
 
 .gerhana-grid-gambar {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   margin-top: 36px;
 }
@@ -1531,7 +1574,8 @@ body::after {
   max-width: 580px;
   margin: 0 auto 20px;
   position: relative;
-  height: 160px;
+  aspect-ratio: 16 / 10;
+  min-height: 140px;
   overflow: hidden;
 }
 
@@ -1543,8 +1587,10 @@ body::after {
 
 /* Bulan kecil di bawah nama fase */
 .sim-moon-mini {
-  width: 100px;
-  height: 100px;
+  width: min(140px, 40vw);
+  height: min(140px, 40vw);
+  max-width: 140px;
+  max-height: 140px;
   margin: 0 auto 16px;
   position: relative;
 }
@@ -1561,12 +1607,13 @@ body::after {
 @media (max-width: 640px) {
   .menu-nav { display: none; }
   .grid-konten { grid-template-columns: 1fr; }
-  .fase-grid-penjelasan { grid-template-columns: 1fr 1fr; }
+  .fase-grid-penjelasan { grid-template-columns: 1fr; }
   .gerhana-grid-gambar { grid-template-columns: 1fr; }
+  .diagram-row { grid-template-columns: 1fr; }
 
-  .arena-orbit { width: 240px; height: 240px; }
-  .garis-orbit { width: 210px; height: 210px; }
-  .pembungkus-orbit { width: 210px; height: 210px; }
+  .arena-orbit { width: min(260px, 90vw); height: min(260px, 90vw); }
+  .garis-orbit { width: 88%; height: 88%; }
+  .pembungkus-orbit { width: 88%; height: 88%; }
 
   .kartu-soal { padding: 24px 20px 20px; }
   .notif-level { right: 10px; left: 10px; max-width: unset; }
@@ -1580,6 +1627,7 @@ body::after {
   .header-quiz { flex-direction: column; align-items: flex-start; }
   .label-orbit { gap: 24px; }
   .fase-grid-penjelasan { grid-template-columns: 1fr; }
+  .diagram-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -2029,11 +2077,11 @@ body::after {
     </div>
 
     <!-- Visual diagram pasang surut -->
-    <div class="muncul-scroll" style="margin-top:36px; background:var(--hitam-2); border:1px solid rgba(255,255,255,0.07); border-radius:var(--radius); overflow:visible;">
-      <div style="padding:20px 24px 8px; border-bottom:1px solid rgba(255,255,255,0.05);">
+    <div class="muncul-scroll diagram-comparison">
+      <div class="diagram-header">
         <span style="font-family:'Space Mono',monospace; font-size:0.72rem; color:var(--biru); letter-spacing:0.1em; text-transform:uppercase;">Diagram Perbandingan</span>
       </div>
-      <div style="padding:24px; display:grid; grid-template-columns:1fr 1fr; gap:20px; min-width:0;">
+      <div class="diagram-row">
 
         <!-- Spring Tide -->
         <div>
