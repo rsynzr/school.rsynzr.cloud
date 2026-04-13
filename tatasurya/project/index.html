@@ -2297,15 +2297,6 @@ body::after {
           <span class="label-level" id="label-level">Level 1</span>
         </div>
       </div>
-      <div class="quiz-timer-wrapper">
-        <div class="quiz-timer-box">
-          <span class="timer-label">Waktu</span>
-          <span class="timer-angka" id="timer-angka">20</span>
-        </div>
-        <div class="timer-bar-mini">
-          <div class="timer-bar-isi" id="timer-bar-isi"></div>
-        </div>
-      </div>
       <div class="bar-progress">
         <div class="isi-progress" id="isi-progress"></div>
       </div>
@@ -2835,7 +2826,6 @@ function updateTimerUI() {
 function renderSoal() {
   const area = document.getElementById('area-soal');
   const progressBar = document.getElementById('isi-progress');
-  const timerWrapper = document.querySelector('.quiz-timer-wrapper');
   if (!area || !progressBar) return;
 
   if (!Array.isArray(daftarSoal) || daftarSoal.length === 0) {
@@ -2845,7 +2835,6 @@ function renderSoal() {
       </div>
     `;
     progressBar.style.width = '0%';
-    if (timerWrapper) timerWrapper.style.display = 'none';
     return;
   }
 
@@ -2875,19 +2864,11 @@ function renderSoal() {
       <p class="teks-soal">${soal.soal}</p>
       <div class="daftar-pilihan">${pilihanHTML}</div>
       <div class="notif-feedback" id="feedback-soal"></div>
+      <button class="tombol-lanjut" id="tombol-lanjut" onclick="soalBerikutnya()">Soal Berikutnya →</button>
     </div>
   `;
 
   sudahJawab = false;
-
-  // timer hanya aktif mulai dari soal ke-2
-  if (indexSoal === 0) {
-    clearInterval(timerInterval);
-    if (timerWrapper) timerWrapper.style.display = 'none';
-  } else {
-    if (timerWrapper) timerWrapper.style.display = '';
-    startTimer();
-  }
 }
 
 
@@ -2931,14 +2912,8 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
   if (angkaBenar) angkaBenar.textContent = jumlahBenar;
   if (angkaSalah) angkaSalah.textContent = jumlahSalah;
 
-  // otomatis lanjut ke soal berikutnya setelah umpan balik singkat
-  setTimeout(() => {
-    if (indexSoal >= daftarSoal.length - 1) {
-      tampilHasil();
-    } else {
-      soalBerikutnya();
-    }
-  }, 900);
+  const tombolLanjut = document.getElementById('tombol-lanjut');
+  if (tombolLanjut) tombolLanjut.classList.add('tampil');
 }
 
 function soalBerikutnya() {
@@ -2976,10 +2951,6 @@ function tampilHasil() {
   const progress = document.getElementById('isi-progress');
   if (areaSoal) areaSoal.style.display = 'none';
   if (progress) progress.style.width = '100%';
-
-  // sembunyikan timer
-  const timerWrapper = document.querySelector('.quiz-timer-wrapper');
-  if (timerWrapper) timerWrapper.style.display = 'none';
 
   const persenBenar = jumlahBenar / daftarSoal.length;
   let badge, namaBadge, deskripsi;
