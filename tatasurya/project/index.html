@@ -173,6 +173,58 @@ body::after {
   color: var(--biru);
 }
 
+.nav-toggle {
+  display: none;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--putih);
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-toggle span,
+.nav-toggle span::before,
+.nav-toggle span::after {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: currentColor;
+  border-radius: 999px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle span {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav-toggle span::before {
+  content: '';
+  top: -8px;
+}
+
+.nav-toggle span::after {
+  content: '';
+  top: 8px;
+}
+
+.nav-toggle.open span {
+  background: transparent;
+}
+
+.nav-toggle.open span::before {
+  transform: translateY(0) rotate(45deg);
+}
+
+.nav-toggle.open span::after {
+  transform: translateY(0) rotate(-45deg);
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
@@ -1577,6 +1629,31 @@ body::after {
    ============================ */
 @media (max-width: 640px) {
   .menu-nav { display: none; }
+  .menu-nav.open { display: flex; }
+  .nav-toggle { display: block; }
+  .nav-actions { gap: 16px; }
+  .menu-nav {
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+    padding: 16px 18px;
+    background: rgba(6, 6, 10, 0.96);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    box-shadow: 0 22px 40px rgba(0,0,0,0.25);
+    width: min(220px, calc(100vw - 40px));
+    z-index: 101;
+  }
+  .menu-nav li { width: 100%; }
+  .menu-nav a {
+    width: 100%;
+    padding: 10px 0;
+    display: block;
+  }
+  .nav-avatar { display: none; }
   .grid-konten { grid-template-columns: 1fr; }
   .fase-grid-penjelasan { grid-template-columns: 1fr; }
   .gerhana-grid-gambar { grid-template-columns: 1fr; }
@@ -1617,6 +1694,9 @@ body::after {
       <li><a href="#fakta">Fun Fact</a></li>
       <li><a href="#quiz">Quiz</a></li>
     </ul>
+    <button class="nav-toggle" type="button" aria-label="Buka menu">
+      <span></span>
+    </button>
     <div class="nav-avatar" aria-label="Placeholder profil pengguna"></div>
   </div>
 </nav>
@@ -2653,6 +2733,31 @@ function renderSimulator() {
 
   renderSimDots();
 }
+
+(function setupNavToggle() {
+  const navToggleBtn = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.menu-nav');
+  if (!navToggleBtn || !navMenu) return;
+
+  navToggleBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    navToggleBtn.classList.toggle('open');
+  });
+
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      navToggleBtn.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!navMenu.contains(event.target) && !navToggleBtn.contains(event.target)) {
+      navMenu.classList.remove('open');
+      navToggleBtn.classList.remove('open');
+    }
+  });
+})();
 
 function simGoto(idx) {
   if (idx === simIndex) return;
