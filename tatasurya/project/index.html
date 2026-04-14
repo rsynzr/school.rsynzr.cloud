@@ -2501,7 +2501,6 @@ function generateMoonSVG(tipe) {
 
   if (tipe === 'new') {
     svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>`;
-    svgContent += `<circle cx="130" cy="100" r="40" fill="rgba(255,255,255,0.12)"/>`;
   } else if (tipe === 'full') {
     svgContent += `<circle cx="100" cy="100" r="90" fill="${moonLit}" filter="url(#moonGlow)"/>`;
   } else {
