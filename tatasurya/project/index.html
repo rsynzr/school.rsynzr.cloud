@@ -142,26 +142,9 @@ body::after {
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.logo-nav span {
-  width: 8px;
-  height: 8px;
-  background: var(--biru);
-  border-radius: 50%;
-  display: block;
-  box-shadow: none;
-  animation: kedip-dot 2s ease-in-out infinite;
-}
-
-.logo-school {
-  width: 22px;
-  height: 22px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
-  object-fit: contain;
+  gap: 0;
+  line-height: 1;
+  min-height: 42px;
 }
 
 .menu-nav a {
@@ -174,22 +157,18 @@ body::after {
   color: var(--biru);
 }
 
-@keyframes kedip-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+.nav-actions {
+  display: flex;
+  align-items: center;
+    gap: 24px;
 }
-
-  .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-  }
 
   .menu-nav {
     display: flex;
-    gap: 18px;
+    align-items: center;
+    gap: 24px;
     list-style: none;
-    margin-right: 14px;
+    margin-right: 10px;
   }
 
   .nav-avatar {
@@ -197,14 +176,21 @@ body::after {
     height: 42px;
     min-width: 42px;
     border-radius: 999px;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.12);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--putih);
-    font-size: 1.05rem;
-    box-shadow: 0 0 18px rgba(74,124,255,0.18);
+    position: relative;
+    box-shadow: 0 0 18px rgba(74,124,255,0.12);
+  }
+
+  .nav-avatar::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
   }
 
 .label-kecil {
@@ -1605,11 +1591,7 @@ body::after {
 
 <!-- NAVIGASI -->
 <nav class="navigasi">
-  <a href="#" class="logo-nav">
-    <span></span>
-    <img src="" alt="Logo Sekolah" class="logo-school">
-    FASE BULAN
-  </a>
+  <a href="#" class="logo-nav">FASE BULAN</a>
   <div class="nav-actions">
     <ul class="menu-nav">
       <li><a href="#orbit">Orbit</a></li>
@@ -1619,7 +1601,7 @@ body::after {
       <li><a href="#fakta">Fun Fact</a></li>
       <li><a href="#quiz">Quiz</a></li>
     </ul>
-    <div class="nav-avatar" aria-label="Profil pengguna">👤</div>
+    <div class="nav-avatar" aria-label="Placeholder profil pengguna"></div>
   </div>
 </nav>
 
