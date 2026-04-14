@@ -2989,7 +2989,7 @@ function mulaiUlang() {
 
 function mulaiQuiz() {
   document.getElementById('layar-mulai').style.display = 'none';
-  document.getElementById('area-quiz-main').style.display = '';
+  document.getElementById('area-quiz-main').style.display = 'block';
   indexSoal = 0;
   acakSoal();
   renderSoal();
@@ -2999,7 +2999,7 @@ function setupQuizEvents() {
   const layarMulai = document.getElementById('layar-mulai');
   const areaQuizMain = document.getElementById('area-quiz-main');
   if (layarMulai) layarMulai.style.display = 'none';
-  if (areaQuizMain) areaQuizMain.style.display = '';
+  if (areaQuizMain) areaQuizMain.style.display = 'block';
   bestScore = getBestScore();
   updateBestScoreUI();
   renderSoal();
