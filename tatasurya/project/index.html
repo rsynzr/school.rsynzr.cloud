@@ -1690,6 +1690,159 @@ body::after {
   .fase-grid-penjelasan { grid-template-columns: 1fr; }
   .diagram-row { grid-template-columns: 1fr; }
 }
+
+/* ============================
+   INFOGRAFIS WRAPPER
+   ============================ */
+.infografis-wrapper {
+  width: 100%;
+  max-width: 860px;
+  margin: 48px auto 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: var(--hitam-2);
+  box-shadow: 0 0 60px rgba(74,124,255,0.07);
+  animation: fade-masuk 1.1s ease 0.3s both;
+}
+
+.infografis-img-container {
+  position: relative;
+  cursor: zoom-in;
+  overflow: hidden;
+  background: var(--hitam-3);
+}
+
+.infografis-img-container img {
+  width: 100%;
+  display: block;
+  min-height: 320px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.infografis-img-container:hover img {
+  transform: scale(1.02);
+}
+
+.zoom-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  background: rgba(6,6,10,0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 99px;
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  color: var(--abu-terang);
+  font-family: 'Space Mono', monospace;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.infografis-img-container:hover .zoom-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn-download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  background: rgba(74,124,255,0.07);
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  color: var(--biru);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.btn-download:hover {
+  background: rgba(74,124,255,0.14);
+  color: #7aa8ff;
+}
+
+.btn-download svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  backdrop-filter: blur(6px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-overlay.aktif {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-inner {
+  position: relative;
+  max-width: min(900px, 96vw);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.modal-inner img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+
+.modal-tutup {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--putih);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  line-height: 1;
+}
+
+.modal-tutup:hover {
+  background: rgba(255,255,255,0.15);
+}
+
 </style>
 </head>
 
@@ -1734,9 +1887,30 @@ body::after {
     <p class="subjudul">
       Fase Bulan adalah perubahan bentuk tampilan Bulan yang terlihat dari Bumi akibat perbedaan posisi antara Bulan, Bumi, dan Matahari. Perubahan ini terjadi secara teratur dalam satu siklus, sehingga menghasilkan berbagai fase seperti bulan baru, sabit, purnama, dan seterusnya.
     </p>
-    <div class="kotak-infografis">
-      <img src="https://school.rsynzr.cloud/img/infografis2.png" alt="Infografis Fase Bulan" loading="lazy">
-    </div>
+    <div class="infografis-wrapper">
+  <div class="infografis-img-container" onclick="openModal()" title="Klik untuk memperbesar">
+    <img
+      id="infografis-img"
+      src="https://school.rsynzr.cloud/img/infografis2.png"
+      alt="Infografis Fase Bulan"
+      loading="lazy"
+      onerror="this.parentElement.innerHTML='<div style=\'min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;\'><span style=\'font-size:2.5rem;opacity:0.3;\'>🖼️</span><p style=\'color:var(--abu);font-size:0.82rem;font-family:Space Mono,monospace;\'>Gambar tidak ditemukan</p></div>'"
+    />
+    <span class="zoom-hint">🔍 Klik untuk zoom</span>
+  </div>
+  <a href="https://school.rsynzr.cloud/img/infografis2.png" download class="btn-download">
+    <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4zm-7 4h14v-2H5v2z"/></svg>
+    Download Infografis
+  </a>
+</div>
+
+<!-- Modal zoom -->
+<div class="modal-overlay" id="modal-infografis" onclick="closeModal(event)">
+  <div class="modal-inner">
+    <button class="modal-tutup" onclick="closeModal(null, true)" aria-label="Tutup">✕</button>
+    <img src="https://school.rsynzr.cloud/img/infografis2.png" alt="Infografis Fase Bulan (zoom)"/>
+  </div>
+</div>
   </div>
 </section>
 
@@ -2499,6 +2673,24 @@ function toggleFakta(el) {
   }
 }
 
+// ========================
+// MODAL INFOGRAFIS
+// ========================
+function openModal() {
+  document.getElementById('modal-infografis').classList.add('aktif');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(event, force) {
+  if (force || !event || event.target === document.getElementById('modal-infografis')) {
+    document.getElementById('modal-infografis').classList.remove('aktif');
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal(null, true);
+});
 
 // ========================
 // SIMULATOR FASE BULAN
