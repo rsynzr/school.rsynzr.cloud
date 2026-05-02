@@ -1707,22 +1707,26 @@ body::after {
 }
 
 .infografis-img-container {
-  position: relative;
+  width: 100%;
+  max-width: 600px;
   cursor: zoom-in;
+  border-radius: 12px;
   overflow: hidden;
-  background: var(--hitam-3);
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.infografis-img-container:hover {
+  box-shadow: 0 8px 28px rgba(74,124,255,0.18);
+  transform: translateY(-3px);
 }
 
 .infografis-img-container img {
   width: 100%;
+  height: auto;
   display: block;
-  min-height: 320px;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.infografis-img-container:hover img {
-  transform: scale(1.02);
 }
 
 .zoom-hint {
