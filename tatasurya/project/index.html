@@ -2626,8 +2626,9 @@ function generateMoonSVG(tipe) {
       clipPath = `<path d="M100,10 A90,90 0 0,0 100,190 A55,90 0 0,1 100,10 Z"/>`;
     }
 
-    svgContent += `<defs><clipPath id="moonClip">${clipPath}</clipPath></defs>`;
-    svgContent += `<circle cx="100" cy="100" r="90" fill="url(#litGrad)" clip-path="url(#moonClip)" filter="url(#moonGlow)"/>`;
+    // SESUDAH
+svgContent += `<defs><clipPath id="moonClip-${tipe}">${clipPath}</clipPath></defs>`;
+svgContent += `<circle cx="100" cy="100" r="90" fill="url(#litGrad)" clip-path="url(#moonClip-${tipe})" filter="url(#moonGlow)"/>`;
     svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>`;
   }
 
