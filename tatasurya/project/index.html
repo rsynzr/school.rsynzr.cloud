@@ -2586,7 +2586,7 @@ function generateMoonSVG(tipe) {
 
   let svgContent = `
     <defs>
-      <radialGradient id="litGrad" cx="40%" cy="35%" r="65%">
+      <radialGradient id="litGrad-${tipe}" cx="${tipe.startsWith('wan') ? '35%' : '60%'}" cy="35%" r="65%">
         <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
         <stop offset="35%" stop-color="#fff7c5" stop-opacity="0.95"/>
         <stop offset="70%" stop-color="#f9f1b5" stop-opacity="0.65"/>
@@ -2626,9 +2626,8 @@ function generateMoonSVG(tipe) {
       clipPath = `<path d="M100,10 A90,90 0 0,0 100,190 A55,90 0 0,1 100,10 Z"/>`;
     }
 
-    // SESUDAH
-svgContent += `<defs><clipPath id="moonClip-${tipe}">${clipPath}</clipPath></defs>`;
-svgContent += `<circle cx="100" cy="100" r="90" fill="url(#litGrad)" clip-path="url(#moonClip-${tipe})" filter="url(#moonGlow)"/>`;
+    svgContent += `<defs><clipPath id="moonClip-${tipe}">${clipPath}</clipPath></defs>`;
+    svgContent += `<circle cx="100" cy="100" r="90" fill="url(#litGrad-${tipe})" clip-path="url(#moonClip-${tipe})" filter="url(#moonGlow)"/>`;
     svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>`;
   }
 
