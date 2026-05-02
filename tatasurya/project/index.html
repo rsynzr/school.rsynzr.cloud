@@ -1704,6 +1704,9 @@ body::after {
   background: var(--hitam-2);
   box-shadow: 0 0 60px rgba(74,124,255,0.07);
   animation: fade-masuk 1.1s ease 0.3s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* ← tambah ini */
 }
 
 .infografis-img-container {
@@ -1753,23 +1756,37 @@ body::after {
 }
 
 .btn-download {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 100%;
-  padding: 14px 20px;
+  width: auto;           /* ← bukan 100% */
+  margin: 16px auto;     /* ← tengah */
+  padding: 12px 28px;
   background: rgba(74,124,255,0.07);
-  border: none;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(74,124,255,0.25);
+  border-radius: 99px;   /* ← pill shape */
   color: var(--biru);
   font-family: 'DM Sans', sans-serif;
   font-size: 0.88rem;
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
   letter-spacing: 0.01em;
+}
+
+.btn-download:hover {
+  background: rgba(74,124,255,0.14);
+  color: #7aa8ff;
+  transform: translateY(-2px);
+}
+
+.btn-download svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
 .btn-download:hover {
