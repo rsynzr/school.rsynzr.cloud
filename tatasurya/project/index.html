@@ -1786,16 +1786,6 @@ body::after {
         <h3>Masa Depan</h3>
         <p>Program Artemis NASA bertujuan membawa manusia kembali ke bulan dan membangun stasiun luar angkasa di orbit bulan sebagai batu loncatan menuju Mars.</p>
       </div>
-      <div class="kotak-info">
-        <div class="ikon-info">🌌</div>
-       <h3>Permukaan Bulan</h3>
-        <p>Permukaan bulan dipenuhi kawah akibat tumbukan meteorit. Karena tidak ada atmosfer, bekas tumbukan ini tetap terlihat jelas selama jutaan tahun.</p>
-      </div>
-      <div class="kotak-info">
-        <div class="ikon-info">🧲</div>
-        <h3>Gravitasi Bulan</h3>
-        <p>Gravitasi bulan hanya sekitar 1/6 dari bumi. Hal ini membuat benda terasa lebih ringan dan manusia bisa melompat lebih tinggi.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -2596,7 +2586,7 @@ function generateMoonSVG(tipe) {
         <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.2"/>
       </filter>
     </defs>
-    <circle cx="100" cy="100" r="90" fill="#ffffff"/>
+    <circle cx="100" cy="100" r="90" fill="${moonBase}" filter="url(#moonShadow)"/>
   `;
 
   if (tipe === 'new') {
@@ -2620,9 +2610,7 @@ function generateMoonSVG(tipe) {
     }
 
     svgContent += `<defs><clipPath id="moonClip">${clipPath}</clipPath></defs>`;
-    svgContent += `<!-- Bulan penuh -->
-      <circle cx="100" cy="100" r="90" fill="url(#litGrad)"/>
-      <circle cx="80" cy="100" r="90" fill="rgba(0,0,0,0.4)"/>`;
+    svgContent += `<circle cx="100" cy="100" r="90" fill="url(#litGrad)" clip-path="url(#moonClip)" filter="url(#moonGlow)"/>`;
     svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>`;
   }
 
