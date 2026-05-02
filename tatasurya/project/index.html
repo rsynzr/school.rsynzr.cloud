@@ -3041,9 +3041,10 @@ function pilihJawaban(el, indexDipilih, indexBenar) {
 function soalBerikutnya() {
   indexSoal++;
   if (indexSoal >= daftarSoal.length) {
-    acakSoal();
-    indexSoal = 0;
-    levelSekarang = 1;
+    const kartu = document.getElementById('kartu-aktif');
+    if (kartu) kartu.classList.add('geser-keluar');
+    setTimeout(() => tampilHasil(), 350);
+    return;
   }
   const kartu = document.getElementById('kartu-aktif');
   if (kartu) kartu.classList.add('geser-keluar');
@@ -3128,6 +3129,19 @@ function ulangQuiz() {
   sudahJawab = false;
   acakSoal();
 
+  const kotak = document.getElementById('kotak-hasil');
+  const areaSoal = document.getElementById('area-soal');
+  const angkaSkor = document.getElementById('angka-skor');
+  const angkaBenar = document.getElementById('angka-benar');
+  const angkaSalah = document.getElementById('angka-salah');
+
+  if (kotak) kotak.classList.remove('tampil');
+  if (areaSoal) areaSoal.style.display = '';
+  if (angkaSkor) angkaSkor.textContent = '0';
+  if (angkaBenar) angkaBenar.textContent = '0';
+  if (angkaSalah) angkaSalah.textContent = '0';
+
+  updateBadgeLevel();
   renderSoal();
 }
 
