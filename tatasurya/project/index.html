@@ -2586,7 +2586,7 @@ function generateMoonSVG(tipe) {
         <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.2"/>
       </filter>
     </defs>
-    <circle cx="100" cy="100" r="90" fill="${moonBase}" filter="url(#moonShadow)"/>
+    <circle cx="100" cy="100" r="90" fill="#1a1a24" filter="url(#moonShadow)"></circle>
   `;
 
   if (tipe === 'new') {
@@ -2600,9 +2600,9 @@ function generateMoonSVG(tipe) {
     } else if (tipe === 'first_quarter') {
       clipPath = `<rect x="100" y="10" width="90" height="180"/>`;
     } else if (tipe === 'waxing_gibbous') {
-      clipPath = `<path d="M100,10 A90,90 0 0,1 100,190 A30,90 0 0,0 100,10 Z"/>`;
-    } else if (tipe === 'waning_gibbous') {
       clipPath = `<path d="M100,10 A90,90 0 0,0 100,190 A30,90 0 0,1 100,10 Z"/>`;
+    } else if (tipe === 'waning_gibbous') {
+      clipPath = `<path d="M100,10 A90,90 0 0,1 100,190 A30,90 0 0,0 100,10 Z"/>`;
     } else if (tipe === 'last_quarter') {
       clipPath = `<rect x="10" y="10" width="90" height="180"/>`;
     } else if (tipe === 'waning_crescent') {
