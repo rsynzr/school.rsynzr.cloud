@@ -3179,11 +3179,16 @@ function renderSoal() {
   }
 
   const huruf = ['A','B','C','D'];
-  const pilihanHTML = soal.pilihan.map((p, i) => `
-    <button class="tombol-jawab" onclick="pilihJawaban(this, ${i}, ${soal.benar})">
-      <span class="huruf-pilihan">${huruf[i]}</span>${p}
-    </button>
-  `).join('');
+
+// Acak posisi pilihan
+const acakIndeks = soal.pilihan.map((_, i) => i).sort(() => Math.random() - 0.5);
+const posisiBenar = acakIndeks.indexOf(soal.benar);
+
+const pilihanHTML = acakIndeks.map((asliIdx, posiBaru) => `
+  <button class="tombol-jawab" onclick="pilihJawaban(this, ${posiBaru}, ${posisiBenar})">
+    <span class="huruf-pilihan">${huruf[posiBaru]}</span>${soal.pilihan[asliIdx]}
+  </button>
+`).join('');
 
   area.innerHTML = `
     <div class="kartu-soal geser-masuk" id="kartu-aktif">
