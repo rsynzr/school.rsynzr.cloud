@@ -2596,7 +2596,7 @@ function generateMoonSVG(tipe) {
         <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.2"/>
       </filter>
     </defs>
-    <circle cx="100" cy="100" r="90" fill="${moonBase}" filter="url(#moonShadow)"/>
+    <circle cx="100" cy="100" r="90" fill="#ffffff"/>
   `;
 
   if (tipe === 'new') {
@@ -2620,7 +2620,9 @@ function generateMoonSVG(tipe) {
     }
 
     svgContent += `<defs><clipPath id="moonClip">${clipPath}</clipPath></defs>`;
-    svgContent += `<circle cx="100" cy="100" r="90" fill="url(#litGrad)" clip-path="url(#moonClip)" filter="url(#moonGlow)"/>`;
+    svgContent += `<!-- Bulan penuh -->
+      <circle cx="100" cy="100" r="90" fill="url(#litGrad)"/>
+      <circle cx="80" cy="100" r="90" fill="rgba(0,0,0,0.4)"/>`;
     svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>`;
   }
 
