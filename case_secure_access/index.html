@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Secure Download</title>
+
   <style>
     body {
-      background: black;
-      color: white;
+      background: #000;
+      color: #fff;
       font-family: Arial;
       text-align: center;
       margin-top: 100px;
+    }
+
+    #status {
+      font-size: 20px;
+      margin-bottom: 20px;
     }
 
     #download {
@@ -19,8 +25,7 @@
       color: black;
       text-decoration: none;
       border-radius: 5px;
-      margin-top: 20px;
-      display: inline-block;
+      margin-top: 10px;
     }
 
     button {
@@ -38,41 +43,55 @@
   <h1>Status Server</h1>
   <p id="status">⏳ Mengecek...</p>
 
+  <a id="download">Download case.zip</a>
   <br>
-
-  <a id="download" href="https://matias-skilful-unadministratively.ngrok-free.dev/download">
-    Download case.zip
-  </a>
-
-  <br>
-
-  <button onclick="cekServer()">🔄 Refresh Status</button>
+  <button onclick="cekServer()">🔄 Refresh</button>
 
   <script>
+    // 🔥 GANTI SEKALI DI SINI SAJA
+    const BASE_URL = "https://matias-skilful-unadministratively.ngrok-free.dev";
+
     async function cekServer() {
       const statusEl = document.getElementById("status");
       const downloadBtn = document.getElementById("download");
 
       statusEl.innerText = "⏳ Mengecek...";
+      downloadBtn.style.display = "none";
+      downloadBtn.removeAttribute("href");
 
       try {
-        const res = await fetch("https://matias-skilful-unadministratively.ngrok-free.dev/status");
-        const data = await res.json();
+        console.log("FETCH:", BASE_URL + "/status");
+
+        const res = await fetch(BASE_URL + "/status");
+
+        console.log("STATUS CODE:", res.status);
+
+        if (!res.ok) throw new Error("Response tidak OK");
+
+        const text = await res.text();
+        console.log("RAW RESPONSE:", text);
+
+        const data = JSON.parse(text);
 
         if (data.status === "online") {
           statusEl.innerText = "🟢 Server Aktif";
+
+          downloadBtn.href = BASE_URL + "/download";
           downloadBtn.style.display = "inline-block";
+        } else {
+          throw new Error("Status bukan online");
         }
+
       } catch (err) {
+        console.log("ERROR:", err);
         statusEl.innerText = "🔴 Server Mati";
-        downloadBtn.style.display = "none";
       }
     }
 
     // cek pertama kali
     cekServer();
 
-    // cek otomatis tiap 1 menit
+    // auto cek tiap 1 menit
     setInterval(cekServer, 60000);
   </script>
 
