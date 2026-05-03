@@ -1869,6 +1869,33 @@ body::after {
 </head>
 
 <body>
+  <!-- MUSIC PLAYER -->
+<div id="music-overlay" onclick="startMusic()" style="
+  position:fixed; inset:0; z-index:9999;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(6,6,10,0.85); backdrop-filter:blur(8px);
+  cursor:pointer;
+">
+  <div style="text-align:center;">
+    <div style="font-size:3rem; margin-bottom:16px;">🌙</div>
+    <div style="font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:800; color:#f0eee9; margin-bottom:8px;">Fase Bulan</div>
+    <div style="font-family:'Space Mono',monospace; font-size:0.75rem; color:#8a8a9a; letter-spacing:0.15em;">KLIK DI MANA SAJA UNTUK MULAI</div>
+  </div>
+</div>
+
+<!-- TOMBOL MUTE -->
+<button id="btn-mute" onclick="toggleMute()" style="
+  position:fixed; bottom:24px; right:24px; z-index:500;
+  width:40px; height:40px; border-radius:50%;
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+  color:#f0eee9; font-size:1rem; cursor:pointer;
+  display:none; align-items:center; justify-content:center;
+  transition:background 0.2s;
+" title="Mute/Unmute">🔊</button>
+
+<audio id="bg-music" loop>
+  <source src="https://school.rsynzr.cloud/src/bintang5.mp3" type="audio/mpeg">
+</audio>
 
 <!-- NAVIGASI -->
 <nav class="navigasi">
@@ -3373,6 +3400,29 @@ function mulaiQuiz() {
   indexSoal = 0;
   acakSoal();
   renderSoal();
+}
+
+// ========================
+// MUSIC PLAYER
+// ========================
+function startMusic() {
+  const overlay = document.getElementById('music-overlay');
+  const music = document.getElementById('bg-music');
+  const btnMute = document.getElementById('btn-mute');
+  
+  music.volume = 0.4;
+  music.play();
+  overlay.style.opacity = '0';
+  overlay.style.transition = 'opacity 0.5s ease';
+  setTimeout(() => overlay.style.display = 'none', 500);
+  btnMute.style.display = 'flex';
+}
+
+function toggleMute() {
+  const music = document.getElementById('bg-music');
+  const btn = document.getElementById('btn-mute');
+  music.muted = !music.muted;
+  btn.textContent = music.muted ? '🔇' : '🔊';
 }
 
 function setupQuizEvents() {
