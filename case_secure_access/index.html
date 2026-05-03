@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Secure Download</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    #download {
+      display: none;
+      padding: 10px 20px;
+      background: lime;
+      color: black;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background: cyan;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Status Server</h1>
+  <p id="status">⏳ Mengecek...</p>
+
+  <br>
+
+  <a id="download" href="https://abc123.ngrok.io/download">
+    Download case.zip
+  </a>
+
+  <br>
+
+  <button onclick="cekServer()">🔄 Refresh Status</button>
+
+  <script>
+    async function cekServer() {
+      const statusEl = document.getElementById("status");
+      const downloadBtn = document.getElementById("download");
+
+      statusEl.innerText = "⏳ Mengecek...";
+
+      try {
+        const res = await fetch("https://abc123.ngrok.io/status");
+        const data = await res.json();
+
+        if (data.status === "online") {
+          statusEl.innerText = "🟢 Server Aktif";
+          downloadBtn.style.display = "inline-block";
+        }
+      } catch (err) {
+        statusEl.innerText = "🔴 Server Mati";
+        downloadBtn.style.display = "none";
+      }
+    }
+
+    // cek pertama kali
+    cekServer();
+
+    // cek otomatis tiap 1 menit
+    setInterval(cekServer, 60000);
+  </script>
+
+</body>
+</html>
