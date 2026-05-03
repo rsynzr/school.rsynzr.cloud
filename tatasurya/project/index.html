@@ -2820,34 +2820,40 @@ function generateMoonSVG(tipe) {
     <circle cx="100" cy="100" r="90" fill="#1a1a24" filter="url(#moonShadow)"></circle>
   `;
 
-  if (tipe === 'new') {
-    svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>`;
+ if (tipe === 'new') {
+    moonFill = `<circle cx="${bx}" cy="${by}" r="${moonR}" fill="#1a1a24"/>`;
   } else if (tipe === 'full') {
-    svgContent += `<circle cx="100" cy="100" r="90" fill="${moonLit}" filter="url(#moonGlow)"/>`;
+    moonFill = `<circle cx="${bx}" cy="${by}" r="${moonR}" fill="#fffce0" filter="url(#ogGlowM)"/>`;
   } else {
-    let clipPath = '';
-    if (tipe === 'waxing_crescent') {
-      clipPath = `<path d="M100,10 A90,90 0 0,1 100,190 A55,90 0 0,0 100,10 Z"/>`;
-    } else if (tipe === 'first_quarter') {
-      clipPath = `<rect x="100" y="10" width="90" height="180"/>`;
-    } else if (tipe === 'waxing_gibbous') {
-  clipPath = `<path d="M100,10 A90,90 0 0,1 100,190 A25,90 0 0,1 100,10 Z"/>`;
-} else if (tipe === 'waning_gibbous') {
-  clipPath = `<path d="M100,10 A90,90 0 0,0 100,190 A25,90 0 0,0 100,10 Z"/>`;
-    } else if (tipe === 'last_quarter') {
-      clipPath = `<rect x="10" y="10" width="90" height="180"/>`;
-    } else if (tipe === 'waning_crescent') {
-      clipPath = `<path d="M100,10 A90,90 0 0,0 100,190 A55,90 0 0,1 100,10 Z"/>`;
-    }
+    const clipId = 'oc' + indexFase;
+    let clipShape = '';
+    if (tipe === 'waxing_crescent')
+      clipShape = `<path d="M ${bx},${by - moonR} A ${moonR},${moonR} 0 0,1 ${bx},${by + moonR} A ${moonR * 0.7},${moonR} 0 0,0 ${bx},${by - moonR} Z"/>`;
+    else if (tipe === 'first_quarter')
+      clipShape = `<rect x="${bx}" y="${by - moonR}" width="${moonR}" height="${moonR * 2}"/>`;
+    else if (tipe === 'waxing_gibbous')
+      clipShape = `<path d="M ${bx},${by - moonR} A ${moonR},${moonR} 0 0,1 ${bx},${by + moonR} A ${moonR * 0.3},${moonR} 0 0,0 ${bx},${by - moonR} Z"/>`;
+    else if (tipe === 'waning_gibbous')
+      clipShape = `<path d="M ${bx},${by - moonR} A ${moonR},${moonR} 0 0,0 ${bx},${by + moonR} A ${moonR * 0.3},${moonR} 0 0,1 ${bx},${by - moonR} Z"/>`;
+    else if (tipe === 'last_quarter')
+      clipShape = `<rect x="${bx - moonR}" y="${by - moonR}" width="${moonR}" height="${moonR * 2}"/>`;
+    else if (tipe === 'waning_crescent')
+      clipShape = `<path d="M ${bx},${by - moonR} A ${moonR},${moonR} 0 0,0 ${bx},${by + moonR} A ${moonR * 0.7},${moonR} 0 0,1 ${bx},${by - moonR} Z"/>`;
 
-    svgContent += `<defs><clipPath id="moonClip-${tipe}">${clipPath}</clipPath></defs>`;
-    svgContent += `<circle cx="100" cy="100" r="90" fill="url(#litGrad-${tipe})" clip-path="url(#moonClip-${tipe})" filter="url(#moonGlow)"/>`;
-    svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>`;
+    moonFill = `
+      <defs>
+        <radialGradient id="litGrad-orb" cx="${tipe.startsWith('wan') ? '35%' : '60%'}" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+          <stop offset="35%" stop-color="#fff7c5" stop-opacity="0.95"/>
+          <stop offset="70%" stop-color="#f9f1b5" stop-opacity="0.65"/>
+          <stop offset="100%" stop-color="#f4e89a" stop-opacity="0.25"/>
+        </radialGradient>
+        <clipPath id="${clipId}">${clipShape}</clipPath>
+      </defs>
+      <circle cx="${bx}" cy="${by}" r="${moonR}" fill="#1a1a24"/>
+      <circle cx="${bx}" cy="${by}" r="${moonR}" fill="url(#litGrad-orb)" clip-path="url(#${clipId})" filter="url(#ogGlowM)"/>
+    `;
   }
-
-  svgContent += `<circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>`;
-  return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">${svgContent}</svg>`;
-}
 
 function generateOrbitSVG(tipe, indexFase) {
   const sudutMap = [180, 225, 270, 315, 0, 45, 90, 135];
