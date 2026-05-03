@@ -59,7 +59,7 @@
         const res = await fetch("https://matias-skilful-unadministratively.ngrok-free.dev/status");
         const data = await res.json();
 
-        if (data.status === true) {
+        if (data.status === "online") {
           statusEl.innerText = "🟢 Server Aktif";
           downloadBtn.style.display = "inline-block";
         }
