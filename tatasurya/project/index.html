@@ -2877,9 +2877,9 @@ function generateOrbitSVG(tipe, indexFase) {
     else if (tipe === 'first_quarter')
       clipShape = `<rect x="${bx}" y="${by - moonR}" width="${moonR}" height="${moonR * 2}"/>`;
     else if (tipe === 'waxing_gibbous')
-      clipShape = `<path d="M ${bx},${by - moonR} A ${moonR},${moonR} 0 0,1 ${bx},${by + moonR} A ${moonR * 0.3},${moonR} 0 0,0 ${bx},${by - moonR} Z"/>`;
+      clipShape = `<path d="M ${bx},${by - moonR} A ${moonR},${moonR} 0 0,1 ${bx},${by + moonR} A ${moonR * 0.3},${moonR} 0 0,1 ${bx},${by - moonR} Z"/>`;
     else if (tipe === 'waning_gibbous')
-      clipShape = `<path d="M ${bx},${by - moonR} A ${moonR},${moonR} 0 0,0 ${bx},${by + moonR} A ${moonR * 0.3},${moonR} 0 0,1 ${bx},${by - moonR} Z"/>`;
+      clipShape = `<path d="M ${bx},${by - moonR} A ${moonR},${moonR} 0 0,0 ${bx},${by + moonR} A ${moonR * 0.3},${moonR} 0 0,0 ${bx},${by - moonR} Z"/>`;
     else if (tipe === 'last_quarter')
       clipShape = `<rect x="${bx - moonR}" y="${by - moonR}" width="${moonR}" height="${moonR * 2}"/>`;
     else if (tipe === 'waning_crescent')
