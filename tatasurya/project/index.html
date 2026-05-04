@@ -1893,7 +1893,7 @@ body::after {
   transition:background 0.2s;
 " title="Mute/Unmute">🔊</button>
 
-<audio id="bg-music" loop>
+<audio id="bg-music" volume="0.4"></audio>
   <source src="https://school.rsynzr.cloud/src/bintang5.mp3" type="audio/mpeg">
 </audio>
 
@@ -3405,20 +3405,49 @@ function mulaiQuiz() {
 // ========================
 // MUSIC PLAYER
 // ========================
+const playlist = [
+  "https://cdn1.rsynzr.cloud/webm/rapsodi.webm",
+  "https://cdn1.rsynzr.cloud/webm/bintang5.webm",
+  "https://cdn1.rsynzr.cloud/webm/lantas.webm",
+  "https://cdn1.rsynzr.cloud/webm/laguterakhir.webm",
+   "https://cdn1.rsynzr.cloud/webm/blue.webm",
+  // tambah lagu
+];
+
+let antrean = [];cccc
+
+function acakPlaylist() {
+  antrean = [...playlist].sort(() => Math.random() - 0.5);
+}
+
+function laguBerikutnya() {
+  if (antrean.length === 0) acakPlaylist();
+  const music = document.getElementById('bg-music');
+  music.src = antrean.shift();
+  music.play();
+}
+
 function startMusic() {
   const overlay = document.getElementById('music-overlay');
-  const music = document.getElementById('bg-music');
   const btnMute = document.getElementById('btn-mute');
-  
-  music.volume = 0.4;
-  music.muted = true;
-  music.play();
+  acakPlaylist();
+  laguBerikutnya();
+  document.getElementById('bg-music').muted = true;
   document.getElementById('btn-mute').textContent = '🔇';
   overlay.style.opacity = '0';
   overlay.style.transition = 'opacity 0.5s ease';
   setTimeout(() => overlay.style.display = 'none', 500);
   btnMute.style.display = 'flex';
 }
+
+function toggleMute() {
+  const music = document.getElementById('bg-music');
+  const btn = document.getElementById('btn-mute');
+  music.muted = !music.muted;
+  btn.textContent = music.muted ? '🔇' : '🔊';
+}
+
+document.getElementById('bg-music').addEventListener('ended', laguBerikutnya);
 
 function toggleMute() {
   const music = document.getElementById('bg-music');
