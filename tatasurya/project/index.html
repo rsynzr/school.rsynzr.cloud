@@ -1902,6 +1902,19 @@ body::after {
   z-index: 1;
 }
 
+@keyframes fadeOutKlik {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#klik-text.hilang {
+  animation: fadeOutKlik 0.8s ease forwards;
+}
+
 </style>
 </head>
 
@@ -1916,7 +1929,7 @@ body::after {
   <div style="text-align:center;">
     <div style="font-size:3rem; margin-bottom:16px;">🌙</div>
     <div style="font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:800; color:#f0eee9; margin-bottom:8px;">Fase Bulan</div>
-    <div style="font-family:'Space Mono',monospace; font-size:0.75rem; color:#8a8a9a; letter-spacing:0.15em;">KLIK DI MANA SAJA UNTUK MULAI</div>
+    <div id="klik-text" style="font-family:'Space Mono',monospace; font-size:0.75rem; color:#8a8a9a; letter-spacing:0.15em;">KLIK DI MANA SAJA UNTUK MULAI</div>
   </div>
 </div>
 
@@ -3551,6 +3564,12 @@ if (document.readyState === 'loading') {
 
 // Auto close music overlay when page loads
 window.addEventListener('load', () => {
+  const klikText = document.getElementById('klik-text');
+  if (klikText) {
+    setTimeout(() => {
+      klikText.classList.add('hilang');
+    }, 2000);
+  }
   setTimeout(() => startMusic(), 1500);
 });
 
