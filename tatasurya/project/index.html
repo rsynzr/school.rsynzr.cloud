@@ -1865,6 +1865,43 @@ body::after {
   background: rgba(255,255,255,0.15);
 }
 
+/* ============================
+   VIDEO PENGANTAR
+   ============================ */
+.bagian-video-pengantar {
+  padding: 80px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-top: 30px;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ============================
+   DOKUMENTASI
+   ============================ */
+.bagian-dokumentasi {
+  padding: 80px 0;
+  position: relative;
+  z-index: 1;
+}
+
 </style>
 </head>
 
@@ -1974,6 +2011,19 @@ body::after {
         <p>
           Selain itu, mempelajari fase Bulan juga membantu dalam memahami konsep dasar astronomi, seperti gerak orbit dan interaksi benda langit. Pengetahuan ini memberikan gambaran tentang bagaimana sistem tata surya bekerja secara sederhana. Oleh karena itu, pembahasan mengenai fase Bulan menjadi penting sebagai langkah awal dalam mengenal ilmu astronomi secara lebih luas.
         </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== B.5 VIDEO PENGANTAR ======================== -->
+<section class="bagian-video-pengantar muncul-scroll" id="pengantar">
+  <div class="wadah">
+    <div class="garis-pemisah"></div>
+    <div class="muncul-scroll">
+      <h2 class="judul-seksi">Video Pengantar</h2>
+      <div class="video-container">
+        <iframe src="" title="Video Pengantar"></iframe>
       </div>
     </div>
   </div>
@@ -2681,6 +2731,24 @@ body::after {
       Education is the most powerful weapon which you can use to change the world.
     </p>
     <p class="nama-kutipan">- Nelson Mandela</p>
+  </div>
+</section>
+
+<!-- ======================== P. DOKUMENTASI ======================== -->
+<section class="bagian-dokumentasi muncul-scroll" id="dokumentasi">
+  <div class="wadah">
+    <div class="garis-pemisah"></div>
+    <div class="muncul-scroll">
+      <h2 class="judul-seksi">Dokumentasi</h2>
+      <div class="teks-penjelasan">
+        <p>
+          Video dokumentasi lengkap tentang fase-fase bulan dan pembelajaran tata surya dapat dilihat pada video di bawah ini.
+        </p>
+      </div>
+      <div class="video-container">
+        <iframe src="" title="Dokumentasi YouTube"></iframe>
+      </div>
+    </div>
   </div>
 </section>
 
