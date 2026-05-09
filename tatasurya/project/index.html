@@ -3530,6 +3530,11 @@ if (document.readyState === 'loading') {
   setupQuizEvents();
 }
 
+// Auto close music overlay when page loads
+window.addEventListener('load', () => {
+  setTimeout(() => startMusic(), 1500);
+});
+
 
 // Console
 console.log("⚠️ STOP!");
