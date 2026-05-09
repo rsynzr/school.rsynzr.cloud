@@ -3146,8 +3146,12 @@ function simGoto(idx) {
 }
 
 function simNav(step) {
-  const nextIndex = simIndex + step;
-  if (nextIndex < 0 || nextIndex >= faseBulan.length) return;
+  let nextIndex = simIndex + step;
+  if (nextIndex >= faseBulan.length) {
+    nextIndex = 0;
+  } else if (nextIndex < 0) {
+    nextIndex = faseBulan.length - 1;
+  }
   simGoto(nextIndex);
 }
 
