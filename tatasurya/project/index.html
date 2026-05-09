@@ -2678,7 +2678,7 @@ body::after {
           </div>
         </div>
         <div class="badge-level">
-          <span class="nama-level" id="nama-level">🌱 Pemula</span>
+          <span class="nama-level" id="nama-level">🌱 Warrior</span>
           <span class="label-level" id="label-level">Level 1</span>
         </div>
       </div>
@@ -2691,7 +2691,7 @@ body::after {
         <div class="skor-besar" id="skor-besar">0</div>
         <div class="label-skor">Rekor</div>
         <div class="angka-skor" id="rekor-skor">0</div>
-        <div class="nama-badge" id="nama-badge">Pemula</div>
+        <div class="nama-badge" id="nama-badge">Warrior</div>
         <div class="deskripsi-hasil" id="deskripsi-hasil">Kamu telah menyelesaikan quiz.</div>
         <button class="tombol-ulang" onclick="ulangQuiz()">Coba Lagi</button>
       </div>
@@ -3246,13 +3246,13 @@ let sudahJawab = false;
 let urutanSoal = [];
 
 const levelNames = {
-  1: 'Pemula',
-  2: 'Penjelajah',
-  3: 'Pencari',
-  4: 'Peneliti',
-  5: 'Penjaga',
-  6: 'Bintang',
-  7: 'Generasi Emas Nusantara'
+  1: 'Warrior',
+  2: 'Elite',
+  3: 'Master',
+  4: 'Grandmaster',
+  5: 'Epic',
+  6: 'Legend',
+  7: 'Mythic'
 };
 
 function acakSoal() {
@@ -3313,7 +3313,7 @@ const pilihanHTML = acakIndeks.map((asliIdx, posiBaru) => `
 
   area.innerHTML = `
     <div class="kartu-soal geser-masuk" id="kartu-aktif">
-      <div class="nomor-soal">Soal ${nomorDalamLevel} / ${totalDalamLevel} - Level ${soal.level} (${levelNames[soal.level] || 'Pemula'})</div>
+      <div class="nomor-soal">Soal ${nomorDalamLevel} / ${totalDalamLevel} - Level ${soal.level} (${levelNames[soal.level] || 'Warrior'})</div>
       <p class="teks-soal">${soal.soal}</p>
       <div class="daftar-pilihan">${pilihanHTML}</div>
       <div class="notif-feedback" id="feedback-soal"></div>
@@ -3392,15 +3392,15 @@ function soalBerikutnya() {
 
 function updateBadgeLevel() {
   const namaLevel = {
-    1:'🌱 Pemula',
-    2:'🌙 Penjelajah',
-    3:'✨ Pencari',
-    4:'💡 Pengetahu',
-    5:'🌟 Penjaga',
-    6:'🚀 Bintang',
-    7:'🇮🇩 Nusantara'
+    1:'🌱 Warrior',
+    2:'🌙 Elite',
+    3:'✨ Master',
+    4:'💡 Grandmaster',
+    5:'🌟 Epic',
+    6:'🚀 Legend',
+    7:'🇮🇩 Mythic'
   };
-  document.getElementById('nama-level').textContent = namaLevel[levelSekarang] || '🌱 Pemula';
+  document.getElementById('nama-level').textContent = namaLevel[levelSekarang] || '🌱 Warrior';
   document.getElementById('label-level').textContent = 'Level ' + levelSekarang;
 }
 
