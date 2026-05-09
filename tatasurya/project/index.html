@@ -1912,7 +1912,7 @@ body::after {
 }
 
 #klik-text.hilang {
-  animation: fadeOutKlik 0.8s ease forwards;
+  animation: fadeOutKlik 0.5s ease forwards;
 }
 
 </style>
@@ -2005,10 +2005,10 @@ body::after {
     />
     <span class="zoom-hint">🔍 Klik untuk zoom</span>
   </div>
-  <a href="https://cdn1.rsynzr.cloud/download/infografis3.png" download class="btn-download">
+  <button onclick="downloadInfografis()" class="btn-download">
     <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4zm-7 4h14v-2H5v2z"/></svg>
     Download Infografis
-  </a>
+  </button>
 </div>
 
 <!-- Modal zoom -->
@@ -3158,6 +3158,16 @@ function simNav(step) {
 // init simulator
 renderSimulator();
 
+function downloadInfografis() {
+  const url = 'https://cdn1.rsynzr.cloud/download/infografis3.png';
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'infografis-fase-bulan.png';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
 
 // ========================
 // QUIZ DATA
@@ -3567,12 +3577,12 @@ if (document.readyState === 'loading') {
 }
 
 // Auto close music overlay when page loads
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const klikText = document.getElementById('klik-text');
   if (klikText) {
     setTimeout(() => {
       klikText.classList.add('hilang');
-    }, 2000);
+    }, 1200);
   }
   setTimeout(() => startMusic(), 1500);
 });
