@@ -1911,8 +1911,18 @@ body::after {
   }
 }
 
+#music-overlay {
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+#music-overlay.hilang {
+  opacity: 0;
+  transform: scale(0.98);
+  pointer-events: none;
+}
+
 #klik-text.hilang {
-  animation: fadeOutKlik 0.5s ease forwards;
+  animation: fadeOutKlik 0.45s ease forwards;
 }
 
 </style>
@@ -3516,7 +3526,7 @@ const playlist = [
   // tambah lagu
 ];
 
-let antrean = [];cccc
+let antrean = [];
 
 function acakPlaylist() {
   antrean = [...playlist].sort(() => Math.random() - 0.5);
@@ -3536,10 +3546,14 @@ function startMusic() {
   laguBerikutnya();
   document.getElementById('bg-music').muted = true;
   document.getElementById('btn-mute').textContent = '🔇';
-  overlay.style.opacity = '0';
-  overlay.style.transition = 'opacity 0.5s ease';
-  setTimeout(() => overlay.style.display = 'none', 500);
-  btnMute.style.display = 'flex';
+  if (overlay) {
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.5s ease';
+    setTimeout(() => {
+      overlay.style.display = 'none';
+    }, 500);
+  }
+  if (btnMute) btnMute.style.display = 'flex';
 }
 
 function toggleMute() {
@@ -3574,15 +3588,19 @@ if (document.readyState === 'loading') {
   setupQuizEvents();
 }
 
-// Auto close music overlay when page loads
+// Auto-hide music overlay after 0.7 seconds with animation
 document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('music-overlay');
   const klikText = document.getElementById('klik-text');
-  if (klikText) {
-    setTimeout(() => {
-      klikText.classList.add('hilang');
-    }, 1200);
-  }
-  setTimeout(() => startMusic(), 1500);
+  if (!overlay) return;
+  setTimeout(() => {
+    overlay.classList.add('hilang');
+    if (klikText) klikText.classList.add('hilang');
+    overlay.addEventListener('transitionend', function onEnd() {
+      overlay.removeEventListener('transitionend', onEnd);
+      overlay.style.display = 'none';
+    });
+  }, 700);
 });
 
 
