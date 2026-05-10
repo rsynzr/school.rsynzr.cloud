@@ -2781,6 +2781,21 @@ body::after {
 
 <!-- ======================== JAVASCRIPT ======================== -->
 <script>
+  // ========================
+// AUTO-HIDE MUSIK OVERLAY SETELAH PAGE LOAD
+// ========================
+window.addEventListener('load', () => {
+  const musicOverlay = document.getElementById('music-overlay');
+  if (musicOverlay) {
+    setTimeout(() => {
+      musicOverlay.style.animation = 'fadeOutKlik 0.5s ease forwards';
+      setTimeout(() => {
+        musicOverlay.style.display = 'none';
+      }, 500);
+    }, 1500);
+  }
+});
+
 // ========================
 // SCROLL OBSERVER
 // ========================
