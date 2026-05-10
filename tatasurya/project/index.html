@@ -1945,7 +1945,7 @@ body::after {
 
 <!-- TOMBOL MUTE -->
 <button id="btn-mute" onclick="toggleMute()" style="
-  position:fixed; bottom:24px; right:24px; z-index:500;
+  position:fixed; bottom:24px; right:24px; z-index:10001;
   width:40px; height:40px; border-radius:50%;
   background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
   color:#f0eee9; font-size:1rem; cursor:pointer;
@@ -3678,19 +3678,9 @@ if (document.readyState === 'loading') {
   setupQuizEvents();
 }
 
-// Auto-hide music overlay after 0.7 seconds with animation
+// Auto close music overlay when page loads
 document.addEventListener('DOMContentLoaded', () => {
-  const overlay = document.getElementById('music-overlay');
-  const klikText = document.getElementById('klik-text');
-  if (!overlay) return;
-  setTimeout(() => {
-    overlay.classList.add('hilang');
-    if (klikText) klikText.classList.add('hilang');
-    overlay.addEventListener('transitionend', function onEnd() {
-      overlay.removeEventListener('transitionend', onEnd);
-      overlay.style.display = 'none';
-    });
-  }, 700);
+  setTimeout(() => startMusic(), 700);
 });
 
 
