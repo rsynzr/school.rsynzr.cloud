@@ -1,0 +1,14 @@
+name = "rsynzr-ai"
+main = "worker.js"
+compatibility_date = "2026-05-26"
+
+[vars]
+GROQ_MODEL = "llama-3.3-70b-versatile"
+ALLOWED_ORIGIN = "https://school.rsynzr.cloud"
+RATE_LIMIT_REQUESTS = "30"
+RATE_LIMIT_WINDOW_SECONDS = "60"
+MAX_OUTPUT_TOKENS = "2048"
+DEFAULT_SYSTEM_PROMPT = "Kamu adalah rsynzr-ai, asisten AI yang ringkas, akurat, ramah, dan menjawab dalam bahasa pengguna."
+
+[secrets]
+required = ["GROQ_API_KEY"]

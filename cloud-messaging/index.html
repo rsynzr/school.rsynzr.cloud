@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f6dff" />
+  <title>Cloud Messaging Console</title>
+  <link rel="icon" href="../img/favicon.png" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./firebase-config.js"></script>
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Cloud Messaging Console">
+      <span class="brand-mark">CM</span>
+      <span>
+        <strong>Cloud Messaging</strong>
+        <small>Firebase Push Console</small>
+      </span>
+    </a>
+    <nav class="top-actions" aria-label="Navigasi utama">
+      <a href="../">School</a>
+      <a href="https://console.firebase.google.com/" target="_blank" rel="noreferrer">Firebase Console</a>
+    </nav>
+  </header>
+
+  <main class="app-shell">
+    <section class="app-heading" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Google sign-in only</p>
+        <h1 id="page-title">Push messaging dashboard</h1>
+        <p class="lede">Masuk dengan Google, aktifkan izin notifikasi, lalu ambil token FCM untuk pengiriman pesan web.</p>
+      </div>
+      <div class="environment-box" aria-live="polite">
+        <span class="label">Origin</span>
+        <strong id="originValue">Memuat...</strong>
+      </div>
+    </section>
+
+    <section id="setupBanner" class="setup-banner" aria-live="polite">
+      <strong>Konfigurasi Firebase belum lengkap.</strong>
+      Isi <code>firebase-config.js</code> dengan Firebase web config dan public VAPID key dari project kamu.
+    </section>
+
+    <div class="workspace">
+      <section class="panel control-panel" aria-labelledby="control-title">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Access</p>
+            <h2 id="control-title">Akun & perangkat</h2>
+          </div>
+          <span id="sessionBadge" class="badge badge-muted">Belum login</span>
+        </div>
+
+        <div id="signedOutView" class="auth-view">
+          <div class="identity-preview">
+            <div class="avatar-placeholder">G</div>
+            <div>
+              <strong>Masuk dengan Google</strong>
+              <span>Hanya akun Google yang diizinkan untuk mendaftar dan login.</span>
+            </div>
+          </div>
+          <button id="signInBtn" class="btn btn-primary" type="button">
+            <span class="google-dot">G</span>
+            Masuk dengan Google
+          </button>
+        </div>
+
+        <div id="signedInView" class="auth-view is-hidden">
+          <div class="user-strip">
+            <img id="userAvatar" alt="" class="user-avatar" />
+            <div>
+              <strong id="userName">User</strong>
+              <span id="userEmail">user@example.com</span>
+            </div>
+          </div>
+          <button id="signOutBtn" class="btn btn-ghost" type="button">Keluar</button>
+        </div>
+
+        <div class="status-list" aria-label="Status integrasi">
+          <div class="status-row">
+            <span class="status-dot" id="firebaseDot"></span>
+            <div>
+              <strong>Firebase</strong>
+              <small id="firebaseStatus">Menunggu konfigurasi</small>
+            </div>
+          </div>
+          <div class="status-row">
+            <span class="status-dot" id="authDot"></span>
+            <div>
+              <strong>Google Auth</strong>
+              <small id="authStatus">Belum login</small>
+            </div>
+          </div>
+          <div class="status-row">
+            <span class="status-dot" id="permissionDot"></span>
+            <div>
+              <strong>Izin notifikasi</strong>
+              <small id="permissionStatus">Belum diminta</small>
+            </div>
+          </div>
+          <div class="status-row">
+            <span class="status-dot" id="tokenDot"></span>
+            <div>
+              <strong>FCM token</strong>
+              <small id="tokenStatus">Belum tersedia</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-grid">
+          <button id="requestTokenBtn" class="btn btn-primary" type="button" disabled>Aktifkan notifikasi</button>
+          <button id="copyTokenBtn" class="btn btn-secondary" type="button" disabled>Salin token</button>
+          <button id="testNotificationBtn" class="btn btn-secondary" type="button" disabled>Tes notifikasi</button>
+        </div>
+
+        <label class="token-field" for="tokenOutput">
+          <span>Token perangkat</span>
+          <textarea id="tokenOutput" readonly placeholder="Token FCM akan muncul di sini setelah notifikasi aktif."></textarea>
+        </label>
+      </section>
+
+      <section class="panel feed-panel" aria-labelledby="feed-title">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Realtime</p>
+            <h2 id="feed-title">Pesan masuk</h2>
+          </div>
+          <button id="clearFeedBtn" class="btn btn-ghost compact" type="button">Bersihkan</button>
+        </div>
+
+        <div id="messageFeed" class="message-feed" aria-live="polite">
+          <article class="empty-state">
+            <strong>Belum ada pesan.</strong>
+            <span>Pesan foreground dari FCM dan tes lokal akan tampil di area ini.</span>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <section class="setup-panel" aria-labelledby="setup-title">
+      <div>
+        <p class="eyebrow">Setup</p>
+        <h2 id="setup-title">Checklist Firebase</h2>
+      </div>
+      <ol class="checklist">
+        <li>Aktifkan Google pada Authentication Sign-in method.</li>
+        <li>Tambahkan domain ini di Authentication Authorized domains.</li>
+        <li>Generate Web Push certificate lalu salin public VAPID key.</li>
+        <li>Isi <code>cloud-messaging/firebase-config.js</code> dengan config project kamu.</li>
+        <li>Deploy lewat HTTPS atau jalankan dari <code>localhost</code> saat testing.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>school.rsynzr.cloud</span>
+    <span>Firebase Cloud Messaging web client</span>
+  </footer>
+</body>
+</html>
