@@ -3,210 +3,1748 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>School - rsynzr.cloud</title>
+  <title>Dewi Irianti, M.Pd. | RUANG INSPIRASI</title>
+  <meta name="description" content="Portofolio digital Dewi Irianti, M.Pd., guru yang mengembangkan pembelajaran intrakurikuler berbasis STEM, kokurikuler, dan ekstrakurikuler penelitian ilmiah, serta membimbing kegiatan OPSI." />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg-dark: #0b1220;
-      --bg-mid: #0f1b3d;
-      --bg-light: #1a2f6b;
-      --accent: #3b82f6;
-      --accent-bright: #60a5fa;
-      --accent-glow: rgba(59,130,246,0.4);
-      --text-primary: #e8f0fe;
-      --text-secondary: #94a3b8;
-      --card-bg: rgba(15,27,61,0.6);
-      --card-border: rgba(59,130,246,0.18);
-      --card-border-hover: rgba(96,165,250,0.5);
-      --nav-bg: rgba(11,18,32,0.75);
+      --navy: #0c2340;
+      --navy-2: #163d66;
+      --blue: #2d6cdf;
+      --blue-soft: #dbeafe;
+      --sky: #8fd3ff;
+      --gold: #f6c453;
+      --orange: #f59e0b;
+      --white: #ffffff;
+      --text: #17324d;
+      --muted: #5f7389;
+      --bg: #f4f8fc;
+      --panel: #ffffff;
+      --line: rgba(12, 35, 64, 0.08);
+      --shadow: 0 20px 50px rgba(12, 35, 64, 0.12);
+      --success: #21a36d;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --radius: 22px;
+      --container: 1180px;
     }
 
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-mid) 50%, var(--bg-light) 100%);
-      background-attachment: fixed;
-      color: var(--text-primary);
-      min-height: 100vh;
-      line-height: 1.6;
+      margin: 0;
+      background: linear-gradient(180deg, #edf5ff 0%, #f9fbff 12%, #f8fafc 100%);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.7;
     }
 
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select {
+      font: inherit;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 92px 0;
+    }
+
+    .section-header {
+      margin-bottom: 38px;
+      max-width: 740px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(45, 108, 223, 0.08);
+      color: var(--blue);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 14px rgba(246, 196, 83, 0.8);
+    }
+
+    h1, h2, h3, h4, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      color: var(--navy);
+    }
+
+    h2 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+      color: var(--navy);
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
       z-index: 100;
-      background: var(--nav-bg);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(59,130,246,0.12);
-      padding: 0 2rem;
-      height: 60px;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(12, 35, 64, 0.06);
+    }
+
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      min-height: 82px;
+      gap: 20px;
     }
-    .nav-brand { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); text-decoration: none; }
-    .nav-brand span { color: var(--accent-bright); }
-    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.88rem; font-weight: 500; padding: 0.4rem 0.75rem; border-radius: 8px; transition: color 0.2s, background 0.2s; }
-    .nav-links a:hover { color: var(--accent-bright); background: rgba(59,130,246,0.1); }
-    .nav-links a.cta { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: var(--accent-bright); }
-    .nav-links a.cta:hover { background: rgba(59,130,246,0.28); }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--navy);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-size: 1rem;
+      box-shadow: 0 10px 25px rgba(45, 108, 223, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 10px 12px;
+      border-radius: 10px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--navy);
+      background: rgba(45, 108, 223, 0.08);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .button,
+    .ghost-button,
+    .chip-button,
+    .filter-btn,
+    .small-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .button {
+      padding: 14px 22px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: var(--white);
+      box-shadow: 0 14px 28px rgba(45, 108, 223, 0.18);
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .ghost-button {
+      padding: 14px 22px;
+      background: rgba(12, 35, 64, 0.04);
+      color: var(--navy);
+      border: 1px solid rgba(12, 35, 64, 0.08);
+    }
+
+    .small-btn {
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(45, 108, 223, 0.08);
+      color: var(--navy);
+      font-size: 0.82rem;
+    }
 
     .hero {
-      padding: 8rem 2rem 3rem;
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto;
-      animation: fadeUp 0.7s ease both;
-    }
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent-bright);
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.25);
-      padding: 0.3rem 0.85rem; border-radius: 20px; margin-bottom: 1.25rem;
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 6vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 0.75rem;
-      background: linear-gradient(135deg, #e8f0fe 30%, var(--accent-bright) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .hero p { font-size: 1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto; }
-
-    .grid {
-      max-width: 720px; margin: 0 auto; padding: 1rem 2rem 5rem;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;
+      padding: 72px 0 42px;
     }
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: 1.75rem 2rem;
+    .hero-shell {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(45,108,223,0.05), rgba(148, 214, 255, 0.08));
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 42px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      max-width: 620px;
+    }
+
+    .hero-copy .lead {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      max-width: 600px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .meta-pill {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+    }
+
+    .card-visual {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(218,234,255,0.9));
+      border: 1px solid rgba(12,35,64,0.08);
+      border-radius: 28px;
+      width: min(100%, 420px);
+      min-height: 430px;
+      box-shadow: 0 28px 58px rgba(12,35,64,0.14);
+      overflow: hidden;
+      padding: 24px;
+    }
+
+    .media-frame {
+      position: relative;
+      height: 250px;
+      border-radius: 22px;
+      background: linear-gradient(150deg, rgba(45,108,223,0.9), rgba(10,40,72,0.92));
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+    }
+
+    .teacher-portrait {
+      position: absolute;
+      inset: auto 18px 0 auto;
+      width: 190px;
+      height: 220px;
+      border-radius: 18px 18px 0 0;
+      background: linear-gradient(180deg, #d6e6ff 0%, #9ec5ff 100%);
+      box-shadow: inset 0 0 0 8px rgba(255,255,255,0.5);
+    }
+
+    .teacher-portrait::before {
+      content: "";
+      position: absolute;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: #f9d7b6;
+      top: 28px;
+      left: 48px;
+      box-shadow: 0 0 0 12px #f0f7ff;
+    }
+
+    .teacher-portrait::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 80% 80% 0 0;
+      background: #f3b4a5;
+      bottom: 0;
+      left: 34px;
+    }
+
+    .student-badge {
+      position: absolute;
+      inset: 18px auto auto 22px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 700;
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-      position: relative; overflow: hidden;
     }
-    .card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(96,165,250,0.35), transparent);
-      opacity: 0; transition: opacity 0.3s ease;
-    }
-    .card:nth-child(1) { animation: fadeUp 0.6s 0.1s ease both; }
-    .card:nth-child(2) { animation: fadeUp 0.6s 0.2s ease both; }
-    .card:nth-child(3) { animation: fadeUp 0.6s 0.3s ease both; }
-    .card:hover { transform: translateY(-5px); border-color: var(--card-border-hover); box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 0 36px rgba(59,130,246,0.18); }
-    .card:hover::before { opacity: 1; }
 
-    .card-tag {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--accent-bright); margin-bottom: 0.75rem;
+    .info-mini {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
-    .card-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--accent-bright); box-shadow: 0 0 6px var(--accent-glow);
-    }
-    .card h2 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 0.5rem; }
-    .card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
-    .card-arrow {
-      position: absolute; bottom: 1.5rem; right: 1.75rem;
-      color: var(--accent-bright); font-size: 1.1rem; opacity: 0;
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
-    .card:hover .card-arrow { opacity: 1; transform: translateX(4px); }
 
-    .home-link {
+    .mini-box {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 10px;
       text-align: center;
-      padding: 0 2rem 5rem;
-      animation: fadeUp 0.6s 0.4s ease both;
-    }
-    .home-btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1.75rem; border-radius: 50px;
-      background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(96,165,250,0.1));
-      border: 1px solid rgba(96,165,250,0.3);
-      color: var(--accent-bright); text-decoration: none;
-      font-size: 0.9rem; font-weight: 600;
-      transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
-    }
-    .home-btn:hover {
-      transform: translateY(-3px);
-      background: linear-gradient(135deg, rgba(59,130,246,0.28), rgba(96,165,250,0.2));
-      box-shadow: 0 6px 24px rgba(59,130,246,0.3);
     }
 
-    footer { border-top: 1px solid rgba(59,130,246,0.1); padding: 1.5rem 2rem; text-align: center; font-size: 0.82rem; color: rgba(148,163,184,0.5); }
+    .mini-box strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .mini-box span {
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
 
-    @media (max-width: 620px) {
-      nav { padding: 0 1rem; }
-      .nav-links a:not(.cta) { display: none; }
-      .hero { padding: 7rem 1.25rem 2.5rem; }
-      .grid { padding: 1rem 1.25rem 4rem; grid-template-columns: 1fr; }
-      .home-link { padding: 0 1.25rem 4rem; }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .summary-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      box-shadow: 0 10px 28px rgba(12, 35, 64, 0.05);
+      transition: 0.25s ease;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(12, 35, 64, 0.1);
+    }
+
+    .stat {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+    .stat strong {
+      font-size: 2rem;
+      color: var(--navy);
+      letter-spacing: -0.04em;
+    }
+
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(45,108,223,0.08);
+      color: var(--blue);
+      font-size: 1.2rem;
+    }
+
+    .summary-card p {
+      font-size: 0.92rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .photo-panel {
+      background: linear-gradient(180deg, rgba(13,34,58,0.88), rgba(45,108,223,0.82));
+      border-radius: 28px;
+      min-height: 540px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .photo-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+      mix-blend-mode: screen;
+      opacity: 0.36;
+    }
+
+    .photo-badge {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 16px 18px;
+      color: var(--white);
+      backdrop-filter: blur(10px);
+    }
+
+    .profile-intro {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: 0 14px 30px rgba(12,35,64,0.06);
+    }
+
+    .profile-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin: 20px 0 18px;
+    }
+
+    .profile-meta .meta-block {
+      background: rgba(45,108,223,0.04);
+      border: 1px solid rgba(45,108,223,0.08);
+      border-radius: 16px;
+      padding: 14px 12px;
+    }
+
+    .profile-meta .meta-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .profile-meta strong {
+      color: var(--navy);
+      font-size: 1rem;
+    }
+
+    .story-block {
+      margin-top: 18px;
+    }
+
+    .story-block p + p {
+      margin-top: 14px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .timeline-item {
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 18px 18px 22px;
+      box-shadow: 0 12px 26px rgba(12,35,64,0.04);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 18px;
+      bottom: 18px;
+      width: 2px;
+      background: rgba(45,108,223,0.18);
+    }
+
+    .timeline-item .year {
+      display: inline-block;
+      margin-left: 16px;
+      background: rgba(45,108,223,0.08);
+      color: var(--blue);
+      padding: 6px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-item h3 {
+      margin-left: 16px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item p {
+      margin-left: 16px;
+      font-size: 0.92rem;
+    }
+
+    .filter-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+
+    .filter-btn {
+      padding: 11px 16px;
+      background: rgba(12,35,64,0.04);
+      color: var(--muted);
+      border: 1px solid rgba(12,35,64,0.06);
+      font-weight: 700;
+    }
+
+    .filter-btn.active {
+      background: rgba(45,108,223,0.1);
+      color: var(--navy);
+      border-color: rgba(45,108,223,0.15);
+    }
+
+    .catalog-grid,
+    .media-grid,
+    .gallery-grid,
+    .impact-grid,
+    .journal-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .catalog-grid,
+    .media-grid,
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .catalog-card,
+    .media-card,
+    .gallery-card,
+    .impact-card,
+    .journal-card,
+    .model-card,
+    .assessment-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 12px 22px rgba(12,35,64,0.05);
+      transition: 0.25s ease;
+    }
+
+    .catalog-card:hover,
+    .media-card:hover,
+    .gallery-card:hover,
+    .model-card:hover,
+    .assessment-card:hover,
+    .impact-card:hover,
+    .journal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 36px rgba(12,35,64,0.1);
+    }
+
+    .thumb {
+      height: 170px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+    }
+
+    .catalog-content,
+    .media-content,
+    .gallery-content,
+    .model-content,
+    .assessment-content,
+    .impact-content,
+    .journal-content {
+      padding: 20px 18px 18px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(45,108,223,0.08);
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .catalog-card p,
+    .media-card p,
+    .gallery-card p,
+    .model-card p,
+    .assessment-card p,
+    .impact-card p,
+    .journal-card p {
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    .meta-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 16px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .meta-list span {
+      padding: 6px 10px;
+      background: rgba(12,35,64,0.04);
+      border-radius: 999px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .mini-btn {
+      padding: 9px 12px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: none;
+      background: rgba(45,108,223,0.08);
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    .mini-btn.primary {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: var(--white);
+    }
+
+    .media-card .thumb {
+      background: linear-gradient(135deg, rgba(45,108,223,0.9), rgba(91,155,255,0.92));
+    }
+
+    .gallery-card .thumb {
+      background: linear-gradient(135deg, rgba(246,196,83,0.8), rgba(245,158,11,0.8));
+      font-size: 1.6rem;
+    }
+
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .model-card {
+      padding: 0;
+    }
+
+    .model-head {
+      background: linear-gradient(135deg, rgba(12,35,64,0.9), rgba(45,108,223,0.9));
+      color: var(--white);
+      padding: 24px 20px 16px;
+    }
+
+    .model-head h3 {
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .model-head p {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.82rem;
+    }
+
+    .model-content {
+      padding: 20px 18px 22px;
+    }
+
+    .model-steps {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .model-steps li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .model-steps li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .chart-box {
+      background: linear-gradient(135deg, rgba(45,108,223,0.08), rgba(255,255,255,0.6));
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .bars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      align-items: end;
+      height: 170px;
+      margin-top: 12px;
+    }
+
+    .bar {
+      border-radius: 14px 14px 0 0;
+      background: linear-gradient(180deg, var(--sky), var(--blue));
+      position: relative;
+      min-height: 30px;
+    }
+
+    .bar::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: -26px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .impact-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .impact-card {
+      padding: 20px 18px;
+    }
+
+    .impact-card .big-number {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .impact-card .big-number strong {
+      font-size: 2.1rem;
+      color: var(--navy);
+      letter-spacing: -0.04em;
+    }
+
+    .impact-card .status-pill {
+      display: inline-flex;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(33,163,109,0.1);
+      color: var(--success);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .journal-grid {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .journal-card {
+      display: grid;
+      grid-template-rows: 180px auto;
+    }
+
+    .journal-card .thumb {
+      background: linear-gradient(135deg, rgba(12,35,64,0.95), rgba(45,108,223,0.65));
+      font-size: 1.7rem;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, #0f2a4d, #163d66 50%, #2d6cdf 100%);
+      border-radius: 28px;
+      padding: 34px 28px;
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h2,
+    .contact-box p {
+      color: var(--white);
+    }
+
+    .contact-box .button {
+      background: var(--white);
+      color: var(--navy);
+      box-shadow: none;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      justify-items: end;
+    }
+
+    .contact-item {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 12px 14px;
+      min-width: 220px;
+      text-align: left;
+    }
+
+    .contact-item small {
+      display: block;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    footer {
+      background: #091a2f;
+      color: rgba(255,255,255,0.72);
+      padding: 32px 0 40px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 12, 24, 0.72);
+      display: none;
+      place-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal.open { display: grid; }
+
+    .modal-card {
+      background: var(--panel);
+      width: min(760px, 100%);
+      max-height: 82vh;
+      overflow: auto;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      box-shadow: 0 30px 80px rgba(6,12,24,0.3);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(12,35,64,0.06);
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--navy);
+    }
+
+    .modal-body {
+      padding: 30px 24px 24px;
+    }
+
+    .modal-body img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 18px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 32px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(13,34,58,0.95);
+      color: var(--white);
+      padding: 12px 16px;
+      border-radius: 12px;
+      box-shadow: 0 18px 48px rgba(6,12,24,0.2);
+      opacity: 0;
+      transition: 0.25s ease;
+      z-index: 999;
+      font-weight: 600;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-shell,
+      .about-grid,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        justify-content: center;
+        padding: 20px 0;
+      }
+      .nav-links {
+        justify-content: center;
+      }
+      .hero-shell {
+        padding: 24px 18px;
+      }
+      .section {
+        padding: 72px 0;
+      }
+      .contact-list {
+        justify-items: stretch;
+      }
     }
   </style>
 </head>
 <body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <span class="brand-mark">R</span>
+        <span>RUANG INSPIRASI</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigasi utama">
+        <a href="#home" class="active">Beranda</a>
+        <a href="#profil">Profil Guru</a>
+        <a href="#inspirasi">Inspirasi</a>
+        <a href="#perangkat">Perangkat</a>
+        <a href="#media">Media</a>
+        <a href="#karya">Karya</a>
+        <a href="#asesmen">Asesmen</a>
+        <a href="#dampak">Dampak</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#inspirasi" class="ghost-button">Jelajahi Inspirasi</a>
+      </div>
+    </div>
+  </header>
 
-  <nav>
-    <a href="https://rsynzr.cloud/" class="nav-brand">rsynzr<span>.cloud</span></a>
-    <ul class="nav-links">
-      <li><a href="signin.html">Login</a></li>
-      <li><a href="signup.html" class="cta">Sign Up</a></li>
-      <li><a href="https://rsynzr.cloud/">Home</a></li>
-      <li><a href="https://project.rsynzr.cloud/">Projects</a></li>
-      <li><a href="https://donate.rsynzr.cloud/">Donate</a></li>
-    </ul>
-  </nav>
+  <main id="home">
+    <section class="hero section">
+      <div class="container hero-shell reveal">
+        <div class="hero-copy">
+          <div class="kicker">RUANG INSPIRASI</div>
+          <h1>Membentuk siswa berpikir saintifik, inovatif, dan siap bersaing di era global.</h1>
+          <p class="lead">Saya Dewi Irianti, M.Pd., guru yang menempatkan pembelajaran sebagai proses membangun nalar, rasa ingin tahu, dan kemampuan memecahkan masalah nyata melalui pendekatan STEM, program kokurikuler yang relevan, serta ekstrakurikuler penelitian ilmiah yang menumbuhkan semangat riset sejak dini.</p>
+          <div class="actions">
+            <a href="#profil" class="button">Lihat Profil Guru</a>
+            <a href="#dampak" class="ghost-button">Praktik Pembelajaran</a>
+          </div>
+          <div class="hero-meta">
+            <div class="meta-pill">Guru STEM</div>
+            <div class="meta-pill">Kokurikuler</div>
+            <div class="meta-pill">OPSI Coach</div>
+          </div>
+        </div>
 
-  <div class="hero">
-    <div class="hero-eyebrow">school.rsynzr.cloud</div>
-    <h1>School Projects</h1>
-    <p>Kumpulan tugas dan materi sekolah yang di-deploy sebagai halaman web.</p>
+        <div class="hero-visual">
+          <div class="card-visual">
+            <div class="media-frame">
+              <div class="student-badge">Praktik Baik<br />Kelas Inspiratif</div>
+              <div class="teacher-portrait"></div>
+            </div>
+            <div class="info-mini">
+              <div class="mini-box">
+                <strong>Perangkat</strong>
+                <span>Rujukan</span>
+              </div>
+              <div class="mini-box">
+                <strong>Media</strong>
+                <span>Interaktif</span>
+              </div>
+              <div class="mini-box">
+                <strong>Asesmen</strong>
+                <span>Terukur</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="kicker">Portofolio Digital</div>
+          <h2>Ringkasan praktik pembelajaran</h2>
+        </div>
+
+        <div class="summary-grid reveal">
+          <article class="summary-card">
+            <div class="stat">
+              <strong>3</strong>
+              <div class="stat-icon">🧪</div>
+            </div>
+            <h3>Lintasan Pembelajaran</h3>
+            <p>Intrakurikuler berbasis STEM, kokurikuler penguatan literasi sains, dan ekstrakurikuler riset ilmiah.</p>
+          </article>
+
+          <article class="summary-card">
+            <div class="stat">
+              <strong>8+</strong>
+              <div class="stat-icon">🎥</div>
+            </div>
+            <h3>Media dan Alat</h3>
+            <p>Digital lab, video eksperimen, modul visual, infografis, dan simulasi berbasis data.</p>
+          </article>
+
+          <article class="summary-card">
+            <div class="stat">
+              <strong>5</strong>
+              <div class="stat-icon">🧠</div>
+            </div>
+            <h3>Model Pembelajaran</h3>
+            <p>Problem-based learning, inquiry, project-based learning, dan diferensiasi berbasis kebutuhan siswa.</p>
+          </article>
+
+          <article class="summary-card">
+            <div class="stat">
+              <strong>12+</strong>
+              <div class="stat-icon">🔬</div>
+            </div>
+            <h3>Proyek Riset Siswa</h3>
+            <p>Topik lingkungan, kesehatan, teknologi, dan inovasi yang dikembangkan dari isu nyata di sekitar siswa.</p>
+          </article>
+
+          <article class="summary-card">
+            <div class="stat">
+              <strong>4</strong>
+              <div class="stat-icon">✅</div>
+            </div>
+            <h3>Instrumen Asesmen</h3>
+            <p>Diagnostik awal, observasi proses, rubrik produk, dan asesmen autentik berbasis karya ilmiah.</p>
+          </article>
+
+          <article class="summary-card">
+            <div class="stat">
+              <strong>OPSI</strong>
+              <div class="stat-icon">🏆</div>
+            </div>
+            <h3>Pembimbing Kegiatan</h3>
+            <p>Memberikan bimbingan pada siswa dalam merancang ide penelitian, menyusun proposal, dan mempresentasikan karya.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="inspirasi">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="kicker">Cerita Inspirasi</div>
+          <h2>Belajar itu bermakna ketika siswa ikut aktif merancang pengalaman</h2>
+        </div>
+
+        <div class="about-grid reveal">
+          <div class="photo-panel">
+            <div class="photo-badge">
+              <strong>Praktik Baik</strong><br />
+              <span>Riset, inovasi, dan pembelajaran berbasis kebutuhan siswa</span>
+            </div>
+          </div>
+
+          <div class="profile-intro">
+            <h3>Filosofi mengajar</h3>
+            <div class="story-block">
+              <p>Saya meyakini bahwa pendidikan yang berkualitas bukan sekadar menyampaikan materi, tetapi menumbuhkan kemampuan siswa untuk bertanya, mengamati, menganalisis, dan menyelesaikan masalah dengan cara yang logis dan kreatif.</p>
+              <p>Dalam pembelajaran intrakurikuler, saya mengembangkan pendekatan STEM yang menghubungkan konsep sains, teknologi, dan pemecahan masalah dengan situasi nyata. Saya juga mendorong ruang kokurikuler agar siswa memiliki pengalaman belajar yang lebih kontekstual, kolaboratif, dan aplikatif.</p>
+              <p>Di sisi lain, ekstrakurikuler penelitian ilmiah menjadi wadah penting untuk menumbuhkan jiwa peneliti. Siswa dilatih membuat rancangan penelitian, mengumpulkan data, menganalisis hasil, dan mempresentasikan temuan secara ilmiah. Inilah yang mendorong mereka tidak hanya menjadi pembelajar, tetapi juga inovator.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="profil">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="kicker">Profil Guru</div>
+          <h2>Profil profesional dan perjalanan mengajar</h2>
+        </div>
+
+        <div class="about-grid reveal">
+          <div class="photo-panel" style="min-height: 440px; background: linear-gradient(180deg, rgba(13,34,58,0.82), rgba(45,108,223,0.78));">
+            <div class="photo-badge">
+              <strong>Dewi Irianti, M.Pd.</strong><br />
+              <span>Guru yang mengembangkan pembelajaran STEM, riset, dan inovasi</span>
+            </div>
+          </div>
+
+          <div class="profile-intro">
+            <h3>Data diri dan kompetensi</h3>
+            <div class="profile-meta">
+              <div class="meta-block">
+                <span class="meta-label">Nama</span>
+                <strong>Dewi Irianti, M.Pd.</strong>
+              </div>
+              <div class="meta-block">
+                <span class="meta-label">Satuan Pendidikan</span>
+                <strong>SMA / sekolah mitra</strong>
+              </div>
+              <div class="meta-block">
+                <span class="meta-label">Bidang</span>
+                <strong>IPA / STEM</strong>
+              </div>
+              <div class="meta-block">
+                <span class="meta-label">Pendidikan</span>
+                <strong>S2 Pendidikan / Magister</strong>
+              </div>
+            </div>
+
+            <div class="story-block">
+              <p>Sejak awal karier, saya berfokus pada penguatan pembelajaran yang berorientasi pada keterampilan abad ke-21, terutama kemampuan berpikir kritis, kreativitas, kolaborasi, dan komunikasi. Saya menyiapkan siswa untuk memecahkan masalah nyata melalui pendekatan ilmiah dan penggunaan teknologi yang tepat.</p>
+              <p>Dalam praktiknya, saya aktif mengembangkan pembelajaran intrakurikuler berbasis STEM, kemudian memperluas potensi siswa melalui kegiatan kokurikuler dan ekstrakurikuler penelitian ilmiah. Saya juga membimbing siswa dalam mengikuti OPSI (Olimpiade Penelitian Siswa Indonesia) dengan pendekatan pembinaan yang sistematis, mulai dari ide, metodologi, analisis data, hingga penyajian hasil.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline reveal" style="margin-top: 28px;">
+          <article class="timeline-item">
+            <span class="year">2017</span>
+            <h3>Awal Karier</h3>
+            <p>Memulai perjalanan sebagai guru yang mengutamakan pembelajaran aktif, kontekstual, dan menumbuhkan semangat ilmiah di kelas.</p>
+          </article>
+
+          <article class="timeline-item">
+            <span class="year">2020</span>
+            <h3>Penguatan STEM</h3>
+            <p>Mengembangkan pembelajaran berbasis proyek dan eksperimen agar siswa mampu mengaitkan teori dengan fenomena di lingkungan sekitar.</p>
+          </article>
+
+          <article class="timeline-item">
+            <span class="year">2023</span>
+            <h3>Pembimbing OPSI</h3>
+            <p>Membimbing siswa dalam merancang proposal penelitian, mempraktikkan metode ilmiah, dan mempersiapkan presentasi karya ilmiah.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="perangkat">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="kicker">Perangkat Pembelajaran</div>
+          <h2>Perangkat yang mendukung pembelajaran yang terstruktur dan terarah</h2>
+        </div>
+
+        <div class="filter-wrap reveal" aria-label="Filter perangkat pembelajaran">
+          <button class="filter-btn active" data-filter="all">Semua</button>
+          <button class="filter-btn" data-filter="stem">STEM</button>
+          <button class="filter-btn" data-filter="kokurikuler">Kokurikuler</button>
+          <button class="filter-btn" data-filter="riset">Penelitian</button>
+          <button class="filter-btn" data-filter="opsi">OPSI</button>
+        </div>
+
+        <div class="catalog-grid reveal" id="perangkatGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="media">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="kicker">Media Pembelajaran</div>
+          <h2>Media pembelajaran yang menguatkan pemahaman siswa</h2>
+        </div>
+
+        <div class="media-grid reveal" id="mediaGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="model">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="kicker">Model dan Strategi</div>
+          <h2>Pendekatan pembelajaran yang disesuaikan dengan kebutuhan siswa</h2>
+        </div>
+
+        <div class="model-grid reveal">
+          <article class="model-card">
+            <div class="model-head">
+              <h3>Project Based Learning</h3>
+              <p>Model yang mendorong siswa memecahkan masalah nyata melalui proyek.</p>
+            </div>
+            <div class="model-content">
+              <ul class="model-steps">
+                <li>Menentukan pertanyaan mendasar dan konteks autentik.</li>
+                <li>Menyusun perencanaan proyek bersama siswa.</li>
+                <li>Melaksanakan eksplorasi dan pengembangan produk.</li>
+                <li>Merefleksikan hasil serta memperbaiki proses.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="model-card">
+            <div class="model-head">
+              <h3>Discovery Learning</h3>
+              <p>Siswa menemukan konsep melalui proses observasi, penyelidikan, dan penalaran.</p>
+            </div>
+            <div class="model-content">
+              <ul class="model-steps">
+                <li>Menarik rasa ingin tahu melalui pertanyaan pemantik.</li>
+                <li>Melakukan pengamatan terhadap fenomena atau kasus.</li>
+                <li>Menyimpulkan konsep berdasarkan data yang ditemukan.</li>
+                <li>Memberikan refleksi dan penguatan konsep.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="model-card">
+            <div class="model-head">
+              <h3>Differentiated Learning</h3>
+              <p>Menyesuaikan proses, konten, dan tugas dengan kebutuhan siswa yang beragam.</p>
+            </div>
+            <div class="model-content">
+              <ul class="model-steps">
+                <li>Menganalisis kebutuhan belajar siswa.</li>
+                <li>Menyusun pilihan tugas dan dukungan yang beragam.</li>
+                <li>Memfasilitasi proses sesuai level pemahaman.</li>
+                <li>Melakukan evaluasi dan tindak lanjut yang sesuai.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="karya">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="kicker">Karya Siswa</div>
+          <h2>Produk dan kreativitas siswa sebagai bukti proses belajar</h2>
+        </div>
+
+        <div class="gallery-grid reveal" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="asesmen">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="kicker">Asesmen</div>
+          <h2>Proses penilaian yang transparan dan berorientasi pada perkembangan siswa</h2>
+        </div>
+
+        <div class="chart-box reveal" style="margin-bottom: 24px;">
+          <h3>DATA EVALUASI PEMBELAJARAN BERBASIS PROSES</h3>
+          <div class="bars">
+            <div class="bar" data-label="Awal" style="height: 38%;"></div>
+            <div class="bar" data-label="Observasi" style="height: 58%;"></div>
+            <div class="bar" data-label="Proyek" style="height: 75%;"></div>
+            <div class="bar" data-label="Akhir" style="height: 90%;"></div>
+          </div>
+        </div>
+
+        <div class="model-grid reveal">
+          <article class="assessment-card">
+            <div class="assessment-content">
+              <div class="badge">Diagnostik</div>
+              <h3>Identifikasi kebutuhan belajar</h3>
+              <p>Memetakan kesiapan awal siswa agar pembelajaran dapat disesuaikan secara tepat.</p>
+            </div>
+          </article>
+
+          <article class="assessment-card">
+            <div class="assessment-content">
+              <div class="badge">Formatif</div>
+              <h3>Observasi dan umpan balik</h3>
+              <p>Proses penilaian berkelanjutan untuk memperbaiki kualitas belajar selama proses berlangsung.</p>
+            </div>
+          </article>
+
+          <article class="assessment-card">
+            <div class="assessment-content">
+              <div class="badge">Sumatif</div>
+              <h3>Penilaian akhir</h3>
+              <p>Menilai pencapaian kompetensi berdasarkan tujuan pembelajaran yang telah dirancang.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dampak">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="kicker">Dampak dan Refleksi</div>
+          <h2>Tantangan, inovasi, pelaksanaan, dan evaluasi pembelajaran</h2>
+        </div>
+
+        <div class="impact-grid reveal">
+          <article class="impact-card">
+            <div class="big-number">
+              <strong>01</strong>
+              <span class="status-pill">Tantangan</span>
+            </div>
+            <h3>Masalah pembelajaran</h3>
+            <p>Siswa cenderung pasif saat pembelajaran bersifat satu arah dan belum kontekstual dengan kebutuhan dunia nyata.</p>
+          </article>
+
+          <article class="impact-card">
+            <div class="big-number">
+              <strong>02</strong>
+              <span class="status-pill">Inovasi</span>
+            </div>
+            <h3>Solusi yang diterapkan</h3>
+            <p>Mengintegrasikan project-based inquiry, media visual, dan asesmen proses untuk membuat pembelajaran lebih aktif.</p>
+          </article>
+
+          <article class="impact-card">
+            <div class="big-number">
+              <strong>03</strong>
+              <span class="status-pill">Bukti</span>
+            </div>
+            <h3>Dokumentasi</h3>
+            <p>Foto kegiatan, produk siswa, hasil refleksi, dan catatan observasi menjadi bukti pengalaman belajar yang terjadi.</p>
+          </article>
+
+          <article class="impact-card">
+            <div class="big-number">
+              <strong>04</strong>
+              <span class="status-pill">Perbaikan</span>
+            </div>
+            <h3>Rencana pengembangan</h3>
+            <p>Menyesuaikan strategi berbasis kebutuhan siswa secara berkelanjutan agar pembelajaran semakin relevan dan bermakna.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="praktik-baik">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="kicker">Dokumentasi Praktik Baik</div>
+          <h2>Jurnal praktik pembelajaran yang dapat menjadi referensi</h2>
+        </div>
+
+        <div class="journal-grid reveal" id="journalGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="kontak">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div>
+            <div class="kicker" style="background: rgba(255,255,255,0.08); color: #dfeeff;">Kontak dan Kolaborasi</div>
+            <h2>Berbagi praktik baik untuk memperkuat pembelajaran STEM dan riset siswa</h2>
+            <p>Website ini menjadi ruang dokumentasi praktik pembelajaran, pembinaan kegiatan OPSI, serta kerja sama dalam mengembangkan model pembelajaran yang inovatif, kolaboratif, dan relevan dengan kebutuhan masa depan.</p>
+            <div style="margin-top: 18px;">
+              <a href="#home" class="button">Kembali ke Atas</a>
+            </div>
+          </div>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <small>Nama Guru</small>
+              <strong>Dewi Irianti, M.Pd.</strong>
+            </div>
+            <div class="contact-item">
+              <small>Fokus</small>
+              <strong>STEM, Kokurikuler, Penelitian Ilmiah</strong>
+            </div>
+            <div class="contact-item">
+              <small>Program</small>
+              <strong>OPSI & Inovasi Pembelajaran</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong style="color: #fff; letter-spacing: 0.08em;">RUANG INSPIRASI</strong><br />
+        <span>Belajar Bermakna, Berpikir Saintifik, Menginspirasi Sesama.</span>
+      </div>
+      <div class="footer-links">
+        <a href="#profil">Profil Guru</a>
+        <a href="#perangkat">Perangkat</a>
+        <a href="#media">Media</a>
+        <a href="#karya">Karya</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+      <div>© <span id="year"></span> Ruang Inspirasi</div>
+    </div>
+  </footer>
+
+  <div class="modal" id="contentModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" aria-label="Tutup" type="button">×</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
   </div>
 
-  <div class="grid">
+  <div class="toast" id="toast"></div>
 
-    <a href="https://school.rsynzr.cloud/ecoenzym" class="card">
-      <div class="card-tag"><span class="card-dot"></span> Website</div>
-      <h2>Eco Enzym</h2>
-      <p>Website tentang eco enzyme - manfaat, cara pembuatan, dan informasi lengkap seputar produk ramah lingkungan ini.</p>
-      <span class="card-arrow">→</span>
-    </a>
+  <script>
+    const perangkatData = [
+      { title: 'Modul Ajar STEM: Energi Terbarukan dan Dampaknya', subject: 'IPA / STEM', kelas: 'XI', type: 'stem', description: 'Modul ajar yang menghubungkan konsep energi, teknologi, dan isu lingkungan untuk menumbuhkan literasi sains siswa.', goal: 'Menguatkan kemampuan menganalisis isu nyata dan merancang solusi berbasis data.', doc: '' },
+      { title: 'Rancangan Kokurikuler: Literasi Sains Berbasis Masalah', subject: 'Biologi', kelas: 'X', type: 'kokurikuler', description: 'Program kokurikuler yang mengembangkan sikap ilmiah melalui diskusi isu kesehatan, lingkungan, dan teknologi.', goal: 'Membangun kebiasaan berpikir analitis, kolaboratif, dan reflektif.', doc: '' },
+      { title: 'LKPD Penelitian: Uji Kadar Air dan Kualitas Tanah', subject: 'Sains Terapan', kelas: 'XI', type: 'riset', description: 'Lembar kerja peserta didik yang memandu siswa melakukan observasi, pengolahan data, dan penarikan kesimpulan ilmiah.', goal: 'Melatih keterampilan proses dan kemampuan menulis laporan penelitian.', doc: '' },
+      { title: 'Panduan OPSI: Proposal dan Metodologi Penelitian', subject: 'Penelitian Ilmiah', kelas: 'XII', type: 'opsi', description: 'Panduan sistematis untuk mengembangkan proposal penelitian, menyusun variabel, dan merancang metodologi yang valid.', goal: 'Menyiapkan siswa untuk mengikuti kompetisi dan seminar riset ilmiah.', doc: '' },
+      { title: 'Bahan Ajar Diferensiasi: Sains dan Teknologi di Komunitas', subject: 'STEM', kelas: 'X', type: 'stem', description: 'Bahan ajar yang menyesuaikan kebutuhan siswa dengan pendekatan berbasis proyek dan analisis kebutuhan nyata.', goal: 'Mendukung pembelajaran yang inklusif dan relevan untuk semua tingkat kemampuan.', doc: '' }
+    ];
 
-    <a href="https://school.rsynzr.cloud/toponimi" class="card">
-      <div class="card-tag"><span class="card-dot"></span> Website</div>
-      <h2>Toponimi</h2>
-      <p>Website tentang toponimi - studi mengenai asal-usul dan makna nama-nama tempat serta geografi lokal.</p>
-      <span class="card-arrow">→</span>
-    </a>
+    const mediaData = [
+      { title: 'Video Eksperimen Sains', material: 'IPA', kelas: 'XI', kind: 'video', description: 'Video eksperimen yang menjelaskan proses pengamatan, pengambilan data, dan interpretasi hasil secara ilmiah.', purpose: 'Memperkuat kemampuan siswa memahami prosedur riset dan membangun logika eksperimen.', action: 'Tonton' },
+      { title: 'Media Presentasi STEM', material: 'Teknologi', kelas: 'X', kind: 'presentasi', description: 'Slide dan visual yang menampilkan koneksi antar konsep sains, teknologi, dan penerapannya di kehidupan sehari-hari.', purpose: 'Mendorong siswa berpikir transdisipliner dan kritis saat menyajikan ide.', action: 'Preview' },
+      { title: 'Infografis Hasil Penelitian', material: 'Riset', kelas: 'XII', kind: 'infografis', description: 'Infografis yang memaparkan proses penelitian, hasil analisis, dan kesimpulan dalam bentuk visual yang mudah dipahami.', purpose: 'Meningkatkan kemampuan komunikasi ilmiah dan visualisasi data.', action: 'Preview' },
+      { title: 'Simulasi Laboratorium Digital', material: 'Komputasi', kelas: 'XI', kind: 'simulasi', description: 'Media digital untuk menyimulasikan percobaan dan observasi pada fenomena yang sulit dilakukan di laboratorium nyata.', purpose: 'Mengembangkan literasi data, prediksi, dan analisis fenomena secara cepat.', action: 'Preview' }
+    ];
 
-    <a href="https://school.rsynzr.cloud/rsynzr-ai/" class="card">
-      <div class="card-tag"><span class="card-dot"></span> AI Tool</div>
-      <h2>rsynzr-ai</h2>
-      <p>Chatbot AI berbasis Groq API dengan frontend static dan backend Cloudflare Workers.</p>
-      <span class="card-arrow">&rarr;</span>
-    </a>
+    const galleryData = [
+      { title: 'Eksperimen Lingkungan Sekolah', material: 'IPA', description: 'Siswa mengamati kualitas air, tanah, dan kebersihan lingkungan untuk menemukan isu nyata yang dapat diteliti.', image: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Prototipe Inovasi Siswa', material: 'STEM', description: 'Karya kreatif siswa yang menghasilkan solusi sederhana untuk permasalahan teknologi dan lingkungan sekitar.', image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Seminar Hasil Penelitian', material: 'Riset', description: 'Siswa mempresentasikan temuan penelitian secara ilmiah, mulai dari rumusan masalah hingga rekomendasi solusi.', image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Pembinaan OPSI', material: 'OPSI', description: 'Tahap penyusunan proposal, diskusi metodologi, dan persiapan presentasi dalam kegiatan pembimbingan OPSI.', image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80' }
+    ];
 
-  </div>
+    const journalData = [
+      { title: 'Praktik Baik: Integrasi STEM di Kelas', tag: 'STEM', description: 'Pembelajaran yang menggabungkan konsep sains, teknologi, dan pemecahan masalah untuk menghasilkan produk yang relevan dengan kehidupan siswa.', image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Pembinaan Penelitian Ilmiah', tag: 'Riset', description: 'Proses membimbing siswa dari ide awal, pengajuan pertanyaan penelitian, hingga tahap analisis dan refleksi hasil.', image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Kolaborasi dan Diferensiasi', tag: 'Kokurikuler', description: 'Strategi mengakomodasi kebutuhan belajar siswa yang beragam melalui tugas kelompok, observasi, dan diskusi ilmiah.', image: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=800&q=80' }
+    ];
 
-  <div class="home-link">
-    <a href="https://rsynzr.cloud/" class="home-btn">🏠 Kembali ke Home</a>
-  </div>
+    function renderPerangkat(filter = 'all') {
+      const grid = document.getElementById('perangkatGrid');
+      const filtered = filter === 'all'
+        ? perangkatData
+        : perangkatData.filter(item => item.type === filter);
 
-  <footer>&copy; 2026 rsynzr.cloud. All rights reserved.</footer>
+      grid.innerHTML = filtered.map(item => `
+        <article class="catalog-card">
+          <div class="thumb" style="background: linear-gradient(135deg, rgba(12,35,64,0.95), rgba(45,108,223,0.82));">${item.subject.slice(0, 2).toUpperCase()}</div>
+          <div class="catalog-content">
+            <div class="badge-row">
+              <span class="badge">${item.type.toUpperCase()}</span>
+            </div>
+            <h3>${item.title}</h3>
+            <div class="meta-list">
+              <span>${item.subject}</span>
+              <span>Kelas ${item.kelas}</span>
+            </div>
+            <p>${item.description}</p>
+            <p><strong>Tujuan:</strong> ${item.goal}</p>
+            <div class="card-actions">
+              <button class="mini-btn primary" data-detail='${JSON.stringify(item).replace(/'/g, '&apos;')}'>Lihat Detail</button>
+              <button class="mini-btn" data-doc="${item.doc || ''}">${item.doc ? 'Buka Dokumen' : 'Rencana Dokumen'}</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
 
+    function renderMedia() {
+      const grid = document.getElementById('mediaGrid');
+      grid.innerHTML = mediaData.map(item => `
+        <article class="media-card">
+          <div class="thumb">${item.kind.slice(0, 2).toUpperCase()}</div>
+          <div class="media-content">
+            <div class="badge-row">
+              <span class="badge">${item.kind}</span>
+            </div>
+            <h3>${item.title}</h3>
+            <div class="meta-list">
+              <span>${item.material}</span>
+              <span>Kelas ${item.kelas}</span>
+            </div>
+            <p>${item.description}</p>
+            <p><strong>Tujuan:</strong> ${item.purpose}</p>
+            <div class="card-actions">
+              <button class="mini-btn primary" data-media='${JSON.stringify(item).replace(/'/g, '&apos;')}'>${item.action}</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = galleryData.map(item => `
+        <article class="gallery-card">
+          <div class="thumb" style="background: linear-gradient(135deg, rgba(245,158,11,0.9), rgba(246,196,83,0.86));">${item.material.slice(0, 2).toUpperCase()}</div>
+          <div class="gallery-content">
+            <div class="badge-row">
+              <span class="badge">${item.material}</span>
+            </div>
+            <h3>${item.title}</h3>
+            <p>${item.description}</p>
+            <div class="card-actions">
+              <button class="mini-btn primary" data-gallery='${JSON.stringify(item).replace(/'/g, '&apos;')}'>Lihat Detail</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderJournal() {
+      const grid = document.getElementById('journalGrid');
+      grid.innerHTML = journalData.map(item => `
+        <article class="journal-card">
+          <div class="thumb">${item.tag.slice(0, 2).toUpperCase()}</div>
+          <div class="journal-content">
+            <div class="badge-row">
+              <span class="badge">${item.tag}</span>
+            </div>
+            <h3>${item.title}</h3>
+            <p>${item.description}</p>
+            <div class="card-actions">
+              <button class="mini-btn primary" data-journal='${JSON.stringify(item).replace(/'/g, '&apos;')}'>Baca Catatan</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    function openModal(content) {
+      const modal = document.getElementById('contentModal');
+      const modalBody = document.getElementById('modalBody');
+      modalBody.innerHTML = content;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('contentModal');
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    document.addEventListener('click', function(event) {
+      const target = event.target;
+      if (target.matches('.filter-btn')) {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.toggle('active', btn === target));
+        renderPerangkat(target.dataset.filter);
+      }
+
+      if (target.matches('[data-detail]')) {
+        const item = JSON.parse(target.dataset.detail.replace(/&apos;/g, "'"));
+        openModal(`
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="${item.title}" />
+          <div class="badge-row"><span class="badge">${item.type.toUpperCase()}</span></div>
+          <h3>${item.title}</h3>
+          <div class="meta-list"><span>${item.subject}</span><span>Kelas ${item.kelas}</span></div>
+          <p>${item.description}</p>
+          <p><strong>Tujuan Pembelajaran:</strong> ${item.goal}</p>
+          <p><strong>Catatan:</strong> Dokumen pendukung dapat disesuaikan dengan file resmi, modul, atau arsip pembelajaran yang dimiliki guru sesuai kebutuhan kelas dan kegiatan sekolah.</p>
+        `);
+      }
+
+      if (target.matches('[data-doc]')) {
+        const doc = target.dataset.doc;
+        if (!doc) {
+          showToast('Dokumen pendukung akan disesuaikan saat file resmi tersedia.');
+        } else {
+          window.open(doc, '_blank', 'noopener');
+        }
+      }
+
+      if (target.matches('[data-media]')) {
+        const item = JSON.parse(target.dataset.media.replace(/&apos;/g, "'"));
+        openModal(`
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="${item.title}" />
+          <div class="badge-row"><span class="badge">${item.kind}</span></div>
+          <h3>${item.title}</h3>
+          <div class="meta-list"><span>${item.material}</span><span>Kelas ${item.kelas}</span></div>
+          <p>${item.description}</p>
+          <p><strong>Tujuan penggunaan:</strong> ${item.purpose}</p>
+          <p><strong>Catatan:</strong> Media dapat diganti dengan file asli, video, atau demo interaktif sesuai kebutuhan pembelajaran.</p>
+        `);
+      }
+
+      if (target.matches('[data-gallery]')) {
+        const item = JSON.parse(target.dataset.gallery.replace(/&apos;/g, "'"));
+        openModal(`
+          <img src="${item.image}" alt="${item.title}" />
+          <div class="badge-row"><span class="badge">${item.material}</span></div>
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          <p><strong>Tujuan pembelajaran:</strong> Mengembangkan kreativitas, kolaborasi, dan kemampuan menyampaikan hasil karya secara komunikatif.</p>
+        `);
+      }
+
+      if (target.matches('[data-journal]')) {
+        const item = JSON.parse(target.dataset.journal.replace(/&apos;/g, "'"));
+        openModal(`
+          <img src="${item.image}" alt="${item.title}" />
+          <div class="badge-row"><span class="badge">${item.tag}</span></div>
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          <p><strong>Refleksi:</strong> Praktik ini menunjukkan pentingnya perencanaan yang adaptif, observasi proses belajar, dan perbaikan berkelanjutan terhadap pembelajaran.</p>
+        `);
+      }
+
+      if (target.matches('.modal-close')) closeModal();
+      if (target.matches('.modal')) closeModal();
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeModal();
+    });
+
+    const revealItems = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach(item => observer.observe(item));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderPerangkat('all');
+    renderMedia();
+    renderGallery();
+    renderJournal();
+  </script>
 </body>
 </html>
